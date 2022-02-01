@@ -1,5 +1,13 @@
 module QuizQuestions
 
-# Write your package code here.
+using Markdown
+using Mustache
+using Random
+
+include("question_types.jl")
+include("html_templates.jl")
+include("show_methods.jl")
+
+export numericq, radioq, booleanq, yesnoq, stringq
 
 end
