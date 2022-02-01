@@ -1,0 +1,52 @@
+# A simple self-grading quiz
+
+```julia
+using QuizQuestions
+```
+
+Match `abc`
+
+```julia; echo=false
+re = Regex("abc")
+stringq(re)
+```
+
+
+
+```julia; echo=false
+a = 1
+numericq(a, label= raw"What is ``\sin(\frac{\pi}{2})``?")
+```
+
+What is ``100`` centimeters in meters?
+
+```julia; echo=false
+a = 1
+numericq(a, units="meter(s)", hint="It is 1")
+```
+
+
+What is ``\sqrt{2}``?
+
+```julia; echo=false
+a = sqrt(2)
+Δ = 1e-2
+numericq(a, Δ, hint="use 3 digits")
+```
+
+
+What is "one"?
+
+```julia; echo=false
+choices = ("``1``", "``2``", "``3``")
+answer = 1
+radioq(choices, answer, hint="select the number matching the word", keep_order=true)
+```
+
+
+
+```julia; echo=false
+choices = ["beta", raw"``\beta``", "`beta`"]
+answer = 2
+radioq(choices, answer; label="Which is the letter?", hint="Which is the Greek symbol?")
+```
