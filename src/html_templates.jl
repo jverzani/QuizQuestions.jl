@@ -1,30 +1,36 @@
 ## Could tidy up this HTML to make it look nicer
 html_templates = Dict()
 
+const grading_partial = """
+  if(correct) {
+    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span class='glyphicon glyphicon-thumbs-up'>👍&nbsp;Correct</span></div>";
+  } else {
+    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span class='glyphicon glyphicon-thumbs-down'>👎&nbsp; Incorrect</span></div>";
+  }
+"""
 
-## input form questions
+## Basic question
+## has label and hint option.
+## Hint is put with label when present; otherwise, it appears at bottom of form.
+## this is overridden with input widget in how show method is called
 html_templates["question_tpl"] = mt"""
 <form class="mx-2 my-3" name='WeaveQuestion' data-id='{{:ID}}' data-controltype='{{:TYPE}}'>
   <div class='form-group {{:STATUS}}'>
     <div class='controls'>
-    <div class="form-floating input-group" id="controls_{{:ID}}">
-    {{#:LABEL}}<label for="controls_{{:ID}}">{{{:LABEL}}}</label>{{/:LABEL}}
+      <div class="form-floating input-group" id="controls_{{:ID}}">
+    {{#:LABEL}}
+        <label for="controls_{{:ID}}">{{{:LABEL}}}{{#:HINT}}<span href="#" title='{{{:HINT}}}'>&nbsp;🎁</span>{{/:HINT}}
+</label>
+    {{/:LABEL}}
+        <div style="padding-top: 5px">
     {{{:FORM}}}
-
-    {{#:HINT}}
-      <span href="#" title='{{{:HINT}}}'>&nbsp;🎁</span>
-      <span class='help-inline'><i id='{{:ID}}_hint' class='icon-gift'></i></span>
-      <script>$('#{{:ID}}_hint').tooltip({title:'{{{:HINT}}}', html:true, placement:'right'});</script>
-    {{/:HINT}}
-
+    {{^:LABEL}}{{#:HINT}}<label for="controls_{{:ID}}"><span href="#" title='{{{:HINT}}}'>&nbsp;🎁</span></label>{{/:HINT}}{{/:LABEL}}
+        </div>
+      </div>
+      <div id='{{:ID}}_message' style="padding-bottom: 15px">
+      </div>
     </div>
-    <div id='{{:ID}}_message'></div>
-    </div>
-
-
   </div>
-
-
 </form>
 
 <script text='text/javascript'>
@@ -32,29 +38,23 @@ html_templates["question_tpl"] = mt"""
 </script>
 """
 
-html_templates["input_grading_script"] = mt"""
+html_templates["input_grading_script"] = jmt"""
 document.getElementById("{{:ID}}").addEventListener("change", function() {
   var correct = {{{:CORRECT}}};
   var msgBox = document.getElementById('{{:ID}}_message');
-  if(correct) {
-    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span class='glyphicon glyphicon-thumbs-up'>👍&nbsp;Correct</span></div>";
-  } else {
-    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span class='glyphicon glyphicon-thumbs-down'>👎&nbsp; Incorrect</span></div>";
-  }
+  $(grading_partial)
 });
 """
 
 ##
-html_templates["Numericq_form"] = mt"""
-{{#:LABEL}}<label for="{{:ID}}">{{{:LABEL}}}</label>{{/:LABEL}}
-<input id="{{:ID}}" type="number" class="form-control u-full-width" placeholder="{{:PLACEHOLDER}}">
-{{#:UNITS}}<span class="input-group-addon mx-2">{{{:UNITS}}}</span>{{/:UNITS}}
-"""
-
-## Regular expression
-html_templates["Stringq_form"] = mt"""
-{{#:LABEL}}<label for="{{:ID}}">{{{:LABEL}}}</label>{{/:LABEL}}
-<input id="{{:ID}}" type="text" class="form-control u-full-width" placeholder="{{:PLACEHOLDER}}">
+html_templates["inputq_form"] = mt"""
+<div class="row">
+  <span style="width:90%">
+    <input id="{{:ID}}" type="{{:TYPE}}" class="form-control" placeholder="{{:PLACEHOLDER}}">
+  </span>
+  <span style="width:10%">{{#:UNITS}}{{{:UNITS}}}{{/:UNITS}}{{#:HINT}}<span href="#" title='{{{:HINT}}}'>&nbsp;🎁</span>{{/:HINT}}
+  </span>
+</div>
 """
 
 ## Multiple choice (one of many)
@@ -79,10 +79,6 @@ document.querySelectorAll('input[name="radio_{{:ID}}"]').forEach(function(rb) {
 rb.addEventListener("change", function() {
     var correct = rb.value == {{:CORRECT_ANSWER}};
     var msgBox = document.getElementById('{{:ID}}_message');
-    if (correct) {
-    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span class='glyphicon glyphicon-thumbs-up'>👍&nbsp;Correct</span></div>";
-  } else {
-    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span class='glyphicon glyphicon-thumbs-down'>👎&nbsp; Incorrect</span></div>";
-  }
+    $(grading_partial)
 })});
 """

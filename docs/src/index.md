@@ -1,0 +1,61 @@
+# QuizQuestions
+
+[QuizQuestions](https://github.com/jverzani/QuizQuestions.jl) allows the inclusion of self-grading quiz questions within a `Documenter`, `Weave`, or `Pluto` HTML page.
+
+
+The basic idea is:
+
+* load the package:
+
+```@example quiz_question
+using QuizQuestions
+```
+
+* create a question:
+
+```@example quiz_question
+choices = ["one", "``2``", raw"``\sqrt{9}``"]
+question = "Which is largest?"
+answer = 3
+radioq(choices, answer; label=question, hint="A hint")
+```
+
+* repeat as desired.
+
+----
+
+The `show` method of the object for the `text/html` mime type produced by `radioq` inserts the necessary HTML and JavaScript code to show the input widget and grading logic.
+
+
+The above question uses radio buttons for allowing one choice from many.
+
+The `hint` argument allows an optional text-only hint available to the user on hover. The `label` is used to flag the question. This is also optional. For example, the question can be asked in the body of the document (the position of any hint will be different):
+
+What is ``\sqrt{2}``?
+
+```@example quiz_question
+answer = sqrt(2)
+tol = 1e-3
+numericq(answer, tol, hint="you need to be within 1/1000")
+```
+
+
+The quiz questions are written in markdown, as would be the rest of the Documenter or Weave document containing the questions. The above code cells would be enclosed in triple-backtick blocks and would have their contents hidden from the user. How this is done varies from `Documenter`, `Weave`, and `Pluto`. The `examples` directory shows examples of each. Here is an example of a numeric question:
+
+```@example quiz_question
+answer = 1 + 1
+numericq(answer; label="``1 + 1``?", hint="Do the math")
+```
+
+
+----
+
+Currently only a few question types are available:
+
+```@docs
+numericq
+stringq
+radioq
+yesnoq
+booleanq
+```
