@@ -109,18 +109,19 @@ function Base.show(io::IO, m::MIME"text/html", x::Radioq)
 
 end
 
-function Base.show(io::IO, m::MIME"text/html", x::Multiplecq)
+function Base.show(io::IO, m::MIME"text/html", x::Multiq)
 
     ID = randstring()
 
     choices = string.(x.choices)
     items = [_make_item(i, choice) for (i,choice) ∈ enumerate(choices)]
 
-    GRADING_SCRIPT = Mustache.render(html_templates["radio_grading_script"];
-                             ID = ID,
-                             CORRECT_ANSWER = x.answer
+    GRADING_SCRIPT = Mustache.render(html_templates["multi_grading_script"];
+                                     ID = ID,
+                                     CORRECT_ANSWER = x.answer,
+                                     INCORRECT = "Not yet"
                              )
-    FORM = Mustache.render(html_templates["Radioq"];
+    FORM = Mustache.render(html_templates["Multiq"];
                            ID = ID,
                            ITEMS = items,
                            INLINE = x.inline ? " inline" : ""

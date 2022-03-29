@@ -1,11 +1,11 @@
 ## Could tidy up this HTML to make it look nicer
 html_templates = Dict()
 
-const grading_partial = """
+grading_partial = """
   if(correct) {
-    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span class='glyphicon glyphicon-thumbs-up'>👍&nbsp;Correct</span></div>";
+    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span class='glyphicon glyphicon-thumbs-up'>👍&nbsp; {{#:CORRECT}}{{:CORRECT}}{{/:CORRECT}}{{^:CORRECT}}Correct{{:/CORRECT}}</span></div>";
   } else {
-    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span class='glyphicon glyphicon-thumbs-down'>👎&nbsp; Incorrect</span></div>";
+    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span class='glyphicon glyphicon-thumbs-down'>👎&nbsp; {{#:INCORRECT}}{{:INCORRECT}}{{/:INCORRECT}}{{^:INCORRECT}}Incorrect{{:/INCORRECT}}</span></div>";
   }
 """
 
@@ -78,6 +78,40 @@ html_templates["radio_grading_script"] = """
 document.querySelectorAll('input[name="radio_{{:ID}}"]').forEach(function(rb) {
 rb.addEventListener("change", function() {
     var correct = rb.value == {{:CORRECT_ANSWER}};
+    var msgBox = document.getElementById('{{:ID}}_message');
+    $(grading_partial)
+})});
+"""
+
+html_templates["Multiq"] = mt"""
+{{#:ITEMS}}
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_{{:ID}}"
+              id="check_{{:ID}}_{{:VALUE}}" value="{{:VALUE}}">
+      <span = class="label-body">
+        {{{:LABEL}}}
+      </span>
+    </input>
+  </label>
+</div>
+{{/:ITEMS}}
+"""
+
+html_templates["multi_grading_script"] = """
+document.querySelectorAll('input[name="check_{{:ID}}"]').forEach(function(rb) {
+rb.addEventListener("change", function() {
+    var choice_buttons = document.getElementsByName("check_{{:ID}}");
+    selected = [];
+    for (var i=0; i < choice_buttons.length; i++) {
+        if (choice_buttons[i].checked) {
+           selected.push(i+1)
+        }
+    }
+    var a = selected;
+    b = {{{:CORRECT_ANSWER}}};
+    // https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
+    correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
     var msgBox = document.getElementById('{{:ID}}_message');
     $(grading_partial)
 })});

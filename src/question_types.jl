@@ -110,9 +110,9 @@ end
 
 
 ##
-mutable struct Multiplecq <: Question
+mutable struct Multiq <: Question
     choices
-    answers
+    answer
     values
     labels
     label
@@ -121,9 +121,9 @@ mutable struct Multiplecq <: Question
 end
 
 """
-    multiplecq(choices, answers; label="", hint="", keep_order=false)
+    multiq(choices, answers; label="", hint="", keep_order=false)
 
-Multiple choice question (several possible)
+Multiple choice question (one *or more* of several)
 
 Arguments:
 
@@ -148,7 +148,7 @@ multiplecq(choices, answers; hint="not the red one!")
 ```
 
 """
-function multiplecq(choices, answers::Vector{Int};
+function multiq(choices, answers;
                 label="", hint="", inline::Bool=(hint!=""),
                 keep_order::Bool=false)
     inds = collect(1:length(choices))
@@ -156,7 +156,7 @@ function multiplecq(choices, answers::Vector{Int};
     labels = choices
     !keep_order && shuffle!(inds)
 
-    Multiplecq(choices[inds], findall(in(answers), inds),
+    Multiq(choices[inds], findall(in(answers), inds),
            values, labels[inds], label, hint, inline)
 end
 
