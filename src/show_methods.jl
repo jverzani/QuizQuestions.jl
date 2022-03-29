@@ -119,7 +119,8 @@ function Base.show(io::IO, m::MIME"text/html", x::Multiq)
     GRADING_SCRIPT = Mustache.render(html_templates["multi_grading_script"];
                                      ID = ID,
                                      CORRECT_ANSWER = x.answer,
-                                     INCORRECT = "Not yet"
+                                     INCORRECT = "Not yet",
+                                     CORRECT = "Correct"
                              )
     FORM = Mustache.render(html_templates["Multiq"];
                            ID = ID,

@@ -3,9 +3,9 @@ html_templates = Dict()
 
 grading_partial = """
   if(correct) {
-    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span class='glyphicon glyphicon-thumbs-up'>👍&nbsp; {{#:CORRECT}}{{:CORRECT}}{{/:CORRECT}}{{^:CORRECT}}Correct{{:/CORRECT}}</span></div>";
+    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span class='glyphicon glyphicon-thumbs-up'>👍&nbsp; {{#:CORRECT}}{{{:CORRECT}}}{{/:CORRECT}}{{^:CORRECT}}Correct{{/:CORRECT}} </span></div>";
   } else {
-    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span class='glyphicon glyphicon-thumbs-down'>👎&nbsp; {{#:INCORRECT}}{{:INCORRECT}}{{/:INCORRECT}}{{^:INCORRECT}}Incorrect{{:/INCORRECT}}</span></div>";
+    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span class='glyphicon glyphicon-thumbs-down'>👎&nbsp; {{#:INCORRECT}}{{{:INCORRECT}}}{{/:INCORRECT}}{{^:INCORRECT}}Incorrect{{/:INCORRECT}} </span></div>";
   }
 """
 
