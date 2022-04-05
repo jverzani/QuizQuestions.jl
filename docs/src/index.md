@@ -75,7 +75,16 @@ Who was the first president?
 stringq(r"^Washington", label="last name")
 ```
 
+* Here is an example of matching
 
+For each question, select the correct answer.
+
+```@example quiz_question
+questions = ("Select a Volvo", "Select a Mercedes", "Select an Audi")
+choices = ("XC90", "A4", "GLE 350", "X1") # may be more than questions
+answer = (1,3,2) # indices of correct
+matchq(questions, choices, answer)
+```
 
 ----
 
@@ -88,4 +97,5 @@ radioq
 yesnoq
 booleanq
 multiq
+matchq
 ```

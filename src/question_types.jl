@@ -160,6 +160,52 @@ function multiq(choices, answers;
            values, labels[inds], label, hint, inline)
 end
 
+##
+mutable struct Matchq <: Question
+    questions
+    choices
+    answer
+    label
+    hint
+end
+
+"""
+    matchq(questions, choices, answers; label="", hint="")
+
+Use a drop down to select the right match for each question.
+
+Arguments:
+
+* `questions`: Indexable collection of questions.
+
+* `choices`: indexable collection of choices for each question. As seen in the example, choices can be formatted with markdown.
+
+* `answers`: collection of correct indices for each question.
+
+* `label`: optional label for the form element
+
+* `hint`: optional plain-text hint that can be seen on hover
+
+Example:
+
+```
+questions = ("Select a Volvo", "Select a Mercedes", "Select an Audi")
+choices = ("XC90", "A4", "GLE 350", "X1") # may be more than questions
+answer = (1,3,2) # indices of correct
+matchq(questions, choices, answer)
+```
+
+"""
+function matchq(questions, choices, answers;
+                label="", hint="", inline::Bool=(hint!=""),
+                keep_order::Bool=false)
+
+    @assert length(questions) == length(answers)
+
+    Matchq(questions, choices, answers,
+           label, hint)
+end
+
 
 """
     booleanq(ans; [label, hint])
