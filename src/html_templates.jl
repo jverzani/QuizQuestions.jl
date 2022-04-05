@@ -40,7 +40,7 @@ html_templates["question_tpl"] = mt"""
 
 html_templates["input_grading_script"] = jmt"""
 document.getElementById("{{:ID}}").addEventListener("change", function() {
-  var correct = {{{:CORRECT}}};
+  var correct = {{{:CORRECT_ANSWER}}};
   var msgBox = document.getElementById('{{:ID}}_message');
   $(grading_partial)
 });

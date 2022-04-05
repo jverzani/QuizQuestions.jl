@@ -40,12 +40,41 @@ numericq(answer, tol, hint="you need to be within 1/1000")
 ```
 
 
-The quiz questions are written in markdown, as would be the rest of the Documenter or Weave document containing the questions. The above code cells would be enclosed in triple-backtick blocks and would have their contents hidden from the user. How this is done varies from `Documenter`, `Weave`, and `Pluto`. The `examples` directory shows examples of each. Here is an example of a numeric question:
+The quiz questions are written in markdown, as would be the rest of the Documenter or Weave document containing the questions. The above code cells would be enclosed in triple-backtick blocks and would have their contents hidden from the user. How this is done varies from `Documenter`, `Weave`, and `Pluto`. The `examples` directory shows examples of each.
+
+
+* Here is an example of a numeric question:
 
 ```@example quiz_question
 answer = 1 + 1
 numericq(answer; label="``1 + 1``?", hint="Do the math")
 ```
+
+Numeric questions can have an absolute tolerance set to allow for rounding.
+
+* Here is an example of a multiple choice question (one or *more* from many):
+
+Select the sentences with numbers:
+
+```@example quiz_question
+choices =["Four score and seven years ago",
+"Lorum ipsum",
+"The quick brown fox jumped over the lazy dog",
+"One and one and one makes three"
+]
+ans = (1, 4)
+multiq(choices, ans, label="Select one or more")
+```
+
+* Here is an example of a short text question graded by a regular expression:
+
+
+Who was the first president?
+
+```@example quiz_question
+stringq(r"^Washington", label="last name")
+```
+
 
 
 ----
