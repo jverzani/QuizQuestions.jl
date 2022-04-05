@@ -87,4 +87,5 @@ stringq
 radioq
 yesnoq
 booleanq
+multiq
 ```
