@@ -22,7 +22,7 @@ function Base.show(io::IO, m::MIME"text/html", x::Numericq)
     GRADING_SCRIPT =
         Mustache.render(html_templates["input_grading_script"];
                         ID = ID,
-                        CORRECT = "Math.abs(this.value - $(x.val)) <= $(x.tol)"
+                        CORRECT_ANSWER = "(Math.abs(this.value - $(x.val)) <= $(x.tol))"
                         )
 
     Mustache.render(io,
@@ -53,7 +53,7 @@ function Base.show(io::IO, m::MIME"text/html", x::Stringq)
     GRADING_SCRIPT =
         Mustache.render(html_templates["input_grading_script"];
                         ID = ID,
-                        CORRECT = """RegExp('$(x.re.pattern)').test(this.value)"""
+                        CORRECT_ANSWER = """RegExp('$(x.re.pattern)').test(this.value)"""
                         )
 
     Mustache.render(io, html_templates["question_tpl"];
