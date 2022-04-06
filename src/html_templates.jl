@@ -128,7 +128,7 @@ html_templates["Matchq"] = mt"""
   </td>
   <td>
   <select name = "select_{{:ID}}" id="select_{{:ID}}_{{:NO}}">
-     <option value=0 selected="selected"></option>
+     <option value=0 selected="selected">{{{:BLANK}}}</option>
      {{#:ANSWER_CHOICES}}
      <option value="{{:INDEX}}">{{{:LABEL}}}</option>
     {{/:ANSWER_CHOICES}}

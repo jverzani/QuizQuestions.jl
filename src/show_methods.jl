@@ -143,9 +143,9 @@ end
 function Base.show(io::IO, m::MIME"text/html", x::Matchq)
 
     ID = randstring()
-
+    BLANK = "Choose..."
     ANSWER_CHOICES = [(INDEX=i, LABEL=_markdown_to_html(label)) for (i, label) in enumerate(x.choices)]
-    items = [(ID=ID, NO=i, QUESTION=_markdown_to_html(question), ANSWER_CHOICES=ANSWER_CHOICES) for (i,question) ∈ enumerate(x.questions)]
+    items = [(ID=ID, NO=i, BLANK=BLANK,  QUESTION=_markdown_to_html(question), ANSWER_CHOICES=ANSWER_CHOICES) for (i,question) ∈ enumerate(x.questions)]
     GRADING_SCRIPT = Mustache.render(html_templates["matchq_grading_script"];
                                      ID = ID,
                                      CORRECT_ANSWER = collect(string.(x.answer)),
