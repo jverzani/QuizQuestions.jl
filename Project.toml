@@ -1,7 +1,7 @@
 name = "QuizQuestions"
 uuid = "612c44de-1021-4a21-84fb-7261cf5eb2d4"
 authors = ["jverzani <jverzani@gmail.com> and contributors"]
-version = "0.3.1"
+version = "0.3.2"
 
 [deps]
 Markdown = "d6f4376e-aef5-505a-96c1-9c027394607a"
