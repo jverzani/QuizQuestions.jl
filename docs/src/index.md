@@ -86,6 +86,14 @@ answer = (1,3,2) # indices of correct
 matchq(questions, choices, answer)
 ```
 
+The above shows that the number of choices need not match the number of questions. When they do, a dictionary can be used to specify the choices and the answers will be computed:
+
+```@example quiz_question
+d = Dict("Select a Volvo" => "XC90", "Select a Mercedes" => "GLE 350",
+         "Select an Audi" => "A4")
+matchq(d)
+```
+
 ----
 
 Currently only a few question types are available:

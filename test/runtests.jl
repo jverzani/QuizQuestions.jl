@@ -12,4 +12,11 @@ using Test
     @test radioq(1:3, 1, keep_order=true).answer == 1
 
     @test multiq(("one","two","three"), (2, 3), label="Primes?").label == "Primes?"
+
+    d = Dict("Select a Volvo" => "XC90", "Select a Mercedes" => "GLE 350",
+             "Select an Audi" => "A4")
+    r = matchq(d)
+    i = rand(1:3)
+    @test d[r.questions[i]] == r.choices[r.answer[i]]
+
 end
