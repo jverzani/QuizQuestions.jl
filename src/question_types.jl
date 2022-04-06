@@ -160,6 +160,68 @@ function multiq(choices, answers;
            values, labels[inds], label, hint, inline)
 end
 
+##
+mutable struct Matchq <: Question
+    questions
+    choices
+    answer
+    label
+    hint
+end
+
+"""
+    matchq(questions, choices, answers; label="", hint="")
+    matchq(d::Dictionary; label="", hint="")
+
+Use a drop down to select the right match for each question.
+
+Arguments:
+
+* `questions`: Indexable collection of questions.
+
+* `choices`: indexable collection of choices for each question. As seen in the example, choices can be formatted with markdown.
+
+* `answers`: collection of correct indices for each question.
+
+* `d`: As an alternative, a dictionary of questions and answers can be specified. The choices will be taken from the values then randomized, the answers will be computed.
+
+* `label`: optional label for the form element
+
+* `hint`: optional plain-text hint that can be seen on hover
+
+## Examples:
+
+```
+questions = ("Select a Volvo", "Select a Mercedes", "Select an Audi")
+choices = ("XC90", "A4", "GLE 350", "X1") # may be more than questions
+answer = (1,3,2) # indices of correct
+matchq(questions, choices, answer)
+
+d = Dict("Select a Volvo" => "XC90", "Select a Mercedes" => "GLE 250")
+matchq(d)
+```
+
+"""
+function matchq(questions, choices, answers;
+                label="", hint="")
+
+    @assert length(questions) == length(answers)
+
+    Matchq(questions, choices, answers,
+           label, hint)
+end
+
+function matchq(d::AbstractDict; kwargs...)
+
+    questions = collect(keys(d))
+    choices = collect(values(d))
+    n = length(questions)
+    inds = shuffle(1:n)
+
+    matchq(questions, choices[inds], sortperm(inds); kwargs...)
+end
+
+
 
 """
     booleanq(ans; [label, hint])

@@ -138,3 +138,33 @@ function Base.show(io::IO, m::MIME"text/html", x::Multiq)
                     )
 
 end
+
+
+function Base.show(io::IO, m::MIME"text/html", x::Matchq)
+
+    ID = randstring()
+    BLANK = "Choose..."
+    ANSWER_CHOICES = [(INDEX=i, LABEL=_markdown_to_html(label)) for (i, label) in enumerate(x.choices)]
+    items = [(ID=ID, NO=i, BLANK=BLANK,  QUESTION=_markdown_to_html(question), ANSWER_CHOICES=ANSWER_CHOICES) for (i,question) ∈ enumerate(x.questions)]
+    GRADING_SCRIPT = Mustache.render(html_templates["matchq_grading_script"];
+                                     ID = ID,
+                                     CORRECT_ANSWER = collect(string.(x.answer)),
+                                     INCORRECT = "Not yet",
+                                     CORRECT = "Correct"
+                             )
+    FORM = Mustache.render(html_templates["Matchq"];
+                           ID = ID,
+                           ITEMS = items,
+
+                           )
+
+    Mustache.render(io, html_templates["question_tpl"],
+                    ID = ID,
+                    TYPE = "radio",
+                    FORM = FORM,
+                    GRADING_SCRIPT = GRADING_SCRIPT,
+                    LABEL=_markdown_to_html(x.label),
+                    HINT = x.hint # use HINT in question
+                    )
+
+end

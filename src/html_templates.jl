@@ -116,3 +116,43 @@ rb.addEventListener("change", function() {
     $(grading_partial)
 })});
 """
+
+## ----
+
+html_templates["Matchq"] = mt"""
+<table>
+{{#:ITEMS}}
+<tr>
+  <td>
+   <label for "select_{{:ID}}">{{{:QUESTION}}}</label>
+  </td>
+  <td>
+  <select name = "select_{{:ID}}" id="select_{{:ID}}_{{:NO}}">
+     <option value=0 selected="selected">{{{:BLANK}}}</option>
+     {{#:ANSWER_CHOICES}}
+     <option value="{{:INDEX}}">{{{:LABEL}}}</option>
+    {{/:ANSWER_CHOICES}}
+  </select>
+  </td>
+<tr>
+{{/:ITEMS}}
+</table>
+"""
+
+html_templates["matchq_grading_script"] = """
+      function callback(element, iterator) {
+	  element.addEventListener("change", function() {
+	      var a = [];
+	      var selectors = document.querySelectorAll('[id ^= "select_{{:ID}}"]');
+	      Array.prototype.forEach.call(selectors, function (element, iterator) {
+		 a.push(element.value);
+	      })
+              b = {{{:CORRECT_ANSWER}}};
+              // https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
+              correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
+              var msgBox = document.getElementById('{{:ID}}_message');
+              $(grading_partial)
+	  })
+      }
+      Array.prototype.forEach.call(document.querySelectorAll('[id ^= "select_{{:ID}}"]'), callback);
+"""
