@@ -1,6 +1,7 @@
 # QuizQuestions
 
-[![](https://img.shields.io/badge/docs-stable-blue.svg)](https://juliahub.com/docs/QuizQuestions/)
+[![](https://img.shields.io/badge/docs-stable-blue.svg)](https://jverzani.github.io/QuizQuestions.jl/stable/)
+[![](https://img.shields.io/badge/docs-dev-blue.svg)](https://jverzani.github.io/QuizQuestions.jl/dev/)
 
 A simple means to make basic web pages using Markdown with self-grading quiz questions. Question types are for numeric response, text response (graded with a regular expression), or a selection of one from many. Can be used with Weave, Documenter, or Pluto.
 
