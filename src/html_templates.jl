@@ -1,11 +1,12 @@
 ## Could tidy up this HTML to make it look nicer
 html_templates = Dict()
 
+# thumbs up/down don't show in my editor
 grading_partial = """
   if(correct) {
-    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span class='glyphicon glyphicon-thumbs-up'>👍&nbsp; {{#:CORRECT}}{{{:CORRECT}}}{{/:CORRECT}}{{^:CORRECT}}Correct{{/:CORRECT}} </span></div>";
+    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span> 👍&nbsp; {{#:CORRECT}}{{{:CORRECT}}}{{/:CORRECT}}{{^:CORRECT}}Correct{{/:CORRECT}} </span></div>";
   } else {
-    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span class='glyphicon glyphicon-thumbs-down'>👎&nbsp; {{#:INCORRECT}}{{{:INCORRECT}}}{{/:INCORRECT}}{{^:INCORRECT}}Incorrect{{/:INCORRECT}} </span></div>";
+    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span>👎&nbsp; {{#:INCORRECT}}{{{:INCORRECT}}}{{/:INCORRECT}}{{^:INCORRECT}}Incorrect{{/:INCORRECT}} </span></div>";
   }
 """
 
@@ -85,9 +86,9 @@ rb.addEventListener("change", function() {
 ## ----
 
 html_templates["Buttonq"] = mt"""
-<div id="buttongroup_{{:ID}}" class="btn-group" style="display: block;" >
+<div id="buttongroup_{{:ID}}" class="btn-group">
   {{#:BUTTONS}}
-  <button id="button_{{:ID}}_{{:i}}" value="{{:ANSWER}}" style="width:100%;text-align:left; padding:10px;">
+  <button id="button_{{:ID}}_{{:i}}" value="{{:ANSWER}}" style="width:100%;text-align:left; padding:10px;padding-bottom:20px;padding-top:5px; background:{{{:BLUE}}}">
     {{{:TEXT}}
   </button>
   {{/:BUTTONS}}
@@ -97,18 +98,17 @@ document.querySelectorAll('[id^="button_{{:ID}}_"]').forEach(function(btn) {
     btn.addEventListener("click", function(btn) {
 	var correct = this.value == "correct";
 	var id = this.id;
-	if (correct) {
-	    this.style.background = "#00AA33AA";
-	} else {
-	    this.style.background = "#FF0000AA";
+	if (!correct) {
+	    this.style.background = "{{{:GREEN}}}";
 	    text = this.innerHTML;
-	    this.innerHTML = text + " <em>x</em>";
+	    this.innerHTML = "<em>{{{:INCORRECT}}</em>&nbsp;" + text ;
 	}
 	document.querySelectorAll('[id^="button_{{:ID}}_"]').forEach(function(btn) {
 	    btn.disabled = true;
 	    if (btn.value == "correct") {
+                btn.style.background = "{{{:RED}}}";
 		text = btn.innerHTML;
-		btn.innerHTML = text + " <em>✓</em>";
+		btn.innerHTML =  " <em>{{{:CORRECT}}}</em>&nbsp;" + text ;
 		btn.style.fontSize = "1.1rem";
 		btn.style.color = "black";
 	    }

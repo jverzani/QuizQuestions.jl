@@ -22,7 +22,9 @@ function Base.show(io::IO, m::MIME"text/html", x::Numericq)
     GRADING_SCRIPT =
         Mustache.render(html_templates["input_grading_script"];
                         ID = ID,
-                        CORRECT_ANSWER = "(Math.abs(this.value - $(x.val)) <= $(x.tol))"
+                        CORRECT_ANSWER = "(Math.abs(this.value - $(x.val)) <= $(x.tol))",
+                        INCORRECT = "Incorrect",
+                        CORRECT = "Correct"
                         )
 
     Mustache.render(io,
@@ -53,7 +55,9 @@ function Base.show(io::IO, m::MIME"text/html", x::Stringq)
     GRADING_SCRIPT =
         Mustache.render(html_templates["input_grading_script"];
                         ID = ID,
-                        CORRECT_ANSWER = """RegExp('$(x.re.pattern)').test(this.value)"""
+                        CORRECT_ANSWER = """RegExp('$(x.re.pattern)').test(this.value)""",
+                        INCORRECT = "Incorrect",
+                        CORRECT = "Correct"
                         )
 
     Mustache.render(io, html_templates["question_tpl"];
@@ -90,8 +94,10 @@ function Base.show(io::IO, m::MIME"text/html", x::Radioq)
 
     GRADING_SCRIPT = Mustache.render(html_templates["radio_grading_script"];
                              ID = ID,
-                             CORRECT_ANSWER = x.answer
-                             )
+                                     CORRECT_ANSWER = x.answer,
+                                     INCORRECT = "Incorrect",
+                                     CORRECT = "Correct"
+                                     )
     FORM = Mustache.render(html_templates["Radioq"];
                            ID = ID,
                            ITEMS = items,
@@ -120,7 +126,12 @@ function Base.show(io::IO, m::MIME"text/html", x::Buttonq)
 
     FORM = Mustache.render(html_templates["Buttonq"];
                            ID = ID,
-                           BUTTONS = buttons
+                           BUTTONS = buttons,
+                           GREEN = "#FF0000AA",
+                           RED = "#00AA33AA",
+                           BLUE = "#0033CC11",
+                           CORRECT = "✓",
+                           INCORRECT="⨉"
                            )
     Mustache.render(io, html_templates["question_tpl"],
                     ID = ID,
@@ -144,7 +155,7 @@ function Base.show(io::IO, m::MIME"text/html", x::Multiq)
                                      ID = ID,
                                      CORRECT_ANSWER = x.answer,
                                      INCORRECT = "Not yet",
-                                     CORRECT = "Correct"
+                                     CORRECT = "Correct",
                              )
     FORM = Mustache.render(html_templates["Multiq"];
                            ID = ID,
@@ -174,8 +185,8 @@ function Base.show(io::IO, m::MIME"text/html", x::Matchq)
                                      ID = ID,
                                      CORRECT_ANSWER = collect(string.(x.answer)),
                                      INCORRECT = "Not yet",
-                                     CORRECT = "Correct"
-                             )
+                                     CORRECT = "Correct",
+                                     )
     FORM = Mustache.render(html_templates["Matchq"];
                            ID = ID,
                            ITEMS = items,
