@@ -43,6 +43,15 @@ numericq(answer, tol, hint="you need to be within 1/1000")
 The quiz questions are written in markdown, as would be the rest of the Documenter or Weave document containing the questions. The above code cells would be enclosed in triple-backtick blocks and would have their contents hidden from the user. How this is done varies from `Documenter`, `Weave`, and `Pluto`. The `examples` directory shows examples of each.
 
 
+* Here is the `buttonq` alternative to radio buttons:
+
+Which adds to ``2``?
+```@example quiz_questions
+buttonq(["``1 + 1``", "``2+2``", "``-1 + -1``"], 1)
+```
+
+
+
 * Here is an example of a numeric question:
 
 ```@example quiz_question
@@ -102,6 +111,7 @@ Currently only a few question types are available:
 numericq
 stringq
 radioq
+buttonq
 yesnoq
 booleanq
 multiq

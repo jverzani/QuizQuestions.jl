@@ -82,6 +82,43 @@ rb.addEventListener("change", function() {
     $(grading_partial)
 })});
 """
+## ----
+
+html_templates["Buttonq"] = mt"""
+<div id="buttongroup_{{:ID}}" class="btn-group" style="display: block;" >
+  {{#:BUTTONS}}
+  <button id="button_{{:ID}}_{{:i}}" value="{{:ANSWER}}" style="width:100%;text-align:left; padding:10px;">
+    {{{:TEXT}}
+  </button>
+  {{/:BUTTONS}}
+</div>
+<script>
+document.querySelectorAll('[id^="button_{{:ID}}_"]').forEach(function(btn) {
+    btn.addEventListener("click", function(btn) {
+	var correct = this.value == "correct";
+	var id = this.id;
+	if (correct) {
+	    this.style.background = "#00AA33AA";
+	} else {
+	    this.style.background = "#FF0000AA";
+	    text = this.innerHTML;
+	    this.innerHTML = text + " <em>x</em>";
+	}
+	document.querySelectorAll('[id^="button_{{:ID}}_"]').forEach(function(btn) {
+	    btn.disabled = true;
+	    if (btn.value == "correct") {
+		text = btn.innerHTML;
+		btn.innerHTML = text + " <em>✓</em>";
+		btn.style.fontSize = "1.1rem";
+		btn.style.color = "black";
+	    }
+	});
+    });
+})
+</script>
+"""
+
+
 
 html_templates["Multiq"] = mt"""
 {{#:ITEMS}}

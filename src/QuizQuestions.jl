@@ -8,6 +8,9 @@ include("question_types.jl")
 include("html_templates.jl")
 include("show_methods.jl")
 
-export numericq, radioq, multiq, booleanq, yesnoq, stringq, matchq
+export numericq,
+    buttonq, radioq, booleanq, yesnoq,
+    multiq,  matchq,
+    stringq
 
 end

@@ -109,6 +109,30 @@ function Base.show(io::IO, m::MIME"text/html", x::Radioq)
 
 end
 
+function Base.show(io::IO, m::MIME"text/html", x::Buttonq)
+
+    ID = randstring()
+
+    n = length(x.choices)
+    choices = _markdown_to_html.(x.choices)
+    buttons = [(i=i, TEXT=_markdown_to_html(x.choices[i]), ANSWER=x.answer[i]) for i ∈ 1:n]
+
+
+    FORM = Mustache.render(html_templates["Buttonq"];
+                           ID = ID,
+                           BUTTONS = buttons
+                           )
+    Mustache.render(io, html_templates["question_tpl"],
+                    ID = ID,
+                    TYPE = "radio",
+                    FORM = FORM,
+                    GRADING_SCRIPT = nothing,
+                    LABEL=_markdown_to_html(x.label),
+                    HINT = x.hint # use HINT in question
+                    )
+
+end
+
 function Base.show(io::IO, m::MIME"text/html", x::Multiq)
 
     ID = randstring()
