@@ -11,6 +11,8 @@ using Test
     @test radioq(["one","two", "three"], 1, keep_order=true).answer == 1
     @test radioq(1:3, 1, keep_order=true).answer == 1
 
+    @test buttonq(["one","two", "three"], 1).answer == ["correct", "incorrect", "incorrect"]
+
     @test multiq(("one","two","three"), (2, 3), label="Primes?").label == "Primes?"
 
     d = Dict("Select a Volvo" => "XC90", "Select a Mercedes" => "GLE 350",

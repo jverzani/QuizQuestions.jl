@@ -106,6 +106,45 @@ function radioq(choices, answer::Integer;
            values, labels[inds], label, hint, inline)
 end
 
+##
+mutable struct Buttonq <: Question
+    choices
+    answer
+    label
+    hint
+end
+
+"""
+    buttonq(choices, answer; label="", hint="")
+
+Use buttons for multiple choice (one of many). Show answer after first click.
+
+Arguments:
+
+* `choices`: indexable collection of choices. As seen in the example, choices can be formatted with markdown.
+
+* `answer::Int`: index of correct choice
+
+* `label`: optional label for the form element
+
+* `hint`: optional plain-text hint that can be seen on hover
+
+Example:
+
+```
+choices = ["beta", raw"``\\beta``", "`beta`"]
+answer = 2
+buttonq(choices, answer; hint="Which is the Greek symbol?")
+```
+
+"""
+function buttonq(choices, answer::Integer;
+                 label="", hint="")
+    answers = [i == answer ? "correct" : "incorrect" for i ∈ eachindex(choices)]
+    Buttonq(choices, answers, label, hint)
+end
+
+
 
 
 
