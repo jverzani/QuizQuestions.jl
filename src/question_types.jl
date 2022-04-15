@@ -4,6 +4,7 @@ mutable struct Stringq <: Question
     re::Regex
     label
     hint
+    placeholder
 end
 
 """
@@ -16,9 +17,9 @@ Arguments:
 * `re`: a regular expression for grading
 * `label`: optional label for the form element
 * `hint`: optional plain-text hint that can be seen on hover
-
+* `placeholder`: text shown when input widget is initially drawn
 """
-stringq(re::Regex; label="", hint="") = Stringq(re, label, hint)
+stringq(re::Regex; label="", hint="", placeholder=nothing) = Stringq(re, label, hint, placeholder)
 
 
 ##
@@ -28,10 +29,11 @@ mutable struct Numericq <: Question
     units
     label
     hint
+    placeholder
 end
 
 """
-    numericq(value, tol=1e-3; label="", hint="", units="")
+    numericq(value, tol=1e-3; label="", hint="", units="", placeholder=nothing)
 
 Match a numeric answer
 
@@ -42,13 +44,15 @@ Arguments:
 * `label`: optional label for the form element
 * `hint`: optional plain-text hint that can be seen on hover
 * `units`: a string indicating expected units.
+* `placeholder`: text shown when input widget is initially drawn
 
 """
 function numericq(val, tol=1e-3, args...;
                   label="",
-                  hint="", units::AbstractString="")
+                  hint="", units::AbstractString="",
+                  placeholder=nothing)
 
-    Numericq(val, tol,  units, label, hint)
+    Numericq(val, tol,  units, label, hint, placeholder)
 end
 
 numericq(val::Int; kwargs...) = numericq(val, 0; kwargs...)
@@ -305,3 +309,72 @@ yesnoq(true)
 """
 yesnoq(ans::AbstractString, args...; kwargs...) = radioq(["Yes", "No"], ans == "yes" ? 1 : 2, args...; keep_order=true, kwargs...)
 yesnoq(ans::Bool, args...; kwargs...) = yesnoq(ans ? "yes" : "no", args...;kwargs...)
+
+## --------
+
+abstract type FillBlankQ <: Question end
+
+mutable struct FillBlankChoiceQ <: FillBlankQ
+    question
+    choices
+    answer
+    label
+    hint
+end
+
+mutable struct FillBlankStringQ <: FillBlankQ
+    question
+    re::Regex
+    label
+    hint
+    placeholder
+end
+
+mutable struct FillBlankNumericQ <: FillBlankQ
+    question
+    val
+    tol
+    label
+    hint
+    placeholder
+end
+
+
+"""
+    fillblankq(question answer::Regex; label="", hint="", placeholder=nothing)
+    fillblankq(question, choices, answer; label="", hint="", keep_order=false)
+    fillblankq(question, val, tol=0; label="", hint="", placeholder=nothing)
+
+Present a fill-in-the-blank question where the blank can be a selection, a number, or a string graded by a regular expression.
+
+* `question`: A string. Use `____` (4 or more under scores) to indicate the blank
+
+## Examples
+```
+question = "The quick brown fox jumped over the ____ dog"
+fillblankq(question, r"lazy")
+fillblankq(question, ("lazy", "brown", "sleeping"), 1)
+fillblankq("____ ``+ 2  = 4``", 2)
+```
+"""
+fillblankq(question, answer::Regex; label="", hint="", placeholder=nothing) =
+    FillBlankStringQ(question, answer, label, hint, placeholder)
+
+
+function fillblankq(question, choices, answer; label="", hint="", keep_order=false)
+
+    if !keep_order
+        inds = collect(1:length(choices))
+        values = copy(inds)
+        labels = choices
+        !keep_order && shuffle!(inds)
+        choices = choices[inds]
+        answer = findfirst(isequal(answer), inds)
+    end
+
+
+    FillBlankChoiceQ(question, choices, answer, label, hint)
+end
+
+fillblankq(question, val::Real, tol=0; label="", hint="", placeholder=nothing) =
+    FillBlankNumericQ(question, val, tol, label, hint, placeholder)

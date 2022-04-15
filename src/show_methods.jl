@@ -13,7 +13,7 @@ function Base.show(io::IO, m::MIME"text/html", x::Numericq)
 
     FORM = Mustache.render(html_templates["inputq_form"];
                            ID=ID,
-                           PLACEHOLDER = "Numeric answer",
+                           PLACEHOLDER = isnothing(x.placeholder) ? "Numeric answer" : x.placeholder,
                            UNITS=x.units,
                            TYPE="number",
                            HINT = length(x.label) == 0 ? x.hint : ""
@@ -47,7 +47,7 @@ function Base.show(io::IO, m::MIME"text/html", x::Stringq)
 
     FORM = Mustache.render(html_templates["inputq_form"];
                            ID=ID,
-                           PLACEHOLDER = "Text answer",
+                           PLACEHOLDER = isnothing(x.placeholder) ? "Text answer" : x.placeholder,
                            TYPE="text",
                            HINT = length(x.label) == 0 ? x.hint : ""
                            )
@@ -196,6 +196,82 @@ function Base.show(io::IO, m::MIME"text/html", x::Matchq)
     Mustache.render(io, html_templates["question_tpl"],
                     ID = ID,
                     TYPE = "radio",
+                    FORM = FORM,
+                    GRADING_SCRIPT = GRADING_SCRIPT,
+                    LABEL=_markdown_to_html(x.label),
+                    HINT = x.hint # use HINT in question
+                    )
+
+end
+
+
+## ----
+## blank creates BLANK, GRADING_SCRIPT
+function blank(x::FillBlankChoiceQ, ID)
+    _blank = "Choose..."
+    ANSWER_CHOICES = [(INDEX=i, LABEL=_markdown_to_html(choice)) for
+                      (i,choice) ∈ enumerate(x.choices)]
+    BLANK = Mustache.render(html_templates["fill_in_blank_select"],
+                            ID = ID,
+                            BLANK=_blank,
+                            ANSWER_CHOICES = ANSWER_CHOICES)
+
+    GRADING_SCRIPT = Mustache.render(html_templates["matchq_grading_script"];
+                                     ID = ID,
+                                     CORRECT_ANSWER = collect(string.(x.answer)),
+                                     INCORRECT = "Not yet",
+                                     CORRECT = "Correct",
+                                     )
+    (BLANK, GRADING_SCRIPT)
+end
+
+function blank(x::FillBlankStringQ, ID)
+    PLACEHOLDER = isnothing(x.placeholder) ? "answer here..." : x.placeholder
+    BLANK = Mustache.render(html_templates["fill_in_blank_input"],
+                            ID = ID,
+                            TYPE="text",
+                            PLACEHOLDER=PLACEHOLDER)
+
+    GRADING_SCRIPT =
+        Mustache.render(html_templates["input_grading_script"];
+                        ID = ID,
+                        CORRECT_ANSWER = """RegExp('$(x.re.pattern)').test(this.value)""",
+                        INCORRECT = "Incorrect",
+                        CORRECT = "Correct"
+                        )
+        (BLANK, GRADING_SCRIPT)
+end
+
+function blank(x::FillBlankNumericQ, ID)
+    PLACEHOLDER = isnothing(x.placeholder) ? "answer here..." : x.placeholder
+    BLANK = Mustache.render(html_templates["fill_in_blank_input"],
+                            ID = ID,
+                            TYPE="number",
+                            PLACEHOLDER=PLACEHOLDER)
+    GRADING_SCRIPT =
+        Mustache.render(html_templates["input_grading_script"];
+                        ID = ID,
+                        CORRECT_ANSWER = "(Math.abs(this.value - $(x.val)) <= $(x.tol))",
+                        INCORRECT = "Incorrect",
+                        CORRECT = "Correct"
+                        )
+        (BLANK, GRADING_SCRIPT)
+end
+
+
+
+function Base.show(io::IO, m::MIME"text/html", x::FillBlankQ)
+
+    ID = randstring()
+    BLANK, GRADING_SCRIPT = blank(x, ID)
+
+    question = _markdown_to_html(x.question)
+    question = replace(question, r"_{4,}" => "{{{:BLANK}}}")
+    FORM = Mustache.render(question; BLANK=BLANK)
+
+
+    Mustache.render(io, html_templates["question_tpl"],
+                    ID = ID,
                     FORM = FORM,
                     GRADING_SCRIPT = GRADING_SCRIPT,
                     LABEL=_markdown_to_html(x.label),
