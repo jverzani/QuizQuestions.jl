@@ -110,6 +110,7 @@ end
 mutable struct Buttonq <: Question
     choices
     answer
+    explanation
     label
     hint
 end
@@ -125,6 +126,8 @@ Arguments:
 
 * `answer::Int`: index of correct choice
 
+* `explanation`: text to display on a wrong selection
+
 * `label`: optional label for the form element
 
 * `hint`: optional plain-text hint that can be seen on hover
@@ -134,14 +137,18 @@ Example:
 ```
 choices = ["beta", raw"``\\beta``", "`beta`"]
 answer = 2
-buttonq(choices, answer; hint="Which is the Greek symbol?")
+explanation = "The other two answers are not a symbol, but a name"
+buttonq(choices, answer; label="Which is the Greek symbol?", explanation=explanation)
 ```
 
+!!! note
+    The button questions do not work well with `Pluto`.
 """
 function buttonq(choices, answer::Integer;
+                 explanation="",
                  label="", hint="")
     answers = [i == answer ? "correct" : "incorrect" for i ∈ eachindex(choices)]
-    Buttonq(choices, answers, label, hint)
+    Buttonq(choices, answers, explanation, label, hint)
 end
 
 
