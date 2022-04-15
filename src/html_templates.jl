@@ -25,6 +25,7 @@ html_templates["question_tpl"] = mt"""
     {{/:LABEL}}
         <div style="padding-top: 5px">
     {{{:FORM}}}
+    <div id="explanation_{{:ID}}" class='pluto-output admonition alert alert-danger' style="display:none;">{{{:EXPLANATION}}}</div>
     {{^:LABEL}}{{#:HINT}}<label for="controls_{{:ID}}"><span href="#" title='{{{:HINT}}}'>&nbsp;🎁</span></label>{{/:HINT}}{{/:LABEL}}
         </div>
       </div>
@@ -102,6 +103,7 @@ document.querySelectorAll('[id^="button_{{:ID}}_"]').forEach(function(btn) {
 	    this.style.background = "{{{:GREEN}}}";
 	    text = this.innerHTML;
 	    this.innerHTML = "<em>{{{:INCORRECT}}</em>&nbsp;" + text ;
+            document.getElementById("explanation_{{:ID}}").style.display = "block";
 	}
 	document.querySelectorAll('[id^="button_{{:ID}}_"]').forEach(function(btn) {
 	    btn.disabled = true;

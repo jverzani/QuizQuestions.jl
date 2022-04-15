@@ -139,8 +139,8 @@ function Base.show(io::IO, m::MIME"text/html", x::Buttonq)
                     FORM = FORM,
                     GRADING_SCRIPT = nothing,
                     LABEL=_markdown_to_html(x.label),
-                    HINT = x.hint # use HINT in question
-                    )
+                    HINT = x.hint, # use HINT in question
+                    EXPLANATION = _markdown_to_html(x.explanation)                    )
 
 end
 
