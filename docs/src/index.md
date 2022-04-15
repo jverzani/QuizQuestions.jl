@@ -46,8 +46,10 @@ The quiz questions are written in markdown, as would be the rest of the Document
 * Here is the `buttonq` alternative to radio buttons:
 
 Which adds to ``2``?
-```@example quiz_questions
-buttonq(["``1 + 1``", "``2+2``", "``-1 + -1``"], 1)
+
+```@example quiz_question
+buttonq(["``1 + 1``", "``2+2``", "``-1 + -1``"], 1;
+explanation="Add 'em up")
 ```
 
 
