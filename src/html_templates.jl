@@ -166,7 +166,7 @@ html_templates["Matchq"] = mt"""
    <label for "select_{{:ID}}">{{{:QUESTION}}}</label>
   </td>
   <td>
-  <select name = "select_{{:ID}}" id="select_{{:ID}}_{{:NO}}">
+  <select name = "select_{{:ID}}" id="select_{{:ID}}">
      <option value=0 selected="selected">{{{:BLANK}}}</option>
      {{#:ANSWER_CHOICES}}
      <option value="{{:INDEX}}">{{{:LABEL}}}</option>
@@ -194,4 +194,20 @@ html_templates["matchq_grading_script"] = """
 	  })
       }
       Array.prototype.forEach.call(document.querySelectorAll('[id ^= "select_{{:ID}}"]'), callback);
+"""
+
+
+## ----
+
+html_templates["fill_in_blank_select"] = """
+  <select name = "select_{{:ID}}" id="select_{{:ID}}">
+     <option value=0 selected="selected">{{{:BLANK}}}</option>
+     {{#:ANSWER_CHOICES}}
+     <option value="{{:INDEX}}">{{{:LABEL}}}</option>
+    {{/:ANSWER_CHOICES}}
+  </select>
+"""
+
+html_templates["fill_in_blank_input"] = """
+<input id="{{:ID}}" type="{{:TYPE}}" class="form-control" placeholder="{{:PLACEHOLDER}}">
 """

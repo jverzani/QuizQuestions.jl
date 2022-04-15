@@ -11,6 +11,6 @@ include("show_methods.jl")
 export numericq,
     buttonq, radioq, booleanq, yesnoq,
     multiq,  matchq,
-    stringq
+    stringq, fillblankq
 
 end

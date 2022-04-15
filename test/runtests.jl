@@ -15,6 +15,10 @@ using Test
 
     @test multiq(("one","two","three"), (2, 3), label="Primes?").label == "Primes?"
 
+    @test fillblankq("question ____", r"1", label="one").label == "one"
+    @test fillblankq("question ____", ("1","2","3"), 1, label="one").label == "one"
+    @test fillblankq("question ____", 1, label="one").label == "one"
+
     d = Dict("Select a Volvo" => "XC90", "Select a Mercedes" => "GLE 350",
              "Select an Audi" => "A4")
     r = matchq(d)
