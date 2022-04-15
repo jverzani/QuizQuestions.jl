@@ -1,29 +1,19 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>QuizQuestions · QuizQuestions documentation</title><script data-outdated-warner src="assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.039/juliamono-regular.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="assets/documenter.js"></script><script src="siteinfo.js"></script><script src="../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href>QuizQuestions documentation</a></span></div><form class="docs-search" action="search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li class="is-active"><a class="tocitem" href>QuizQuestions</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>QuizQuestions</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>QuizQuestions</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/jverzani/QuizQuestions.jl/blob/master/docs/src/index.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="QuizQuestions"><a class="docs-heading-anchor" href="#QuizQuestions">QuizQuestions</a><a id="QuizQuestions-1"></a><a class="docs-heading-anchor-permalink" href="#QuizQuestions" title="Permalink"></a></h1><p><a href="https://github.com/jverzani/QuizQuestions.jl">QuizQuestions</a> allows the inclusion of self-grading quiz questions within a <code>Documenter</code>, <code>Weave</code>, or <code>Pluto</code> HTML page.</p><p>The basic idea is:</p><ul><li>load the package:</li></ul><pre><code class="language-julia hljs">using QuizQuestions</code></pre><ul><li>create a question:</li></ul><pre><code class="language-julia hljs">choices = [&quot;one&quot;, &quot;``2``&quot;, raw&quot;``\sqrt{9}``&quot;]
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>QuizQuestions · QuizQuestions documentation</title><script data-outdated-warner src="assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.039/juliamono-regular.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="assets/documenter.js"></script><script src="siteinfo.js"></script><script src="../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href>QuizQuestions documentation</a></span></div><form class="docs-search" action="search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li class="is-active"><a class="tocitem" href>QuizQuestions</a><ul class="internal"><li><a class="tocitem" href="#Basics"><span>Basics</span></a></li><li><a class="tocitem" href="#Examples-of-question-types"><span>Examples of question types</span></a></li><li><a class="tocitem" href="#Reference"><span>Reference</span></a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>QuizQuestions</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>QuizQuestions</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/jverzani/QuizQuestions.jl/blob/master/docs/src/index.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="QuizQuestions"><a class="docs-heading-anchor" href="#QuizQuestions">QuizQuestions</a><a id="QuizQuestions-1"></a><a class="docs-heading-anchor-permalink" href="#QuizQuestions" title="Permalink"></a></h1><p><a href="https://github.com/jverzani/QuizQuestions.jl">QuizQuestions</a> allows the inclusion of self-grading quiz questions within a <code>Documenter</code>, <code>Weave</code>, or <code>Pluto</code> HTML page.</p><h2 id="Basics"><a class="docs-heading-anchor" href="#Basics">Basics</a><a id="Basics-1"></a><a class="docs-heading-anchor-permalink" href="#Basics" title="Permalink"></a></h2><p>The basic idea is:</p><ul><li>load the package:</li></ul><pre><code class="language-julia hljs">using QuizQuestions</code></pre><ul><li>create a question with <code>Julia</code> code:</li></ul><pre><code class="language-julia hljs">choices = [&quot;one&quot;, &quot;``2``&quot;, raw&quot;``\sqrt{9}``&quot;]
 question = &quot;Which is largest?&quot;
 answer = 3
-radioq(choices, answer; label=question, hint=&quot;A hint&quot;)</code></pre><form class="mx-2 my-3" name='WeaveQuestion' data-id='0WgDFFKx' data-controltype='radio'>
+radioq(choices, answer; label=question, hint=&quot;A hint&quot;)</code></pre><form class="mx-2 my-3" name='WeaveQuestion' data-id='cnbYxi7b' data-controltype='radio'>
   <div class='form-group '>
     <div class='controls'>
-      <div class="form-floating input-group" id="controls_0WgDFFKx">
-        <label for="controls_0WgDFFKx">Which is largest?
+      <div class="form-floating input-group" id="controls_cnbYxi7b">
+        <label for="controls_cnbYxi7b">Which is largest?
 <span href="#" title='A hint'>&nbsp;🎁</span>
 </label>
         <div style="padding-top: 5px">
     <div class="form-check">
   <label>
-    <input class="form-check-input" type="radio" name="radio_0WgDFFKx"
-              id="radio_0WgDFFKx_1" value="1">
-      <span = class="label-body">
-        one
-      </span>
-    </input>
-  </label>
-</div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input" type="radio" name="radio_0WgDFFKx"
-              id="radio_0WgDFFKx_2" value="2">
+    <input class="form-check-input" type="radio" name="radio_cnbYxi7b"
+              id="radio_cnbYxi7b_1" value="1">
       <span = class="label-body">
         &#36;2&#36;
       </span>
@@ -32,8 +22,18 @@ radioq(choices, answer; label=question, hint=&quot;A hint&quot;)</code></pre><fo
 </div>
 <div class="form-check">
   <label>
-    <input class="form-check-input" type="radio" name="radio_0WgDFFKx"
-              id="radio_0WgDFFKx_3" value="3">
+    <input class="form-check-input" type="radio" name="radio_cnbYxi7b"
+              id="radio_cnbYxi7b_2" value="2">
+      <span = class="label-body">
+        one
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="radio" name="radio_cnbYxi7b"
+              id="radio_cnbYxi7b_3" value="3">
       <span = class="label-body">
         &#36;\sqrt&#123;9&#125;&#36;
       </span>
@@ -41,21 +41,21 @@ radioq(choices, answer; label=question, hint=&quot;A hint&quot;)</code></pre><fo
   </label>
 </div>
 
-    <div id="explanation_0WgDFFKx" class='pluto-output admonition alert alert-danger' style="display:none;"></div>
+    <div id="explanation_cnbYxi7b" class='pluto-output admonition alert alert-danger' style="display:none;"></div>
     
         </div>
       </div>
-      <div id='0WgDFFKx_message' style="padding-bottom: 15px">
+      <div id='cnbYxi7b_message' style="padding-bottom: 15px">
       </div>
     </div>
   </div>
 </form>
 
 <script text='text/javascript'>
-document.querySelectorAll('input[name="radio_0WgDFFKx"]').forEach(function(rb) {
+document.querySelectorAll('input[name="radio_cnbYxi7b"]').forEach(function(rb) {
 rb.addEventListener("change", function() {
     var correct = rb.value == 3;
-    var msgBox = document.getElementById('0WgDFFKx_message');
+    var msgBox = document.getElementById('cnbYxi7b_message');
       if(correct) {
     msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span> 👍&nbsp; Correct </span></div>";
   } else {
@@ -65,35 +65,40 @@ rb.addEventListener("change", function() {
 })});
 
 </script>
-<ul><li>repeat as desired.</li></ul><hr/><p>The <code>show</code> method of the object for the <code>text/html</code> mime type produced by <code>radioq</code> inserts the necessary HTML and JavaScript code to show the input widget and grading logic.</p><p>The above question uses radio buttons for allowing one choice from many.</p><p>The <code>hint</code> argument allows an optional text-only hint available to the user on hover. The <code>label</code> is used to flag the question. This is also optional. For example, the question can be asked in the body of the document (the position of any hint will be different):</p><p>What is <span>$\sqrt{2}$</span>?</p><pre><code class="language-julia hljs">answer = sqrt(2)
+<ul><li>repeat as desired.</li></ul><p>The quizzes are written in markdown with the questions in <code>Julia</code> blocks. The above code cells would be enclosed in triple-backtick blocks and would typically have their contents hidden from the user. How this is done varies between <code>Documenter</code>, <code>Weave</code>, and <code>Pluto</code>. The <code>examples</code> directory shows examples of each.</p><hr/><p>For each question:</p><ul><li><p>The <code>show</code> method of the object for the <code>text/html</code> mime type inserts the necessary HTML and JavaScript code to show the input widget and grading logic.</p></li><li><p>the optional <code>hint</code> argument allows a text-only hint available to the user on hover.</p></li><li><p>The optional <code>label</code> argument is used to flag the question.</p></li></ul><p>For example, the question can be asked in the body of the document (the position of any hint will be different):</p><pre><code class="language-julia hljs">answer = sqrt(2)
 tol = 1e-3
-numericq(answer, tol, hint=&quot;you need to be within 1/1000&quot;)</code></pre><form class="mx-2 my-3" name='WeaveQuestion' data-id='i02UHogS' data-controltype='text'>
+numericq(answer, tol,
+    label=raw&quot;What is ``\sqrt{2}``?&quot;,
+	hint=&quot;you need to be within 1/1000&quot;)</code></pre><form class="mx-2 my-3" name='WeaveQuestion' data-id='Y8zuFyFq' data-controltype='text'>
   <div class='form-group '>
     <div class='controls'>
-      <div class="form-floating input-group" id="controls_i02UHogS">
+      <div class="form-floating input-group" id="controls_Y8zuFyFq">
+        <label for="controls_Y8zuFyFq">What is &#36;\sqrt&#123;2&#125;&#36;?
+<span href="#" title='you need to be within 1/1000'>&nbsp;🎁</span>
+</label>
         <div style="padding-top: 5px">
     <div class="row">
   <span style="width:90%">
-    <input id="i02UHogS" type="number" class="form-control" placeholder="Numeric answer">
+    <input id="Y8zuFyFq" type="number" class="form-control" placeholder="Numeric answer">
   </span>
-  <span style="width:10%"><span href="#" title='you need to be within 1/1000'>&nbsp;🎁</span>
+  <span style="width:10%">
   </span>
 </div>
 
-    <div id="explanation_i02UHogS" class='pluto-output admonition alert alert-danger' style="display:none;"></div>
+    <div id="explanation_Y8zuFyFq" class='pluto-output admonition alert alert-danger' style="display:none;"></div>
     
         </div>
       </div>
-      <div id='i02UHogS_message' style="padding-bottom: 15px">
+      <div id='Y8zuFyFq_message' style="padding-bottom: 15px">
       </div>
     </div>
   </div>
 </form>
 
 <script text='text/javascript'>
-document.getElementById("i02UHogS").addEventListener("change", function() {
+document.getElementById("Y8zuFyFq").addEventListener("change", function() {
   var correct = (Math.abs(this.value - 1.4142135623730951) <= 0.001);
-  var msgBox = document.getElementById('i02UHogS_message');
+  var msgBox = document.getElementById('Y8zuFyFq_message');
     if(correct) {
     msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span> 👍&nbsp; Correct </span></div>";
   } else {
@@ -103,28 +108,32 @@ document.getElementById("i02UHogS").addEventListener("change", function() {
 });
 
 </script>
-<p>The quiz questions are written in markdown, as would be the rest of the Documenter or Weave document containing the questions. The above code cells would be enclosed in triple-backtick blocks and would have their contents hidden from the user. How this is done varies from <code>Documenter</code>, <code>Weave</code>, and <code>Pluto</code>. The <code>examples</code> directory shows examples of each.</p><ul><li>Here is the <code>buttonq</code> alternative to radio buttons:</li></ul><p>Which adds to <span>$2$</span>?</p><pre><code class="language-julia hljs">buttonq([&quot;``1 + 1``&quot;, &quot;``2+2``&quot;, &quot;``-1 + -1``&quot;], 1;
-explanation=&quot;Add &#39;em up&quot;)</code></pre><form class="mx-2 my-3" name='WeaveQuestion' data-id='PzC4VPhT' data-controltype='radio'>
+<h2 id="Examples-of-question-types"><a class="docs-heading-anchor" href="#Examples-of-question-types">Examples of question types</a><a id="Examples-of-question-types-1"></a><a class="docs-heading-anchor-permalink" href="#Examples-of-question-types" title="Permalink"></a></h2><h3 id="Choice-questions-(one-from-many)"><a class="docs-heading-anchor" href="#Choice-questions-(one-from-many)">Choice questions (one from many)</a><a id="Choice-questions-(one-from-many)-1"></a><a class="docs-heading-anchor-permalink" href="#Choice-questions-(one-from-many)" title="Permalink"></a></h3><p>The <code>radioq</code> question was shown above.</p><p>The <code>buttonq</code> question is alternative to radio buttons where the correct answer is shown after the first choice. If this choice is wrong, the explanation is shown along with the correct answer.</p><pre><code class="language-julia hljs">buttonq([&quot;``1 + 1``&quot;, &quot;``2+2``&quot;, &quot;``-1 + -1``&quot;], 1;
+    label = &quot;Which adds to ``2``?&quot;,
+	explanation=&quot;Add &#39;em up&quot;)</code></pre><form class="mx-2 my-3" name='WeaveQuestion' data-id='4aAdZQXL' data-controltype='radio'>
   <div class='form-group '>
     <div class='controls'>
-      <div class="form-floating input-group" id="controls_PzC4VPhT">
+      <div class="form-floating input-group" id="controls_4aAdZQXL">
+        <label for="controls_4aAdZQXL">Which adds to &#36;2&#36;?
+
+</label>
         <div style="padding-top: 5px">
-    <div id="buttongroup_PzC4VPhT" class="btn-group">
-  <button id="button_PzC4VPhT_1" value="correct" style="width:100%;text-align:left; padding:10px;padding-bottom:20px;padding-top:5px; background:#0033CC11">
+    <div id="buttongroup_4aAdZQXL" class="btn-group">
+  <button id="button_4aAdZQXL_1" value="correct" style="width:100%;text-align:left; padding:10px;padding-bottom:20px;padding-top:5px; background:#0033CC11">
     &#36;1 &#43; 1&#36;
 
   </button>
-  <button id="button_PzC4VPhT_2" value="incorrect" style="width:100%;text-align:left; padding:10px;padding-bottom:20px;padding-top:5px; background:#0033CC11">
+  <button id="button_4aAdZQXL_2" value="incorrect" style="width:100%;text-align:left; padding:10px;padding-bottom:20px;padding-top:5px; background:#0033CC11">
     &#36;2&#43;2&#36;
 
   </button>
-  <button id="button_PzC4VPhT_3" value="incorrect" style="width:100%;text-align:left; padding:10px;padding-bottom:20px;padding-top:5px; background:#0033CC11">
+  <button id="button_4aAdZQXL_3" value="incorrect" style="width:100%;text-align:left; padding:10px;padding-bottom:20px;padding-top:5px; background:#0033CC11">
     &#36;-1 &#43; -1&#36;
 
   </button>
 </div>
 <script>
-document.querySelectorAll('[id^="button_PzC4VPhT_"]').forEach(function(btn) {
+document.querySelectorAll('[id^="button_4aAdZQXL_"]').forEach(function(btn) {
     btn.addEventListener("click", function(btn) {
 	var correct = this.value == "correct";
 	var id = this.id;
@@ -132,9 +141,9 @@ document.querySelectorAll('[id^="button_PzC4VPhT_"]').forEach(function(btn) {
 	    this.style.background = "#FF0000AA";
 	    text = this.innerHTML;
 	    this.innerHTML = "<em>⨉</em>&nbsp;" + text ;
-            document.getElementById("explanation_PzC4VPhT").style.display = "block";
+            document.getElementById("explanation_4aAdZQXL").style.display = "block";
 	}
-	document.querySelectorAll('[id^="button_PzC4VPhT_"]').forEach(function(btn) {
+	document.querySelectorAll('[id^="button_4aAdZQXL_"]').forEach(function(btn) {
 	    btn.disabled = true;
 	    if (btn.value == "correct") {
                 btn.style.background = "#00AA33AA";
@@ -148,12 +157,12 @@ document.querySelectorAll('[id^="button_PzC4VPhT_"]').forEach(function(btn) {
 })
 </script>
 
-    <div id="explanation_PzC4VPhT" class='pluto-output admonition alert alert-danger' style="display:none;">Add &#39;em up
+    <div id="explanation_4aAdZQXL" class='pluto-output admonition alert alert-danger' style="display:none;">Add &#39;em up
 </div>
     
         </div>
       </div>
-      <div id='PzC4VPhT_message' style="padding-bottom: 15px">
+      <div id='4aAdZQXL_message' style="padding-bottom: 15px">
       </div>
     </div>
   </div>
@@ -162,64 +171,35 @@ document.querySelectorAll('[id^="button_PzC4VPhT_"]').forEach(function(btn) {
 <script text='text/javascript'>
 
 </script>
-<ul><li>Here is an example of a numeric question:</li></ul><pre><code class="language-julia hljs">answer = 1 + 1
-numericq(answer; label=&quot;``1 + 1``?&quot;, hint=&quot;Do the math&quot;)</code></pre><form class="mx-2 my-3" name='WeaveQuestion' data-id='B20ojVhw' data-controltype='text'>
-  <div class='form-group '>
-    <div class='controls'>
-      <div class="form-floating input-group" id="controls_B20ojVhw">
-        <label for="controls_B20ojVhw">&#36;1 &#43; 1&#36;?
-<span href="#" title='Do the math'>&nbsp;🎁</span>
-</label>
-        <div style="padding-top: 5px">
-    <div class="row">
-  <span style="width:90%">
-    <input id="B20ojVhw" type="number" class="form-control" placeholder="Numeric answer">
-  </span>
-  <span style="width:10%">
-  </span>
-</div>
-
-    <div id="explanation_B20ojVhw" class='pluto-output admonition alert alert-danger' style="display:none;"></div>
-    
-        </div>
-      </div>
-      <div id='B20ojVhw_message' style="padding-bottom: 15px">
-      </div>
-    </div>
-  </div>
-</form>
-
-<script text='text/javascript'>
-document.getElementById("B20ojVhw").addEventListener("change", function() {
-  var correct = (Math.abs(this.value - 2) <= 0);
-  var msgBox = document.getElementById('B20ojVhw_message');
-    if(correct) {
-    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span> 👍&nbsp; Correct </span></div>";
-  } else {
-    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span>👎&nbsp; Incorrect </span></div>";
-  }
-
-});
-
-</script>
-<p>Numeric questions can have an absolute tolerance set to allow for rounding.</p><ul><li>Here is an example of a multiple choice question (one or <em>more</em> from many):</li></ul><p>Select the sentences with numbers:</p><pre><code class="language-julia hljs">choices =[&quot;Four score and seven years ago&quot;,
+<h3 id="Multiple-choices-(one-or-more-from-many)"><a class="docs-heading-anchor" href="#Multiple-choices-(one-or-more-from-many)">Multiple choices (one or more from many)</a><a id="Multiple-choices-(one-or-more-from-many)-1"></a><a class="docs-heading-anchor-permalink" href="#Multiple-choices-(one-or-more-from-many)" title="Permalink"></a></h3><p>A multiple choice question (one or <em>more</em> from many) can be constructed with <code>multieq</code>:</p><pre><code class="language-julia hljs">choices =[&quot;Four score and seven years ago&quot;,
 &quot;Lorum ipsum&quot;,
 &quot;The quick brown fox jumped over the lazy dog&quot;,
 &quot;One and one and one makes three&quot;
 ]
 ans = (1, 4)
-multiq(choices, ans, label=&quot;Select one or more&quot;)</code></pre><form class="mx-2 my-3" name='WeaveQuestion' data-id='UOBHlPwu' data-controltype='radio'>
+multiq(choices, ans,
+    label=&quot;Select the sentences with numbers (one or more)&quot;)</code></pre><form class="mx-2 my-3" name='WeaveQuestion' data-id='XiENQb7s' data-controltype='radio'>
   <div class='form-group '>
     <div class='controls'>
-      <div class="form-floating input-group" id="controls_UOBHlPwu">
-        <label for="controls_UOBHlPwu">Select one or more
+      <div class="form-floating input-group" id="controls_XiENQb7s">
+        <label for="controls_XiENQb7s">Select the sentences with numbers &#40;one or more&#41;
 
 </label>
         <div style="padding-top: 5px">
     <div class="form-check">
   <label>
-    <input class="form-check-input" type="checkbox" name="check_UOBHlPwu"
-              id="check_UOBHlPwu_1" value="1">
+    <input class="form-check-input" type="checkbox" name="check_XiENQb7s"
+              id="check_XiENQb7s_1" value="1">
+      <span = class="label-body">
+        Lorum ipsum
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_XiENQb7s"
+              id="check_XiENQb7s_2" value="2">
       <span = class="label-body">
         One and one and one makes three
       </span>
@@ -228,8 +208,8 @@ multiq(choices, ans, label=&quot;Select one or more&quot;)</code></pre><form cla
 </div>
 <div class="form-check">
   <label>
-    <input class="form-check-input" type="checkbox" name="check_UOBHlPwu"
-              id="check_UOBHlPwu_2" value="2">
+    <input class="form-check-input" type="checkbox" name="check_XiENQb7s"
+              id="check_XiENQb7s_3" value="3">
       <span = class="label-body">
         The quick brown fox jumped over the lazy dog
       </span>
@@ -238,39 +218,29 @@ multiq(choices, ans, label=&quot;Select one or more&quot;)</code></pre><form cla
 </div>
 <div class="form-check">
   <label>
-    <input class="form-check-input" type="checkbox" name="check_UOBHlPwu"
-              id="check_UOBHlPwu_3" value="3">
+    <input class="form-check-input" type="checkbox" name="check_XiENQb7s"
+              id="check_XiENQb7s_4" value="4">
       <span = class="label-body">
         Four score and seven years ago
       </span>
     </input>
   </label>
 </div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input" type="checkbox" name="check_UOBHlPwu"
-              id="check_UOBHlPwu_4" value="4">
-      <span = class="label-body">
-        Lorum ipsum
-      </span>
-    </input>
-  </label>
-</div>
 
-    <div id="explanation_UOBHlPwu" class='pluto-output admonition alert alert-danger' style="display:none;"></div>
+    <div id="explanation_XiENQb7s" class='pluto-output admonition alert alert-danger' style="display:none;"></div>
     
         </div>
       </div>
-      <div id='UOBHlPwu_message' style="padding-bottom: 15px">
+      <div id='XiENQb7s_message' style="padding-bottom: 15px">
       </div>
     </div>
   </div>
 </form>
 
 <script text='text/javascript'>
-document.querySelectorAll('input[name="check_UOBHlPwu"]').forEach(function(rb) {
+document.querySelectorAll('input[name="check_XiENQb7s"]').forEach(function(rb) {
 rb.addEventListener("change", function() {
-    var choice_buttons = document.getElementsByName("check_UOBHlPwu");
+    var choice_buttons = document.getElementsByName("check_XiENQb7s");
     selected = [];
     for (var i=0; i < choice_buttons.length; i++) {
         if (choice_buttons[i].checked) {
@@ -278,10 +248,10 @@ rb.addEventListener("change", function() {
         }
     }
     var a = selected;
-    b = [1, 3];
+    b = [2, 4];
     // https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
     correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
-    var msgBox = document.getElementById('UOBHlPwu_message');
+    var msgBox = document.getElementById('XiENQb7s_message');
       if(correct) {
     msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span> 👍&nbsp; Correct </span></div>";
   } else {
@@ -291,36 +261,39 @@ rb.addEventListener("change", function() {
 })});
 
 </script>
-<ul><li>Here is an example of a short text question graded by a regular expression:</li></ul><p>Who was the first president?</p><pre><code class="language-julia hljs">stringq(r&quot;^Washington&quot;, label=&quot;last name&quot;)</code></pre><form class="mx-2 my-3" name='WeaveQuestion' data-id='YC3IakfQ' data-controltype='text'>
+<h3 id="Numeric-answers"><a class="docs-heading-anchor" href="#Numeric-answers">Numeric answers</a><a id="Numeric-answers-1"></a><a class="docs-heading-anchor-permalink" href="#Numeric-answers" title="Permalink"></a></h3><p>Questions with numeric answers use <code>numericq</code>. The question is graded when the input widget loses focus.</p><pre><code class="language-julia hljs">answer = 1 + 1
+numericq(answer;
+    label=&quot;``1 + 1``?&quot;,
+	hint=&quot;Do the math&quot;)</code></pre><form class="mx-2 my-3" name='WeaveQuestion' data-id='OydX77ad' data-controltype='text'>
   <div class='form-group '>
     <div class='controls'>
-      <div class="form-floating input-group" id="controls_YC3IakfQ">
-        <label for="controls_YC3IakfQ">last name
-
+      <div class="form-floating input-group" id="controls_OydX77ad">
+        <label for="controls_OydX77ad">&#36;1 &#43; 1&#36;?
+<span href="#" title='Do the math'>&nbsp;🎁</span>
 </label>
         <div style="padding-top: 5px">
     <div class="row">
   <span style="width:90%">
-    <input id="YC3IakfQ" type="text" class="form-control" placeholder="Text answer">
+    <input id="OydX77ad" type="number" class="form-control" placeholder="Numeric answer">
   </span>
   <span style="width:10%">
   </span>
 </div>
 
-    <div id="explanation_YC3IakfQ" class='pluto-output admonition alert alert-danger' style="display:none;"></div>
+    <div id="explanation_OydX77ad" class='pluto-output admonition alert alert-danger' style="display:none;"></div>
     
         </div>
       </div>
-      <div id='YC3IakfQ_message' style="padding-bottom: 15px">
+      <div id='OydX77ad_message' style="padding-bottom: 15px">
       </div>
     </div>
   </div>
 </form>
 
 <script text='text/javascript'>
-document.getElementById("YC3IakfQ").addEventListener("change", function() {
-  var correct = RegExp('^Washington').test(this.value);
-  var msgBox = document.getElementById('YC3IakfQ_message');
+document.getElementById("OydX77ad").addEventListener("change", function() {
+  var correct = (Math.abs(this.value - 2) <= 0);
+  var msgBox = document.getElementById('OydX77ad_message');
     if(correct) {
     msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span> 👍&nbsp; Correct </span></div>";
   } else {
@@ -330,22 +303,66 @@ document.getElementById("YC3IakfQ").addEventListener("change", function() {
 });
 
 </script>
-<ul><li>Here is an example of matching</li></ul><p>For each question, select the correct answer.</p><pre><code class="language-julia hljs">questions = (&quot;Select a Volvo&quot;, &quot;Select a Mercedes&quot;, &quot;Select an Audi&quot;)
-choices = (&quot;XC90&quot;, &quot;A4&quot;, &quot;GLE 350&quot;, &quot;X1&quot;) # may be more than questions
-answer = (1,3,2) # indices of correct
-matchq(questions, choices, answer)</code></pre><form class="mx-2 my-3" name='WeaveQuestion' data-id='IdNTOsi8' data-controltype='radio'>
+<p>Numeric questions can have an absolute tolerance set to allow for rounding.</p><h3 id="Text-response"><a class="docs-heading-anchor" href="#Text-response">Text response</a><a id="Text-response-1"></a><a class="docs-heading-anchor-permalink" href="#Text-response" title="Permalink"></a></h3><p>A question graded by a regular expression can be asked with <code>stringq</code>. The question is graded when the input widget loses focus.</p><pre><code class="language-julia hljs">stringq(r&quot;^Washington&quot;; label=&quot;Who was the first president?&quot;,
+        placeholder=&quot;last name&quot;)</code></pre><form class="mx-2 my-3" name='WeaveQuestion' data-id='GFeyqUma' data-controltype='text'>
   <div class='form-group '>
     <div class='controls'>
-      <div class="form-floating input-group" id="controls_IdNTOsi8">
+      <div class="form-floating input-group" id="controls_GFeyqUma">
+        <label for="controls_GFeyqUma">Who was the first president?
+
+</label>
+        <div style="padding-top: 5px">
+    <div class="row">
+  <span style="width:90%">
+    <input id="GFeyqUma" type="text" class="form-control" placeholder="last name">
+  </span>
+  <span style="width:10%">
+  </span>
+</div>
+
+    <div id="explanation_GFeyqUma" class='pluto-output admonition alert alert-danger' style="display:none;"></div>
+    
+        </div>
+      </div>
+      <div id='GFeyqUma_message' style="padding-bottom: 15px">
+      </div>
+    </div>
+  </div>
+</form>
+
+<script text='text/javascript'>
+document.getElementById("GFeyqUma").addEventListener("change", function() {
+  var correct = RegExp('^Washington').test(this.value);
+  var msgBox = document.getElementById('GFeyqUma_message');
+    if(correct) {
+    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span> 👍&nbsp; Correct </span></div>";
+  } else {
+    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span>👎&nbsp; Incorrect </span></div>";
+  }
+
+});
+
+</script>
+<h3 id="Matching"><a class="docs-heading-anchor" href="#Matching">Matching</a><a id="Matching-1"></a><a class="docs-heading-anchor-permalink" href="#Matching" title="Permalink"></a></h3><p>A question involving matching can be asked with <code>matchq</code>.</p><pre><code class="language-julia hljs">questions = (&quot;Select a Volvo&quot;, &quot;Select a Mercedes&quot;, &quot;Select an Audi&quot;)
+choices = (&quot;XC90&quot;, &quot;A4&quot;, &quot;GLE 350&quot;, &quot;X1&quot;) # may be more than questions
+answer = (1,3,2) # indices of correct
+matchq(questions, choices, answer;
+    label=&quot;For each question, select the correct answer.&quot;)</code></pre><form class="mx-2 my-3" name='WeaveQuestion' data-id='qr6wLMBQ' data-controltype='radio'>
+  <div class='form-group '>
+    <div class='controls'>
+      <div class="form-floating input-group" id="controls_qr6wLMBQ">
+        <label for="controls_qr6wLMBQ">For each question, select the correct answer.
+
+</label>
         <div style="padding-top: 5px">
     <table>
 <tr>
   <td>
-   <label for "select_IdNTOsi8">Select a Volvo
+   <label for "select_qr6wLMBQ">Select a Volvo
 </label>
   </td>
   <td>
-  <select name = "select_IdNTOsi8" id="select_IdNTOsi8_1">
+  <select name = "select_qr6wLMBQ" id="select_qr6wLMBQ">
      <option value=0 selected="selected">Choose...</option>
      <option value="1">XC90
 </option>
@@ -360,11 +377,11 @@ matchq(questions, choices, answer)</code></pre><form class="mx-2 my-3" name='Wea
 <tr>
 <tr>
   <td>
-   <label for "select_IdNTOsi8">Select a Mercedes
+   <label for "select_qr6wLMBQ">Select a Mercedes
 </label>
   </td>
   <td>
-  <select name = "select_IdNTOsi8" id="select_IdNTOsi8_2">
+  <select name = "select_qr6wLMBQ" id="select_qr6wLMBQ">
      <option value=0 selected="selected">Choose...</option>
      <option value="1">XC90
 </option>
@@ -379,11 +396,11 @@ matchq(questions, choices, answer)</code></pre><form class="mx-2 my-3" name='Wea
 <tr>
 <tr>
   <td>
-   <label for "select_IdNTOsi8">Select an Audi
+   <label for "select_qr6wLMBQ">Select an Audi
 </label>
   </td>
   <td>
-  <select name = "select_IdNTOsi8" id="select_IdNTOsi8_3">
+  <select name = "select_qr6wLMBQ" id="select_qr6wLMBQ">
      <option value=0 selected="selected">Choose...</option>
      <option value="1">XC90
 </option>
@@ -398,11 +415,11 @@ matchq(questions, choices, answer)</code></pre><form class="mx-2 my-3" name='Wea
 <tr>
 </table>
 
-    <div id="explanation_IdNTOsi8" class='pluto-output admonition alert alert-danger' style="display:none;"></div>
+    <div id="explanation_qr6wLMBQ" class='pluto-output admonition alert alert-danger' style="display:none;"></div>
     
         </div>
       </div>
-      <div id='IdNTOsi8_message' style="padding-bottom: 15px">
+      <div id='qr6wLMBQ_message' style="padding-bottom: 15px">
       </div>
     </div>
   </div>
@@ -412,14 +429,14 @@ matchq(questions, choices, answer)</code></pre><form class="mx-2 my-3" name='Wea
       function callback(element, iterator) {
 	  element.addEventListener("change", function() {
 	      var a = [];
-	      var selectors = document.querySelectorAll('[id ^= "select_IdNTOsi8"]');
+	      var selectors = document.querySelectorAll('[id ^= "select_qr6wLMBQ"]');
 	      Array.prototype.forEach.call(selectors, function (element, iterator) {
 		 a.push(element.value);
 	      })
               b = ["1", "3", "2"];
               // https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
               correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
-              var msgBox = document.getElementById('IdNTOsi8_message');
+              var msgBox = document.getElementById('qr6wLMBQ_message');
                 if(correct) {
     msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span> 👍&nbsp; Correct </span></div>";
   } else {
@@ -428,75 +445,78 @@ matchq(questions, choices, answer)</code></pre><form class="mx-2 my-3" name='Wea
 
 	  })
       }
-      Array.prototype.forEach.call(document.querySelectorAll('[id ^= "select_IdNTOsi8"]'), callback);
+      Array.prototype.forEach.call(document.querySelectorAll('[id ^= "select_qr6wLMBQ"]'), callback);
 
 </script>
 <p>The above shows that the number of choices need not match the number of questions. When they do, a dictionary can be used to specify the choices and the answers will be computed:</p><pre><code class="language-julia hljs">d = Dict(&quot;Select a Volvo&quot; =&gt; &quot;XC90&quot;, &quot;Select a Mercedes&quot; =&gt; &quot;GLE 350&quot;,
          &quot;Select an Audi&quot; =&gt; &quot;A4&quot;)
-matchq(d)</code></pre><form class="mx-2 my-3" name='WeaveQuestion' data-id='Udy2zCew' data-controltype='radio'>
+matchq(d, label=&quot;Match the manufacture with a model&quot;)</code></pre><form class="mx-2 my-3" name='WeaveQuestion' data-id='o62B7rJf' data-controltype='radio'>
   <div class='form-group '>
     <div class='controls'>
-      <div class="form-floating input-group" id="controls_Udy2zCew">
+      <div class="form-floating input-group" id="controls_o62B7rJf">
+        <label for="controls_o62B7rJf">Match the manufacture with a model
+
+</label>
         <div style="padding-top: 5px">
     <table>
 <tr>
   <td>
-   <label for "select_Udy2zCew">Select a Mercedes
+   <label for "select_o62B7rJf">Select a Mercedes
 </label>
   </td>
   <td>
-  <select name = "select_Udy2zCew" id="select_Udy2zCew_1">
+  <select name = "select_o62B7rJf" id="select_o62B7rJf">
      <option value=0 selected="selected">Choose...</option>
-     <option value="1">GLE 350
+     <option value="1">XC90
 </option>
-     <option value="2">XC90
+     <option value="2">A4
 </option>
-     <option value="3">A4
+     <option value="3">GLE 350
 </option>
   </select>
   </td>
 <tr>
 <tr>
   <td>
-   <label for "select_Udy2zCew">Select a Volvo
+   <label for "select_o62B7rJf">Select a Volvo
 </label>
   </td>
   <td>
-  <select name = "select_Udy2zCew" id="select_Udy2zCew_2">
+  <select name = "select_o62B7rJf" id="select_o62B7rJf">
      <option value=0 selected="selected">Choose...</option>
-     <option value="1">GLE 350
+     <option value="1">XC90
 </option>
-     <option value="2">XC90
+     <option value="2">A4
 </option>
-     <option value="3">A4
+     <option value="3">GLE 350
 </option>
   </select>
   </td>
 <tr>
 <tr>
   <td>
-   <label for "select_Udy2zCew">Select an Audi
+   <label for "select_o62B7rJf">Select an Audi
 </label>
   </td>
   <td>
-  <select name = "select_Udy2zCew" id="select_Udy2zCew_3">
+  <select name = "select_o62B7rJf" id="select_o62B7rJf">
      <option value=0 selected="selected">Choose...</option>
-     <option value="1">GLE 350
+     <option value="1">XC90
 </option>
-     <option value="2">XC90
+     <option value="2">A4
 </option>
-     <option value="3">A4
+     <option value="3">GLE 350
 </option>
   </select>
   </td>
 <tr>
 </table>
 
-    <div id="explanation_Udy2zCew" class='pluto-output admonition alert alert-danger' style="display:none;"></div>
+    <div id="explanation_o62B7rJf" class='pluto-output admonition alert alert-danger' style="display:none;"></div>
     
         </div>
       </div>
-      <div id='Udy2zCew_message' style="padding-bottom: 15px">
+      <div id='o62B7rJf_message' style="padding-bottom: 15px">
       </div>
     </div>
   </div>
@@ -506,14 +526,14 @@ matchq(d)</code></pre><form class="mx-2 my-3" name='WeaveQuestion' data-id='Udy2
       function callback(element, iterator) {
 	  element.addEventListener("change", function() {
 	      var a = [];
-	      var selectors = document.querySelectorAll('[id ^= "select_Udy2zCew"]');
+	      var selectors = document.querySelectorAll('[id ^= "select_o62B7rJf"]');
 	      Array.prototype.forEach.call(selectors, function (element, iterator) {
 		 a.push(element.value);
 	      })
-              b = ["1", "2", "3"];
+              b = ["3", "1", "2"];
               // https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
               correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
-              var msgBox = document.getElementById('Udy2zCew_message');
+              var msgBox = document.getElementById('o62B7rJf_message');
                 if(correct) {
     msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span> 👍&nbsp; Correct </span></div>";
   } else {
@@ -522,22 +542,141 @@ matchq(d)</code></pre><form class="mx-2 my-3" name='WeaveQuestion' data-id='Udy2
 
 	  })
       }
-      Array.prototype.forEach.call(document.querySelectorAll('[id ^= "select_Udy2zCew"]'), callback);
+      Array.prototype.forEach.call(document.querySelectorAll('[id ^= "select_o62B7rJf"]'), callback);
 
 </script>
-<hr/><p>Currently only a few question types are available:</p><article class="docstring"><header><a class="docstring-binding" id="QuizQuestions.numericq" href="#QuizQuestions.numericq"><code>QuizQuestions.numericq</code></a> — <span class="docstring-category">Function</span></header><section><div><pre><code class="language-julia hljs">numericq(value, tol=1e-3; label=&quot;&quot;, hint=&quot;&quot;, units=&quot;&quot;)</code></pre><p>Match a numeric answer</p><p>Arguments:</p><ul><li><code>value</code>: the numeric answer</li><li><code>tol</code>: <span>$|answer - value| \le tol$</span> is used to determine correctness</li><li><code>label</code>: optional label for the form element</li><li><code>hint</code>: optional plain-text hint that can be seen on hover</li><li><code>units</code>: a string indicating expected units.</li></ul></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/7d6636ec8428a69bed4634d1f090bc0ed70408f2/src/question_types.jl#L33-L46">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="QuizQuestions.stringq" href="#QuizQuestions.stringq"><code>QuizQuestions.stringq</code></a> — <span class="docstring-category">Function</span></header><section><div><pre><code class="language-julia hljs">stringq(re::Regex; label=&quot;&quot;, hint=&quot;&quot;)</code></pre><p>Match string answer with regular expression</p><p>Arguments:</p><ul><li><code>re</code>: a regular expression for grading</li><li><code>label</code>: optional label for the form element</li><li><code>hint</code>: optional plain-text hint that can be seen on hover</li></ul></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/7d6636ec8428a69bed4634d1f090bc0ed70408f2/src/question_types.jl#L9-L20">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="QuizQuestions.radioq" href="#QuizQuestions.radioq"><code>QuizQuestions.radioq</code></a> — <span class="docstring-category">Function</span></header><section><div><pre><code class="language-julia hljs">radioq(choices, answer; label=&quot;&quot;, hint=&quot;&quot;, keep_order=false)</code></pre><p>Multiple choice question (one of several)</p><p>Arguments:</p><ul><li><p><code>choices</code>: indexable collection of choices. As seen in the example, choices can be formatted with markdown.</p></li><li><p><code>answer::Int</code>: index of correct choice</p></li><li><p><code>keep_order::Boolean</code>: if <code>true</code> keeps display order of choices, otherwise they are shuffled.</p></li><li><p><code>inline::Bool</code>: hint to render inline (or not) if supported</p></li><li><p><code>label</code>: optional label for the form element</p></li><li><p><code>hint</code>: optional plain-text hint that can be seen on hover</p></li></ul><p>Example:</p><pre><code class="nohighlight hljs">choices = [&quot;beta&quot;, raw&quot;``\beta``&quot;, &quot;`beta`&quot;]
+<h3 id="Fill-in-the-blank-questions"><a class="docs-heading-anchor" href="#Fill-in-the-blank-questions">Fill-in-the-blank questions</a><a id="Fill-in-the-blank-questions-1"></a><a class="docs-heading-anchor-permalink" href="#Fill-in-the-blank-questions" title="Permalink"></a></h3><p>Fill-in-the blank questions can be asked with <code>fillblankq</code>. Answers can be gathered and graded in different manners.</p><pre><code class="language-julia hljs">question = &quot;The quick brown fox jumped over the ____ dog&quot;
+fillblankq(question, (&quot;lazy&quot;, &quot;brown&quot;, &quot;sleeping&quot;), 1)</code></pre><form class="mx-2 my-3" name='WeaveQuestion' data-id='FjVmw0AC' data-controltype=''>
+  <div class='form-group '>
+    <div class='controls'>
+      <div class="form-floating input-group" id="controls_FjVmw0AC">
+        <div style="padding-top: 5px">
+    The quick brown fox jumped over the   <select name = "select_FjVmw0AC" id="select_FjVmw0AC">
+     <option value=0 selected="selected">Choose...</option>
+     <option value="1">sleeping
+</option>
+     <option value="2">lazy
+</option>
+     <option value="3">brown
+</option>
+  </select>
+ dog
+
+    <div id="explanation_FjVmw0AC" class='pluto-output admonition alert alert-danger' style="display:none;"></div>
+    
+        </div>
+      </div>
+      <div id='FjVmw0AC_message' style="padding-bottom: 15px">
+      </div>
+    </div>
+  </div>
+</form>
+
+<script text='text/javascript'>
+      function callback(element, iterator) {
+	  element.addEventListener("change", function() {
+	      var a = [];
+	      var selectors = document.querySelectorAll('[id ^= "select_FjVmw0AC"]');
+	      Array.prototype.forEach.call(selectors, function (element, iterator) {
+		 a.push(element.value);
+	      })
+              b = ['2'];
+              // https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
+              correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
+              var msgBox = document.getElementById('FjVmw0AC_message');
+                if(correct) {
+    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span> 👍&nbsp; Correct </span></div>";
+  } else {
+    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span>👎&nbsp; Not yet </span></div>";
+  }
+
+	  })
+      }
+      Array.prototype.forEach.call(document.querySelectorAll('[id ^= "select_FjVmw0AC"]'), callback);
+
+</script>
+<hr/><p>(like <code>stringq</code>)</p><pre><code class="language-julia hljs">question = &quot;The quick brown fox jumped over the ____ dog&quot;
+fillblankq(question, r&quot;lazy&quot;)</code></pre><form class="mx-2 my-3" name='WeaveQuestion' data-id='pGedXnP5' data-controltype=''>
+  <div class='form-group '>
+    <div class='controls'>
+      <div class="form-floating input-group" id="controls_pGedXnP5">
+        <div style="padding-top: 5px">
+    The quick brown fox jumped over the <input id="pGedXnP5" type="text" class="form-control" placeholder="answer here...">
+ dog
+
+    <div id="explanation_pGedXnP5" class='pluto-output admonition alert alert-danger' style="display:none;"></div>
+    
+        </div>
+      </div>
+      <div id='pGedXnP5_message' style="padding-bottom: 15px">
+      </div>
+    </div>
+  </div>
+</form>
+
+<script text='text/javascript'>
+document.getElementById("pGedXnP5").addEventListener("change", function() {
+  var correct = RegExp('lazy').test(this.value);
+  var msgBox = document.getElementById('pGedXnP5_message');
+    if(correct) {
+    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span> 👍&nbsp; Correct </span></div>";
+  } else {
+    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span>👎&nbsp; Incorrect </span></div>";
+  }
+
+});
+
+</script>
+<hr/><p>(like <code>numericq</code>)</p><pre><code class="language-julia hljs">question = &quot;____ ``+ 2  = 4``&quot;
+fillblankq(question, 2)</code></pre><form class="mx-2 my-3" name='WeaveQuestion' data-id='cxAeaDhT' data-controltype=''>
+  <div class='form-group '>
+    <div class='controls'>
+      <div class="form-floating input-group" id="controls_cxAeaDhT">
+        <div style="padding-top: 5px">
+    <input id="cxAeaDhT" type="number" class="form-control" placeholder="answer here...">
+ &#36;&#43; 2  &#61; 4&#36;
+
+    <div id="explanation_cxAeaDhT" class='pluto-output admonition alert alert-danger' style="display:none;"></div>
+    
+        </div>
+      </div>
+      <div id='cxAeaDhT_message' style="padding-bottom: 15px">
+      </div>
+    </div>
+  </div>
+</form>
+
+<script text='text/javascript'>
+document.getElementById("cxAeaDhT").addEventListener("change", function() {
+  var correct = (Math.abs(this.value - 2) <= 0);
+  var msgBox = document.getElementById('cxAeaDhT_message');
+    if(correct) {
+    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span> 👍&nbsp; Correct </span></div>";
+  } else {
+    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span>👎&nbsp; Incorrect </span></div>";
+  }
+
+});
+
+</script>
+<h2 id="Reference"><a class="docs-heading-anchor" href="#Reference">Reference</a><a id="Reference-1"></a><a class="docs-heading-anchor-permalink" href="#Reference" title="Permalink"></a></h2><p>Currently only a few question types are available:</p><article class="docstring"><header><a class="docstring-binding" id="QuizQuestions.radioq" href="#QuizQuestions.radioq"><code>QuizQuestions.radioq</code></a> — <span class="docstring-category">Function</span></header><section><div><pre><code class="language-julia hljs">radioq(choices, answer; label=&quot;&quot;, hint=&quot;&quot;, keep_order=false)</code></pre><p>Multiple choice question (one of several)</p><p>Arguments:</p><ul><li><p><code>choices</code>: indexable collection of choices. As seen in the example, choices can be formatted with markdown.</p></li><li><p><code>answer::Int</code>: index of correct choice</p></li><li><p><code>keep_order::Boolean</code>: if <code>true</code> keeps display order of choices, otherwise they are shuffled.</p></li><li><p><code>inline::Bool</code>: hint to render inline (or not) if supported</p></li><li><p><code>label</code>: optional label for the form element</p></li><li><p><code>hint</code>: optional plain-text hint that can be seen on hover</p></li></ul><p>Example:</p><pre><code class="nohighlight hljs">choices = [&quot;beta&quot;, raw&quot;``\beta``&quot;, &quot;`beta`&quot;]
 answer = 2
-radioq(choices, answer; hint=&quot;Which is the Greek symbol?&quot;)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/7d6636ec8428a69bed4634d1f090bc0ed70408f2/src/question_types.jl#L69-L96">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="QuizQuestions.buttonq" href="#QuizQuestions.buttonq"><code>QuizQuestions.buttonq</code></a> — <span class="docstring-category">Function</span></header><section><div><pre><code class="language-julia hljs">buttonq(choices, answer; label=&quot;&quot;, hint=&quot;&quot;)</code></pre><p>Use buttons for multiple choice (one of many). Show answer after first click.</p><p>Arguments:</p><ul><li><p><code>choices</code>: indexable collection of choices. As seen in the example, choices can be formatted with markdown.</p></li><li><p><code>answer::Int</code>: index of correct choice</p></li><li><p><code>explanation</code>: text to display on a wrong selection</p></li><li><p><code>label</code>: optional label for the form element</p></li><li><p><code>hint</code>: optional plain-text hint that can be seen on hover</p></li></ul><p>Example:</p><pre><code class="nohighlight hljs">choices = [&quot;beta&quot;, raw&quot;``\beta``&quot;, &quot;`beta`&quot;]
+radioq(choices, answer; hint=&quot;Which is the Greek symbol?&quot;)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/1cc5f47d86cc1c2f1e03bcf77145525f77d94a0c/src/question_types.jl#L73-L100">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="QuizQuestions.buttonq" href="#QuizQuestions.buttonq"><code>QuizQuestions.buttonq</code></a> — <span class="docstring-category">Function</span></header><section><div><pre><code class="language-julia hljs">buttonq(choices, answer; label=&quot;&quot;, hint=&quot;&quot;)</code></pre><p>Use buttons for multiple choice (one of many). Show answer after first click.</p><p>Arguments:</p><ul><li><p><code>choices</code>: indexable collection of choices. As seen in the example, choices can be formatted with markdown.</p></li><li><p><code>answer::Int</code>: index of correct choice</p></li><li><p><code>explanation</code>: text to display on a wrong selection</p></li><li><p><code>label</code>: optional label for the form element</p></li><li><p><code>hint</code>: optional plain-text hint that can be seen on hover</p></li></ul><p>Example:</p><pre><code class="nohighlight hljs">choices = [&quot;beta&quot;, raw&quot;``\beta``&quot;, &quot;`beta`&quot;]
 answer = 2
 explanation = &quot;The other two answers are not a symbol, but a name&quot;
-buttonq(choices, answer; label=&quot;Which is the Greek symbol?&quot;, explanation=explanation)</code></pre><div class="admonition is-info"><header class="admonition-header">Note</header><div class="admonition-body"><p>The button questions do not work well with <code>Pluto</code>.</p></div></div></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/7d6636ec8428a69bed4634d1f090bc0ed70408f2/src/question_types.jl#L118-L146">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="QuizQuestions.yesnoq" href="#QuizQuestions.yesnoq"><code>QuizQuestions.yesnoq</code></a> — <span class="docstring-category">Function</span></header><section><div><pre><code class="language-julia hljs">yesnoq(ans)</code></pre><p>Boolean question with <code>yes</code> or <code>no</code> labels.</p><p>Examples:</p><pre><code class="nohighlight hljs">yesnoq(&quot;yes&quot;)
-yesnoq(true)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/7d6636ec8428a69bed4634d1f090bc0ed70408f2/src/question_types.jl#L293-L305">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="QuizQuestions.booleanq" href="#QuizQuestions.booleanq"><code>QuizQuestions.booleanq</code></a> — <span class="docstring-category">Function</span></header><section><div><pre><code class="language-julia hljs">booleanq(ans; [label, hint])</code></pre><p>True of false questions:</p><p>Example:</p><pre><code class="nohighlight hljs">booleanq(true; label=&quot;Does it hurt...&quot;)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/7d6636ec8428a69bed4634d1f090bc0ed70408f2/src/question_types.jl#L272-L282">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="QuizQuestions.multiq" href="#QuizQuestions.multiq"><code>QuizQuestions.multiq</code></a> — <span class="docstring-category">Function</span></header><section><div><pre><code class="language-julia hljs">multiq(choices, answers; label=&quot;&quot;, hint=&quot;&quot;, keep_order=false)</code></pre><p>Multiple choice question (one <em>or more</em> of several)</p><p>Arguments:</p><ul><li><p><code>choices</code>: indexable collection of choices. As seen in the example, choices can be formatted with markdown.</p></li><li><p><code>answers::Vector{Int}</code>: index of correct choice(s)</p></li><li><p><code>keep_order::Boolean</code>: if <code>true</code> keeps display order of choices, otherwise they are shuffled.</p></li><li><p><code>inline::Bool</code>: hint to render inline (or not) if supported</p></li><li><p><code>label</code>: optional label for the form element</p></li><li><p><code>hint</code>: optional plain-text hint that can be seen on hover</p></li></ul><p>Example:</p><pre><code class="nohighlight hljs">choices = [&quot;pear&quot;, &quot;tomato&quot;, &quot;banana&quot;]
+buttonq(choices, answer; label=&quot;Which is the Greek symbol?&quot;, explanation=explanation)</code></pre><div class="admonition is-info"><header class="admonition-header">Note</header><div class="admonition-body"><p>The button questions do not work well with <code>Pluto</code>.</p></div></div></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/1cc5f47d86cc1c2f1e03bcf77145525f77d94a0c/src/question_types.jl#L122-L150">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="QuizQuestions.yesnoq" href="#QuizQuestions.yesnoq"><code>QuizQuestions.yesnoq</code></a> — <span class="docstring-category">Function</span></header><section><div><pre><code class="language-julia hljs">yesnoq(ans)</code></pre><p>Boolean question with <code>yes</code> or <code>no</code> labels.</p><p>Examples:</p><pre><code class="nohighlight hljs">yesnoq(&quot;yes&quot;)
+yesnoq(true)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/1cc5f47d86cc1c2f1e03bcf77145525f77d94a0c/src/question_types.jl#L297-L309">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="QuizQuestions.booleanq" href="#QuizQuestions.booleanq"><code>QuizQuestions.booleanq</code></a> — <span class="docstring-category">Function</span></header><section><div><pre><code class="language-julia hljs">booleanq(ans; [label, hint])</code></pre><p>True of false questions:</p><p>Example:</p><pre><code class="nohighlight hljs">booleanq(true; label=&quot;Does it hurt...&quot;)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/1cc5f47d86cc1c2f1e03bcf77145525f77d94a0c/src/question_types.jl#L276-L286">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="QuizQuestions.multiq" href="#QuizQuestions.multiq"><code>QuizQuestions.multiq</code></a> — <span class="docstring-category">Function</span></header><section><div><pre><code class="language-julia hljs">multiq(choices, answers; label=&quot;&quot;, hint=&quot;&quot;, keep_order=false)</code></pre><p>Multiple choice question (one <em>or more</em> of several)</p><p>Arguments:</p><ul><li><p><code>choices</code>: indexable collection of choices. As seen in the example, choices can be formatted with markdown.</p></li><li><p><code>answers::Vector{Int}</code>: index of correct choice(s)</p></li><li><p><code>keep_order::Boolean</code>: if <code>true</code> keeps display order of choices, otherwise they are shuffled.</p></li><li><p><code>inline::Bool</code>: hint to render inline (or not) if supported</p></li><li><p><code>label</code>: optional label for the form element</p></li><li><p><code>hint</code>: optional plain-text hint that can be seen on hover</p></li></ul><p>Example:</p><pre><code class="nohighlight hljs">choices = [&quot;pear&quot;, &quot;tomato&quot;, &quot;banana&quot;]
 answers = [1,3]
-multiplecq(choices, answers; hint=&quot;not the red one!&quot;)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/7d6636ec8428a69bed4634d1f090bc0ed70408f2/src/question_types.jl#L169-L196">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="QuizQuestions.matchq" href="#QuizQuestions.matchq"><code>QuizQuestions.matchq</code></a> — <span class="docstring-category">Function</span></header><section><div><pre><code class="language-julia hljs">matchq(questions, choices, answers; label=&quot;&quot;, hint=&quot;&quot;)
+multiplecq(choices, answers; hint=&quot;not the red one!&quot;)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/1cc5f47d86cc1c2f1e03bcf77145525f77d94a0c/src/question_types.jl#L173-L200">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="QuizQuestions.matchq" href="#QuizQuestions.matchq"><code>QuizQuestions.matchq</code></a> — <span class="docstring-category">Function</span></header><section><div><pre><code class="language-julia hljs">matchq(questions, choices, answers; label=&quot;&quot;, hint=&quot;&quot;)
 matchq(d::Dictionary; label=&quot;&quot;, hint=&quot;&quot;)</code></pre><p>Use a drop down to select the right match for each question.</p><p>Arguments:</p><ul><li><p><code>questions</code>: Indexable collection of questions.</p></li><li><p><code>choices</code>: indexable collection of choices for each question. As seen in the example, choices can be formatted with markdown.</p></li><li><p><code>answers</code>: collection of correct indices for each question.</p></li><li><p><code>d</code>: As an alternative, a dictionary of questions and answers can be specified. The choices will be taken from the values then randomized, the answers will be computed.</p></li><li><p><code>label</code>: optional label for the form element</p></li><li><p><code>hint</code>: optional plain-text hint that can be seen on hover</p></li></ul><p><strong>Examples:</strong></p><pre><code class="nohighlight hljs">questions = (&quot;Select a Volvo&quot;, &quot;Select a Mercedes&quot;, &quot;Select an Audi&quot;)
 choices = (&quot;XC90&quot;, &quot;A4&quot;, &quot;GLE 350&quot;, &quot;X1&quot;) # may be more than questions
 answer = (1,3,2) # indices of correct
 matchq(questions, choices, answer)
 
 d = Dict(&quot;Select a Volvo&quot; =&gt; &quot;XC90&quot;, &quot;Select a Mercedes&quot; =&gt; &quot;GLE 250&quot;)
-matchq(d)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/7d6636ec8428a69bed4634d1f090bc0ed70408f2/src/question_types.jl#L218-L250">source</a></section></article></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.15 on <span class="colophon-date" title="Friday 15 April 2022 15:30">Friday 15 April 2022</span>. Using Julia version 1.7.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+matchq(d)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/1cc5f47d86cc1c2f1e03bcf77145525f77d94a0c/src/question_types.jl#L222-L254">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="QuizQuestions.numericq" href="#QuizQuestions.numericq"><code>QuizQuestions.numericq</code></a> — <span class="docstring-category">Function</span></header><section><div><pre><code class="language-julia hljs">numericq(value, tol=1e-3; label=&quot;&quot;, hint=&quot;&quot;, units=&quot;&quot;, placeholder=nothing)</code></pre><p>Match a numeric answer</p><p>Arguments:</p><ul><li><code>value</code>: the numeric answer</li><li><code>tol</code>: <span>$|answer - value| \le tol$</span> is used to determine correctness</li><li><code>label</code>: optional label for the form element</li><li><code>hint</code>: optional plain-text hint that can be seen on hover</li><li><code>units</code>: a string indicating expected units.</li><li><code>placeholder</code>: text shown when input widget is initially drawn</li></ul></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/1cc5f47d86cc1c2f1e03bcf77145525f77d94a0c/src/question_types.jl#L35-L49">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="QuizQuestions.stringq" href="#QuizQuestions.stringq"><code>QuizQuestions.stringq</code></a> — <span class="docstring-category">Function</span></header><section><div><pre><code class="language-julia hljs">stringq(re::Regex; label=&quot;&quot;, hint=&quot;&quot;)</code></pre><p>Match string answer with regular expression</p><p>Arguments:</p><ul><li><code>re</code>: a regular expression for grading</li><li><code>label</code>: optional label for the form element</li><li><code>hint</code>: optional plain-text hint that can be seen on hover</li><li><code>placeholder</code>: text shown when input widget is initially drawn</li></ul></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/1cc5f47d86cc1c2f1e03bcf77145525f77d94a0c/src/question_types.jl#L10-L21">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="QuizQuestions.fillblankq" href="#QuizQuestions.fillblankq"><code>QuizQuestions.fillblankq</code></a> — <span class="docstring-category">Function</span></header><section><div><pre><code class="language-julia hljs">fillblankq(question answer::Regex; label=&quot;&quot;, hint=&quot;&quot;, placeholder=nothing)
+fillblankq(question, choices, answer; label=&quot;&quot;, hint=&quot;&quot;, keep_order=false)
+fillblankq(question, val, tol=0; label=&quot;&quot;, hint=&quot;&quot;, placeholder=nothing)</code></pre><p>Present a fill-in-the-blank question where the blank can be a selection, a number, or a string graded by a regular expression.</p><ul><li><code>question</code>: A string. Use <code>____</code> (4 or more under scores) to indicate the blank</li></ul><p><strong>Examples</strong></p><pre><code class="nohighlight hljs">question = &quot;The quick brown fox jumped over the ____ dog&quot;
+fillblankq(question, r&quot;lazy&quot;)
+fillblankq(question, (&quot;lazy&quot;, &quot;brown&quot;, &quot;sleeping&quot;), 1)
+fillblankq(&quot;____ ``+ 2  = 4``&quot;, 2)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/1cc5f47d86cc1c2f1e03bcf77145525f77d94a0c/src/question_types.jl#L343-L359">source</a></section></article></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.15 on <span class="colophon-date" title="Friday 15 April 2022 22:45">Friday 15 April 2022</span>. Using Julia version 1.7.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
