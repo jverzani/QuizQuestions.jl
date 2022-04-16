@@ -4,11 +4,12 @@ mutable struct Stringq <: Question
     re::Regex
     label
     hint
+    explanation
     placeholder
 end
 
 """
-    stringq(re::Regex; label="", hint="")
+    stringq(re::Regex; label="", hint="", explanation="")
 
 Match string answer with regular expression
 
@@ -19,7 +20,8 @@ Arguments:
 * `hint`: optional plain-text hint that can be seen on hover
 * `placeholder`: text shown when input widget is initially drawn
 """
-stringq(re::Regex; label="", hint="", placeholder=nothing) = Stringq(re, label, hint, placeholder)
+stringq(re::Regex; label="", hint="", explanation="",  placeholder=nothing) =
+    Stringq(re, label, hint, explanation, placeholder)
 
 
 ##
@@ -29,11 +31,12 @@ mutable struct Numericq <: Question
     units
     label
     hint
+    explanation
     placeholder
 end
 
 """
-    numericq(value, tol=1e-3; label="", hint="", units="", placeholder=nothing)
+    numericq(value, tol=1e-3; label="", hint="", units="", explanation="", placeholder=nothing)
 
 Match a numeric answer
 
@@ -50,9 +53,10 @@ Arguments:
 function numericq(val, tol=1e-3, args...;
                   label="",
                   hint="", units::AbstractString="",
+                  explanation="",
                   placeholder=nothing)
 
-    Numericq(val, tol,  units, label, hint, placeholder)
+    Numericq(val, tol,  units, label, hint, explanation, placeholder)
 end
 
 numericq(val::Int; kwargs...) = numericq(val, 0; kwargs...)
@@ -67,11 +71,12 @@ mutable struct Radioq <: Question
     labels
     label
     hint
+    explanation
     inline
 end
 
 """
-    radioq(choices, answer; label="", hint="", keep_order=false)
+    radioq(choices, answer; label="", hint="", explanation="", keep_order=false)
 
 Multiple choice question (one of several)
 
@@ -99,7 +104,8 @@ radioq(choices, answer; hint="Which is the Greek symbol?")
 
 """
 function radioq(choices, answer::Integer;
-                label="", hint="", inline::Bool=(hint!=""),
+                label="", hint="", explanation="",
+                inline::Bool=(hint!=""),
                 keep_order::Bool=false)
     inds = collect(1:length(choices))
     values = copy(inds)
@@ -107,7 +113,7 @@ function radioq(choices, answer::Integer;
     !keep_order && shuffle!(inds)
 
     Radioq(choices[inds], findfirst(isequal(answer), inds),
-           values, labels[inds], label, hint, inline)
+           values, labels[inds], label, hint, explanation, inline)
 end
 
 ##
@@ -167,11 +173,12 @@ mutable struct Multiq <: Question
     labels
     label
     hint
+    explanation
     inline
 end
 
 """
-    multiq(choices, answers; label="", hint="", keep_order=false)
+    multiq(choices, answers; label="", hint="", explanation="", keep_order=false)
 
 Multiple choice question (one *or more* of several)
 
@@ -199,7 +206,8 @@ multiplecq(choices, answers; hint="not the red one!")
 
 """
 function multiq(choices, answers;
-                label="", hint="", inline::Bool=(hint!=""),
+                label="", hint="", explanation="",
+                inline::Bool=(hint!=""),
                 keep_order::Bool=false)
     inds = collect(1:length(choices))
     values = copy(inds)
@@ -207,7 +215,7 @@ function multiq(choices, answers;
     !keep_order && shuffle!(inds)
 
     Multiq(choices[inds], findall(in(answers), inds),
-           values, labels[inds], label, hint, inline)
+           values, labels[inds], label, hint, explanation, inline)
 end
 
 ##
@@ -217,11 +225,12 @@ mutable struct Matchq <: Question
     answer
     label
     hint
+    explanation
 end
 
 """
-    matchq(questions, choices, answers; label="", hint="")
-    matchq(d::Dictionary; label="", hint="")
+    matchq(questions, choices, answers; label="", hint="", explanation="")
+    matchq(d::Dictionary; label="", hint="", explanation="")
 
 Use a drop down to select the right match for each question.
 
@@ -253,12 +262,12 @@ matchq(d)
 
 """
 function matchq(questions, choices, answers;
-                label="", hint="")
+                label="", hint="", explanation="")
 
     @assert length(questions) == length(answers)
 
     Matchq(questions, choices, answers,
-           label, hint)
+           label, hint, explanation)
 end
 
 function matchq(d::AbstractDict; kwargs...)
@@ -286,12 +295,13 @@ booleanq(true; label="Does it hurt...")
 """
 function booleanq(ans::Bool;
                   labels::Vector=["true", "false"],
-                  label="", hint::AbstractString="",
+                  label="", hint::AbstractString="", explanation="",
                   inline::Bool=true)
     choices = labels[1:2]
     ans = 2 - ans
     radioq(choices, ans;
-           label=label, hint=hint, inline=inline, keep_order=true)
+           label=label, hint=hint, explanation=explanation,
+           inline=inline, keep_order=true)
 end
 
 """
@@ -320,6 +330,7 @@ mutable struct FillBlankChoiceQ <: FillBlankQ
     answer
     label
     hint
+    explanation
 end
 
 mutable struct FillBlankStringQ <: FillBlankQ
@@ -327,6 +338,7 @@ mutable struct FillBlankStringQ <: FillBlankQ
     re::Regex
     label
     hint
+    explanation
     placeholder
 end
 
@@ -336,6 +348,7 @@ mutable struct FillBlankNumericQ <: FillBlankQ
     tol
     label
     hint
+    explanation
     placeholder
 end
 
@@ -357,11 +370,13 @@ fillblankq(question, ("lazy", "brown", "sleeping"), 1)
 fillblankq("____ ``+ 2  = 4``", 2)
 ```
 """
-fillblankq(question, answer::Regex; label="", hint="", placeholder=nothing) =
-    FillBlankStringQ(question, answer, label, hint, placeholder)
+fillblankq(question, answer::Regex; label="", hint="", explanation="",
+           placeholder=nothing) =
+    FillBlankStringQ(question, answer, label, hint, explanation, placeholder)
 
 
-function fillblankq(question, choices, answer; label="", hint="", keep_order=false)
+function fillblankq(question, choices, answer; label="", hint="", explanation="",
+                    keep_order=false)
 
     if !keep_order
         inds = collect(1:length(choices))
@@ -373,8 +388,58 @@ function fillblankq(question, choices, answer; label="", hint="", keep_order=fal
     end
 
 
-    FillBlankChoiceQ(question, choices, answer, label, hint)
+    FillBlankChoiceQ(question, choices, answer, label, hint, explanation)
 end
 
-fillblankq(question, val::Real, tol=0; label="", hint="", placeholder=nothing) =
-    FillBlankNumericQ(question, val, tol, label, hint, placeholder)
+fillblankq(question, val::Real, tol=0; label="", hint="", explanation="",
+           placeholder=nothing) =
+    FillBlankNumericQ(question, val, tol, label, hint, explanation, placeholder)
+
+## ------
+
+mutable struct HotspotQ <: Question
+    imgfile
+    xy
+    ΔxΔy
+    label
+    hint
+    explanation
+    correct_answer
+end
+
+"""
+    hotspotq(imagefile, xy, ΔxΔy; label="", hint="", explanation="",
+        correct_answer=nothing)
+
+Question type to check if user clicks in a specified region of an image.
+
+* `imgfile`: file of an image
+* `xy`: tuple of ``(x,y)`` coordinates in ``[0,1] × [0,1]`` relative to lower left corner
+* `ΔxΔy`: tuple of ``(w,h)`` coordinates used to describe rectangular region of the figure
+* `correct_answer`: a text snippet of javascript which can be specified to add more complicated logic to test if an answer is correct. It must use `x` and `y` for the coordinates of the click.
+
+## Examples
+
+```
+using Plots
+p1 = plot(x -> x^2, axis=nothing, legend=false)
+p2 = plot(x -> x^3, axis=nothing, legend=false)
+p3 = plot(x -> -x^2, axis=nothing, legend=false)
+p4 = plot(x -> -x^3, axis=nothing, legend=false)
+l = @layout [a b; c d]
+p = plot(p1, p2, p3, p4, layout=l)
+imgfile = tempname() * ".png"
+savefig(p, imgfile)
+hotspotq(imgfile, (0,0), (1/2, 1/2), label="What best matches the graph of ``f(x) = -x^4``?")
+```
+
+!!! note
+    The display of the image is not adjusted by this question type and must
+    be managed separately.
+
+"""
+function hotspotq(imgfile, xy, ΔxΔy;
+                  label = "", hint="", explanation="",
+                  correct_answer=nothing)
+    HotspotQ(imgfile, xy, ΔxΔy, label, hint, explanation, correct_answer)
+end

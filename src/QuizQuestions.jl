@@ -3,6 +3,7 @@ module QuizQuestions
 using Markdown
 using Mustache
 using Random
+using Base64
 
 include("question_types.jl")
 include("html_templates.jl")
@@ -11,6 +12,7 @@ include("show_methods.jl")
 export numericq,
     buttonq, radioq, booleanq, yesnoq,
     multiq,  matchq,
-    stringq, fillblankq
+    stringq, fillblankq,
+    hotspotq
 
 end

@@ -25,4 +25,7 @@ using Test
     i = rand(1:3)
     @test d[r.questions[i]] == r.choices[r.answer[i]]
 
+    r = hotspotq("empty", (0,0), (1,1); explanation="XXX")
+    @test r.explanation == "XXX"
+
 end
