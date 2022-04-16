@@ -5,8 +5,16 @@ html_templates = Dict()
 grading_partial = """
   if(correct) {
     msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span> 👍&nbsp; {{#:CORRECT}}{{{:CORRECT}}}{{/:CORRECT}}{{^:CORRECT}}Correct{{/:CORRECT}} </span></div>";
+    explanation = document.getElementById("explanation_{{:ID}}")
+    if (explanation != null) {
+       explanation.style.display = "none";
+    }
   } else {
     msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span>👎&nbsp; {{#:INCORRECT}}{{{:INCORRECT}}}{{/:INCORRECT}}{{^:INCORRECT}}Incorrect{{/:INCORRECT}} </span></div>";
+    explanation = document.getElementById("explanation_{{:ID}}")
+    if (explanation != null) {
+       explanation.style.display = "block";
+    }
   }
 """
 
@@ -25,12 +33,13 @@ html_templates["question_tpl"] = mt"""
     {{/:LABEL}}
         <div style="padding-top: 5px">
     {{{:FORM}}}
-    <div id="explanation_{{:ID}}" class='pluto-output admonition alert alert-danger' style="display:none;">{{{:EXPLANATION}}}</div>
     {{^:LABEL}}{{#:HINT}}<label for="controls_{{:ID}}"><span href="#" title='{{{:HINT}}}'>&nbsp;🎁</span></label>{{/:HINT}}{{/:LABEL}}
         </div>
       </div>
-      <div id='{{:ID}}_message' style="padding-bottom: 15px">
-      </div>
+      <div id='{{:ID}}_message' style="padding-bottom: 15px"></div>
+      {{#:EXPLANATION}}
+      <div id="explanation_{{:ID}}" class='pluto-output admonition alert alert-danger' style="display:none;">{{{:EXPLANATION}}}</div>
+      {{/:EXPLANATION}}
     </div>
   </div>
 </form>
@@ -103,7 +112,10 @@ document.querySelectorAll('[id^="button_{{:ID}}_"]').forEach(function(btn) {
 	    this.style.background = "{{{:GREEN}}}";
 	    text = this.innerHTML;
 	    this.innerHTML = "<em>{{{:INCORRECT}}</em>&nbsp;" + text ;
-            document.getElementById("explanation_{{:ID}}").style.display = "block";
+            explanation = document.getElementById("explanation_{{:ID}}")
+            if (explanation != null) {
+               explanation.style.display = "block";
+            }
 	}
 	document.querySelectorAll('[id^="button_{{:ID}}_"]').forEach(function(btn) {
 	    btn.disabled = true;
@@ -210,4 +222,28 @@ html_templates["fill_in_blank_select"] = """
 
 html_templates["fill_in_blank_input"] = """
 <input id="{{:ID}}" type="{{:TYPE}}" class="form-control" placeholder="{{:PLACEHOLDER}}">
+"""
+
+## -------
+html_templates["hotspot"] = """
+<div>
+<img  id="hotspot_{{{:ID}}}" src="data:image/gif;base64,{{{:IMG}}}"/>
+</div>
+"""
+
+html_templates["hotspot_grading_script"] = """
+  document.getElementById("hotspot_{{{:ID}}}").addEventListener("click", function(e) {
+      var u = e.offsetX;
+      var v = e.offsetY;
+      var w = this.offsetWidth;
+      var h = this.offsetHeight
+
+      var x = u/w;
+      var y = (h-v)/h
+
+      correct = {{{:CORRECT_ANSWER}}}
+      var msgBox = document.getElementById('{{:ID}}_message');
+      $(grading_partial)
+
+  })
 """

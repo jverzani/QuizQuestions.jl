@@ -7,9 +7,23 @@ function _markdown_to_html(x)
     return x
 end
 
-function Base.show(io::IO, m::MIME"text/html", x::Numericq)
-
+function Base.show(io::IO, m::MIME"text/html", x::Question)
     ID = randstring()
+
+    FORM, GRADING_SCRIPT = prepare_question(x, ID)
+
+    Mustache.render(io, html_templates["question_tpl"];
+                    ID = ID,
+                    STATUS = "",
+                    LABEL=_markdown_to_html(x.label),
+                    HINT = length(x.label) > 0 ? x.hint : "",
+                    EXPLANATION = x.explanation,
+                    FORM = FORM,
+                    GRADING_SCRIPT = GRADING_SCRIPT
+                    )
+end
+
+function prepare_question(x::Numericq, ID)
 
     FORM = Mustache.render(html_templates["inputq_form"];
                            ID=ID,
@@ -26,24 +40,22 @@ function Base.show(io::IO, m::MIME"text/html", x::Numericq)
                         INCORRECT = "Incorrect",
                         CORRECT = "Correct"
                         )
-
-    Mustache.render(io,
-                    html_templates["question_tpl"];
-                    ID = ID,
-                    TYPE = "text",
-                    STATUS = "",
-                    LABEL=_markdown_to_html(x.label),
-                    HINT = length(x.label) > 0 ? x.hint : "",
-                    FORM = FORM,
-                    GRADING_SCRIPT = GRADING_SCRIPT
-                    )
+    (FORM, GRADING_SCRIPT)
+    # Mustache.render(io,
+    #                 html_templates["question_tpl"];
+    #                 ID = ID,
+    #                 TYPE = "text",
+    #                 STATUS = "",
+    #                 LABEL=_markdown_to_html(x.label),
+    #                 HINT = length(x.label) > 0 ? x.hint : "",
+    #                 FORM = FORM,
+    #                 GRADING_SCRIPT = GRADING_SCRIPT
+    #                 )
 
 end
 
 
-function Base.show(io::IO, m::MIME"text/html", x::Stringq)
-
-    ID = randstring()
+function prepare_question(x::Stringq, ID)
 
     FORM = Mustache.render(html_templates["inputq_form"];
                            ID=ID,
@@ -59,16 +71,7 @@ function Base.show(io::IO, m::MIME"text/html", x::Stringq)
                         INCORRECT = "Incorrect",
                         CORRECT = "Correct"
                         )
-
-    Mustache.render(io, html_templates["question_tpl"];
-                    ID = ID,
-                    TYPE = "text",
-                    STATUS = "",
-                    LABEL=_markdown_to_html(x.label),
-                    HINT = length(x.label) > 0 ? x.hint : "",
-                    FORM = FORM,
-                    GRADING_SCRIPT = GRADING_SCRIPT
-                    )
+    (FORM, GRADING_SCRIPT)
 
 end
 
@@ -85,9 +88,7 @@ end
 
 
 
-function Base.show(io::IO, m::MIME"text/html", x::Radioq)
-
-    ID = randstring()
+function prepare_question(x::Radioq, ID)
 
     choices = string.(x.choices)
     items = [_make_item(i, choice) for (i,choice) ∈ enumerate(choices)]
@@ -104,26 +105,26 @@ function Base.show(io::IO, m::MIME"text/html", x::Radioq)
                            INLINE = x.inline ? " inline" : ""
                            )
 
-    Mustache.render(io, html_templates["question_tpl"],
-                    ID = ID,
-                    TYPE = "radio",
-                    FORM = FORM,
-                    GRADING_SCRIPT = GRADING_SCRIPT,
-                    LABEL=_markdown_to_html(x.label),
-                    HINT = x.hint # use HINT in question
-                    )
+    (FORM, GRADING_SCRIPT)
+    # Mustache.render(io, html_templates["question_tpl"],
+    #                 ID = ID,
+    #                 TYPE = "radio",
+    #                 FORM = FORM,
+    #                 GRADING_SCRIPT = GRADING_SCRIPT,
+    #                 LABEL=_markdown_to_html(x.label),
+    #                 HINT = x.hint # use HINT in question
+    #                 )
 
 end
 
-function Base.show(io::IO, m::MIME"text/html", x::Buttonq)
-
-    ID = randstring()
+function prepare_question(x::Buttonq, ID)
 
     n = length(x.choices)
     choices = _markdown_to_html.(x.choices)
     buttons = [(i=i, TEXT=_markdown_to_html(x.choices[i]), ANSWER=x.answer[i]) for i ∈ 1:n]
 
 
+    GRADING_SCRIPT = nothing
     FORM = Mustache.render(html_templates["Buttonq"];
                            ID = ID,
                            BUTTONS = buttons,
@@ -133,20 +134,19 @@ function Base.show(io::IO, m::MIME"text/html", x::Buttonq)
                            CORRECT = "✓",
                            INCORRECT="⨉"
                            )
-    Mustache.render(io, html_templates["question_tpl"],
-                    ID = ID,
-                    TYPE = "radio",
-                    FORM = FORM,
-                    GRADING_SCRIPT = nothing,
-                    LABEL=_markdown_to_html(x.label),
-                    HINT = x.hint, # use HINT in question
-                    EXPLANATION = _markdown_to_html(x.explanation)                    )
+    (FORM, GRADING_SCRIPT)
+    # Mustache.render(io, html_templates["question_tpl"],
+    #                 ID = ID,
+    #                 TYPE = "radio",
+    #                 FORM = FORM,
+    #                 GRADING_SCRIPT = nothing,
+    #                 LABEL=_markdown_to_html(x.label),
+    #                 HINT = x.hint, # use HINT in question
+    #                 EXPLANATION = _markdown_to_html(x.explanation)                    )
 
 end
 
-function Base.show(io::IO, m::MIME"text/html", x::Multiq)
-
-    ID = randstring()
+function prepare_question(x::Multiq, ID)
 
     choices = string.(x.choices)
     items = [_make_item(i, choice) for (i,choice) ∈ enumerate(choices)]
@@ -162,22 +162,21 @@ function Base.show(io::IO, m::MIME"text/html", x::Multiq)
                            ITEMS = items,
                            INLINE = x.inline ? " inline" : ""
                            )
-
-    Mustache.render(io, html_templates["question_tpl"],
-                    ID = ID,
-                    TYPE = "radio",
-                    FORM = FORM,
-                    GRADING_SCRIPT = GRADING_SCRIPT,
-                    LABEL=_markdown_to_html(x.label),
-                    HINT = x.hint # use HINT in question
-                    )
+    (FORM, GRADING_SCRIPT)
+    # Mustache.render(io, html_templates["question_tpl"],
+    #                 ID = ID,
+    #                 TYPE = "radio",
+    #                 FORM = FORM,
+    #                 GRADING_SCRIPT = GRADING_SCRIPT,
+    #                 LABEL=_markdown_to_html(x.label),
+    #                 HINT = x.hint # use HINT in question
+    #                 )
 
 end
 
 
-function Base.show(io::IO, m::MIME"text/html", x::Matchq)
+function prepare_question(x::Matchq, ID)
 
-    ID = randstring()
     BLANK = "Choose..."
     ANSWER_CHOICES = [(INDEX=i, LABEL=_markdown_to_html(label)) for (i, label) in enumerate(x.choices)]
     items = [(ID=ID, NO=i, BLANK=BLANK,  QUESTION=_markdown_to_html(question), ANSWER_CHOICES=ANSWER_CHOICES) for (i,question) ∈ enumerate(x.questions)]
@@ -192,15 +191,15 @@ function Base.show(io::IO, m::MIME"text/html", x::Matchq)
                            ITEMS = items,
 
                            )
-
-    Mustache.render(io, html_templates["question_tpl"],
-                    ID = ID,
-                    TYPE = "radio",
-                    FORM = FORM,
-                    GRADING_SCRIPT = GRADING_SCRIPT,
-                    LABEL=_markdown_to_html(x.label),
-                    HINT = x.hint # use HINT in question
-                    )
+    (FORM, GRADING_SCRIPT)
+    # Mustache.render(io, html_templates["question_tpl"],
+    #                 ID = ID,
+    #                 TYPE = "radio",
+    #                 FORM = FORM,
+    #                 GRADING_SCRIPT = GRADING_SCRIPT,
+    #                 LABEL=_markdown_to_html(x.label),
+    #                 HINT = x.hint # use HINT in question
+    #                 )
 
 end
 
@@ -209,6 +208,7 @@ end
 ## blank creates BLANK, GRADING_SCRIPT
 function blank(x::FillBlankChoiceQ, ID)
     _blank = "Choose..."
+
     ANSWER_CHOICES = [(INDEX=i, LABEL=_markdown_to_html(choice)) for
                       (i,choice) ∈ enumerate(x.choices)]
     BLANK = Mustache.render(html_templates["fill_in_blank_select"],
@@ -260,22 +260,55 @@ end
 
 
 
-function Base.show(io::IO, m::MIME"text/html", x::FillBlankQ)
+function prepare_question(x::FillBlankQ, ID)
 
-    ID = randstring()
     BLANK, GRADING_SCRIPT = blank(x, ID)
 
     question = _markdown_to_html(x.question)
     question = replace(question, r"_{4,}" => "{{{:BLANK}}}")
     FORM = Mustache.render(question; BLANK=BLANK)
 
+    (FORM, GRADING_SCRIPT)
+    # Mustache.render(io, html_templates["question_tpl"],
+    #                 ID = ID,
+    #                 FORM = FORM,
+    #                 GRADING_SCRIPT = GRADING_SCRIPT,
+    #                 LABEL=_markdown_to_html(x.label),
+    #                 HINT = x.hint # use HINT in question
+    #                 )
 
-    Mustache.render(io, html_templates["question_tpl"],
-                    ID = ID,
-                    FORM = FORM,
-                    GRADING_SCRIPT = GRADING_SCRIPT,
-                    LABEL=_markdown_to_html(x.label),
-                    HINT = x.hint # use HINT in question
-                    )
+end
+
+## ----
+function prepare_question(x::HotspotQ, ID)
+
+    x₀,y₀ = x.xy
+    Δx, Δy = x.ΔxΔy
+    x₁, y₁ = x₀ + Δx, y₀ + Δy
+
+    CORRECT_ANSWER = isnothing(x.correct_answer) ?
+        "(x >= $(x₀) && x <= $(x₁) && y >= $(y₀) && y <= $(y₁));" :
+        x.correct_answer
+
+    GRADING_SCRIPT =
+        Mustache.render(html_templates["hotspot_grading_script"];
+                        ID = ID,
+                        CORRECT_ANSWER = CORRECT_ANSWER,
+                        INCORRECT = "Incorrect",
+                        CORRECT = "Correct"
+                        )
+
+
+    IMG = base64encode(read(x.imgfile, String))
+    FORM = Mustache.render(html_templates["hotspot"]; ID=ID, IMG=IMG)
+
+    (FORM, GRADING_SCRIPT)
+    # Mustache.render(io, html_templates["question_tpl"],
+    #                 ID = ID,
+    #                 FORM = FORM,
+    #                 GRADING_SCRIPT = GRADING_SCRIPT,
+    #                 LABEL=_markdown_to_html(x.label),
+    #                 HINT = x.hint # use HINT in question
+    #                 )
 
 end

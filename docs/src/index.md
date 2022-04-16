@@ -151,7 +151,7 @@ fillblankq(question, ("lazy", "brown", "sleeping"), 1)
 
 ```@example quiz_question
 question = "The quick brown fox jumped over the ____ dog"
-fillblankq(question, r"lazy")
+fillblankq(question, r"^lazy$")
 ```
 
 ----
@@ -163,10 +163,27 @@ question = "____ ``+ 2  = 4``"
 fillblankq(question, 2)
 ```
 
+### Select from an image question
+
+The `hotspotq` shows an image, specified by a file, and grades an answer correct if a mouse click is in a specified rectangular region. The region is given in terms of lower corner and width/height as if the entire region was in ``[0,1] \times [0,1]``.
+
+```@example quiz_question
+using Plots
+p1 = plot(x -> x^2, axis=nothing, legend=false)
+p2 = plot(x -> x^3, axis=nothing, legend=false)
+p3 = plot(x -> -x^2, axis=nothing, legend=false)
+p4 = plot(x -> -x^3, axis=nothing, legend=false)
+l = @layout [a b; c d]
+p = plot(p1, p2, p3, p4, layout=l)
+imgfile = tempname() * ".png"
+savefig(p, imgfile)
+hotspotq(imgfile, (0,0), (1/2, 1/2),
+    label="What best matches the graph of ``f(x) = -x^4``?")
+```
 
 ## Reference
 
-Currently only a few question types are available:
+The available question types are listed below. If others are desirable, open an issue on the GitHub repository.
 
 ```@docs
 radioq
@@ -178,4 +195,5 @@ matchq
 numericq
 stringq
 fillblankq
+hotspotq
 ```
