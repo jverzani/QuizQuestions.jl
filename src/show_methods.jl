@@ -17,7 +17,7 @@ function Base.show(io::IO, m::MIME"text/html", x::Question)
                     STATUS = "",
                     LABEL=_markdown_to_html(x.label),
                     HINT = length(x.label) > 0 ? x.hint : "",
-                    EXPLANATION = x.explanation,
+                    EXPLANATION = _markdown_to_html(x.explanation),
                     FORM = FORM,
                     GRADING_SCRIPT = GRADING_SCRIPT
                     )
@@ -33,6 +33,7 @@ function prepare_question(x::Numericq, ID)
                            HINT = length(x.label) == 0 ? x.hint : ""
                            )
 
+
     GRADING_SCRIPT =
         Mustache.render(html_templates["input_grading_script"];
                         ID = ID,
@@ -41,17 +42,6 @@ function prepare_question(x::Numericq, ID)
                         CORRECT = "Correct"
                         )
     (FORM, GRADING_SCRIPT)
-    # Mustache.render(io,
-    #                 html_templates["question_tpl"];
-    #                 ID = ID,
-    #                 TYPE = "text",
-    #                 STATUS = "",
-    #                 LABEL=_markdown_to_html(x.label),
-    #                 HINT = length(x.label) > 0 ? x.hint : "",
-    #                 FORM = FORM,
-    #                 GRADING_SCRIPT = GRADING_SCRIPT
-    #                 )
-
 end
 
 
@@ -106,14 +96,6 @@ function prepare_question(x::Radioq, ID)
                            )
 
     (FORM, GRADING_SCRIPT)
-    # Mustache.render(io, html_templates["question_tpl"],
-    #                 ID = ID,
-    #                 TYPE = "radio",
-    #                 FORM = FORM,
-    #                 GRADING_SCRIPT = GRADING_SCRIPT,
-    #                 LABEL=_markdown_to_html(x.label),
-    #                 HINT = x.hint # use HINT in question
-    #                 )
 
 end
 
@@ -135,14 +117,6 @@ function prepare_question(x::Buttonq, ID)
                            INCORRECT="⨉"
                            )
     (FORM, GRADING_SCRIPT)
-    # Mustache.render(io, html_templates["question_tpl"],
-    #                 ID = ID,
-    #                 TYPE = "radio",
-    #                 FORM = FORM,
-    #                 GRADING_SCRIPT = nothing,
-    #                 LABEL=_markdown_to_html(x.label),
-    #                 HINT = x.hint, # use HINT in question
-    #                 EXPLANATION = _markdown_to_html(x.explanation)                    )
 
 end
 
@@ -163,14 +137,6 @@ function prepare_question(x::Multiq, ID)
                            INLINE = x.inline ? " inline" : ""
                            )
     (FORM, GRADING_SCRIPT)
-    # Mustache.render(io, html_templates["question_tpl"],
-    #                 ID = ID,
-    #                 TYPE = "radio",
-    #                 FORM = FORM,
-    #                 GRADING_SCRIPT = GRADING_SCRIPT,
-    #                 LABEL=_markdown_to_html(x.label),
-    #                 HINT = x.hint # use HINT in question
-    #                 )
 
 end
 
@@ -192,15 +158,6 @@ function prepare_question(x::Matchq, ID)
 
                            )
     (FORM, GRADING_SCRIPT)
-    # Mustache.render(io, html_templates["question_tpl"],
-    #                 ID = ID,
-    #                 TYPE = "radio",
-    #                 FORM = FORM,
-    #                 GRADING_SCRIPT = GRADING_SCRIPT,
-    #                 LABEL=_markdown_to_html(x.label),
-    #                 HINT = x.hint # use HINT in question
-    #                 )
-
 end
 
 
@@ -269,14 +226,6 @@ function prepare_question(x::FillBlankQ, ID)
     FORM = Mustache.render(question; BLANK=BLANK)
 
     (FORM, GRADING_SCRIPT)
-    # Mustache.render(io, html_templates["question_tpl"],
-    #                 ID = ID,
-    #                 FORM = FORM,
-    #                 GRADING_SCRIPT = GRADING_SCRIPT,
-    #                 LABEL=_markdown_to_html(x.label),
-    #                 HINT = x.hint # use HINT in question
-    #                 )
-
 end
 
 ## ----
@@ -303,12 +252,30 @@ function prepare_question(x::HotspotQ, ID)
     FORM = Mustache.render(html_templates["hotspot"]; ID=ID, IMG=IMG)
 
     (FORM, GRADING_SCRIPT)
-    # Mustache.render(io, html_templates["question_tpl"],
-    #                 ID = ID,
-    #                 FORM = FORM,
-    #                 GRADING_SCRIPT = GRADING_SCRIPT,
-    #                 LABEL=_markdown_to_html(x.label),
-    #                 HINT = x.hint # use HINT in question
-    #                 )
+end
 
+handle_inf(x) = x == Inf ? "Infinity" : x == -Inf ? "-Infinity" : x
+function prepare_question(x::PlotlyLightQ, ID)
+    p = x.p
+    p.id = ID
+
+    x₀, x₁ = handle_inf.(x.xs)
+    y₀, y₁ = handle_inf.(x.ys)
+    CORRECT_ANSWER = isnothing(x.correct_answer) ?
+        "(x >= $(x₀) && x <= $(x₁) && y >= $(y₀) && y <= $(y₁));" :
+        x.correct_answer
+
+
+    GRADING_SCRIPT =
+        Mustache.render(html_templates["plotlylight_grading_script"];
+                        ID = ID,
+                        CORRECT_ANSWER = CORRECT_ANSWER,
+                        INCORRECT = "Incorrect",
+                        CORRECT = "Correct"
+                        )
+
+    FORM = sprint(io -> show(io, "text/html", p))
+    FORM = "<script>window.PlotlyConfig = {MathJaxConfig: 'local'};</script>" * FORM
+
+    (FORM, GRADING_SCRIPT)
 end

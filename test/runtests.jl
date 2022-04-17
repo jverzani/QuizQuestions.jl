@@ -28,4 +28,7 @@ using Test
     r = hotspotq("empty", (0,0), (1,1); explanation="XXX")
     @test r.explanation == "XXX"
 
+    r = plotlylightq("empty"; label="XXX")
+    @test r.label == "XXX"
+
 end

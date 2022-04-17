@@ -247,3 +247,17 @@ html_templates["hotspot_grading_script"] = """
 
   })
 """
+
+## -----
+## -------
+html_templates["plotlylight_grading_script"] = """
+document.getElementById("{{{:ID}}}").on("plotly_click", function(e) {
+      x = e.points[0].x
+      y = e.points[0].y
+
+      correct = {{{:CORRECT_ANSWER}}}
+      var msgBox = document.getElementById('{{:ID}}_message');
+      $(grading_partial)
+
+  })
+"""

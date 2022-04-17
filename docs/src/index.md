@@ -181,6 +181,13 @@ hotspotq(imgfile, (0,0), (1/2, 1/2),
     label="What best matches the graph of ``f(x) = -x^4``?")
 ```
 
+----
+
+The `PlotlyLight` package provides a very lightweight interface for producing JavaScript based graphs with the `plotly.js` library. The `plotlylight` allows questions involving an `(x,y)` selection from a graph.
+
+Unfortunately, this only seems to work from within `Weave.jl`.
+
+
 ## Reference
 
 The available question types are listed below. If others are desirable, open an issue on the GitHub repository.
@@ -196,4 +203,5 @@ numericq
 stringq
 fillblankq
 hotspotq
+plotlylightq
 ```
