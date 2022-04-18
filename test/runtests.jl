@@ -2,7 +2,7 @@ using QuizQuestions
 using Test
 
 @testset "QuizQuestions.jl" begin
-    @test numericq(1).tol == 0
+    @test numericq(1).atol == 0
     @test numericq(1, 1e-3; hint="hint").hint == "hint"
 
     @test stringq(r"abc").re == r"abc"

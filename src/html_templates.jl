@@ -5,13 +5,13 @@ html_templates = Dict()
 grading_partial = """
   if(correct) {
     msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span> 👍&nbsp; {{#:CORRECT}}{{{:CORRECT}}}{{/:CORRECT}}{{^:CORRECT}}Correct{{/:CORRECT}} </span></div>";
-    explanation = document.getElementById("explanation_{{:ID}}")
+    var explanation = document.getElementById("explanation_{{:ID}}")
     if (explanation != null) {
        explanation.style.display = "none";
     }
   } else {
     msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span>👎&nbsp; {{#:INCORRECT}}{{{:INCORRECT}}}{{/:INCORRECT}}{{^:INCORRECT}}Incorrect{{/:INCORRECT}} </span></div>";
-    explanation = document.getElementById("explanation_{{:ID}}")
+    var explanation = document.getElementById("explanation_{{:ID}}")
     if (explanation != null) {
        explanation.style.display = "block";
     }
@@ -98,7 +98,7 @@ rb.addEventListener("change", function() {
 html_templates["Buttonq"] = mt"""
 <div id="buttongroup_{{:ID}}" class="btn-group">
   {{#:BUTTONS}}
-  <button id="button_{{:ID}}_{{:i}}" value="{{:ANSWER}}" style="width:100%;text-align:left; padding:10px;padding-bottom:20px;padding-top:5px; background:{{{:BLUE}}}">
+  <button id="button_{{:ID}}_{{:i}}" value="{{:ANSWER}}" style="width:100%;text-align:left; padding:10px;padding-bottom:20px;padding-top:5px; background:{{{:BLUE}}}" onclick="return false;">
     {{{:TEXT}}
   </button>
   {{/:BUTTONS}}
@@ -110,9 +110,9 @@ document.querySelectorAll('[id^="button_{{:ID}}_"]').forEach(function(btn) {
 	var id = this.id;
 	if (!correct) {
 	    this.style.background = "{{{:GREEN}}}";
-	    text = this.innerHTML;
+	    var text = this.innerHTML;
 	    this.innerHTML = "<em>{{{:INCORRECT}}</em>&nbsp;" + text ;
-            explanation = document.getElementById("explanation_{{:ID}}")
+            var explanation = document.getElementById("explanation_{{:ID}}")
             if (explanation != null) {
                explanation.style.display = "block";
             }
@@ -121,7 +121,7 @@ document.querySelectorAll('[id^="button_{{:ID}}_"]').forEach(function(btn) {
 	    btn.disabled = true;
 	    if (btn.value == "correct") {
                 btn.style.background = "{{{:RED}}}";
-		text = btn.innerHTML;
+		var text = btn.innerHTML;
 		btn.innerHTML =  " <em>{{{:CORRECT}}}</em>&nbsp;" + text ;
 		btn.style.fontSize = "1.1rem";
 		btn.style.color = "black";
@@ -153,16 +153,16 @@ html_templates["multi_grading_script"] = """
 document.querySelectorAll('input[name="check_{{:ID}}"]').forEach(function(rb) {
 rb.addEventListener("change", function() {
     var choice_buttons = document.getElementsByName("check_{{:ID}}");
-    selected = [];
+    var selected = [];
     for (var i=0; i < choice_buttons.length; i++) {
         if (choice_buttons[i].checked) {
            selected.push(i+1)
         }
     }
     var a = selected;
-    b = {{{:CORRECT_ANSWER}}};
+    var b = {{{:CORRECT_ANSWER}}};
     // https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
-    correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
+    var  correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
     var msgBox = document.getElementById('{{:ID}}_message');
     $(grading_partial)
 })});
@@ -198,9 +198,9 @@ html_templates["matchq_grading_script"] = """
 	      Array.prototype.forEach.call(selectors, function (element, iterator) {
 		 a.push(element.value);
 	      })
-              b = {{{:CORRECT_ANSWER}}};
+              var b = {{{:CORRECT_ANSWER}}};
               // https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
-              correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
+              var correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
               var msgBox = document.getElementById('{{:ID}}_message');
               $(grading_partial)
 	  })
@@ -241,7 +241,7 @@ html_templates["hotspot_grading_script"] = """
       var x = u/w;
       var y = (h-v)/h
 
-      correct = {{{:CORRECT_ANSWER}}}
+      var correct = {{{:CORRECT_ANSWER}}}
       var msgBox = document.getElementById('{{:ID}}_message');
       $(grading_partial)
 
@@ -252,10 +252,10 @@ html_templates["hotspot_grading_script"] = """
 ## -------
 html_templates["plotlylight_grading_script"] = """
 document.getElementById("{{{:ID}}}").on("plotly_click", function(e) {
-      x = e.points[0].x
-      y = e.points[0].y
+      var x = e.points[0].x
+      var y = e.points[0].y
 
-      correct = {{{:CORRECT_ANSWER}}}
+      var correct = {{{:CORRECT_ANSWER}}}
       var msgBox = document.getElementById('{{:ID}}_message');
       $(grading_partial)
 

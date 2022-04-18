@@ -9,16 +9,29 @@ mutable struct Stringq <: Question
 end
 
 """
-    stringq(re::Regex; label="", hint="", explanation="")
+    stringq(re::Regex; label="", hint="", explanation="", placeholder="")
 
 Match string answer with regular expression
 
 Arguments:
 
 * `re`: a regular expression for grading
+
 * `label`: optional label for the form element
+
 * `hint`: optional plain-text hint that can be seen on hover
+
+* `explanation`: text to display on a wrong selection
+
 * `placeholder`: text shown when input widget is initially drawn
+
+## Example
+
+```
+re = Regex("^abc")
+stringq(re, label="First 3 letters...")
+```
+
 """
 stringq(re::Regex; label="", hint="", explanation="",  placeholder=nothing) =
     Stringq(re, label, hint, explanation, placeholder)
@@ -27,7 +40,7 @@ stringq(re::Regex; label="", hint="", explanation="",  placeholder=nothing) =
 ##
 mutable struct Numericq <: Question
     val
-    tol
+    atol
     units
     label
     hint
@@ -36,27 +49,32 @@ mutable struct Numericq <: Question
 end
 
 """
-    numericq(value, tol=1e-3; label="", hint="", units="", explanation="", placeholder=nothing)
+    numericq(value, atol=1e-3; label="", hint="", units="", explanation="", placeholder=nothing)
 
 Match a numeric answer
 
 Arguments:
 
 * `value`: the numeric answer
-* `tol`: ``|answer - value| \\le tol`` is used to determine correctness
+
+* `atol`: ``|answer - value| \\le atol`` is used to determine correctness
+
 * `label`: optional label for the form element
+
 * `hint`: optional plain-text hint that can be seen on hover
-* `units`: a string indicating expected units.
+
+* `units`: a string indicating expected units
+
 * `placeholder`: text shown when input widget is initially drawn
 
 """
-function numericq(val, tol=1e-3, args...;
+function numericq(val, atol=1e-3, args...;
                   label="",
                   hint="", units::AbstractString="",
                   explanation="",
                   placeholder=nothing)
 
-    Numericq(val, tol,  units, label, hint, explanation, placeholder)
+    Numericq(val, atol,  units, label, hint, explanation, placeholder)
 end
 
 numericq(val::Int; kwargs...) = numericq(val, 0; kwargs...)
@@ -86,7 +104,7 @@ Arguments:
 
 * `answer::Int`: index of correct choice
 
-* `keep_order::Boolean`: if `true` keeps display order of choices, otherwise they are shuffled.
+* `keep_order::Boolean`: if `true` keeps display order of choices, otherwise they are shuffled
 
 * `inline::Bool`: hint to render inline (or not) if supported
 
@@ -94,7 +112,9 @@ Arguments:
 
 * `hint`: optional plain-text hint that can be seen on hover
 
-Example:
+* `explanation`: text to display on a wrong selection
+
+## Example:
 
 ```
 choices = ["beta", raw"``\\beta``", "`beta`"]
@@ -136,23 +156,22 @@ Arguments:
 
 * `answer::Int`: index of correct choice
 
-* `explanation`: text to display on a wrong selection
-
 * `label`: optional label for the form element
 
 * `hint`: optional plain-text hint that can be seen on hover
 
-Example:
+* `explanation`: text to display on a wrong selection
+
+
+## Example:
 
 ```
 choices = ["beta", raw"``\\beta``", "`beta`"]
 answer = 2
 explanation = "The other two answers are not a symbol, but a name"
-buttonq(choices, answer; label="Which is the Greek symbol?", explanation=explanation)
+buttonq(choices, answer; label="Which is the Greek symbol?",
+        explanation=explanation)
 ```
-
-!!! note
-    The button questions do not work well with `Pluto`.
 """
 function buttonq(choices, answer::Integer;
                  explanation="",
@@ -188,7 +207,7 @@ Arguments:
 
 * `answers::Vector{Int}`: index of correct choice(s)
 
-* `keep_order::Boolean`: if `true` keeps display order of choices, otherwise they are shuffled.
+* `keep_order::Boolean`: if `true` keeps display order of choices, otherwise they are shuffled
 
 * `inline::Bool`: hint to render inline (or not) if supported
 
@@ -196,12 +215,14 @@ Arguments:
 
 * `hint`: optional plain-text hint that can be seen on hover
 
-Example:
+* `explanation`: text to display on a wrong selection
+
+## Example
 
 ```
 choices = ["pear", "tomato", "banana"]
 answers = [1,3]
-multiplecq(choices, answers; hint="not the red one!")
+multiplecq(choices, answers; label="yellow foods", hint="not the red one!")
 ```
 
 """
@@ -236,26 +257,32 @@ Use a drop down to select the right match for each question.
 
 Arguments:
 
-* `questions`: Indexable collection of questions.
+* `questions`: Indexable collection of questions
 
 * `choices`: indexable collection of choices for each question. As seen in the example, choices can be formatted with markdown.
 
-* `answers`: collection of correct indices for each question.
+* `answers`: for each question, the index from `choices` of the correct answer
 
-* `d`: As an alternative, a dictionary of questions and answers can be specified. The choices will be taken from the values then randomized, the answers will be computed.
+* `d`: As an alternative, a dictionary of questions and answers can be specified. The choices will be taken from the values then randomized, the answers will be computed
 
 * `label`: optional label for the form element
 
 * `hint`: optional plain-text hint that can be seen on hover
 
-## Examples:
+* `explanation`: text to display on a wrong selection
+
+## Examples
 
 ```
 questions = ("Select a Volvo", "Select a Mercedes", "Select an Audi")
 choices = ("XC90", "A4", "GLE 350", "X1") # may be more than questions
 answer = (1,3,2) # indices of correct
 matchq(questions, choices, answer)
+```
 
+This example uses a dictionary to specify the questions and choices:
+
+```
 d = Dict("Select a Volvo" => "XC90", "Select a Mercedes" => "GLE 250")
 matchq(d)
 ```
@@ -283,10 +310,10 @@ end
 
 
 """
-    booleanq(ans; [label, hint])
+    booleanq(ans; [label, hint, explanation])
 True of false questions:
 
-Example:
+## Example:
 
 ```
 booleanq(true; label="Does it hurt...")
@@ -305,7 +332,7 @@ function booleanq(ans::Bool;
 end
 
 """
-    yesnoq(ans)
+    yesnoq(ans; [label, hint, explanation])
 
 Boolean question with `yes` or `no` labels.
 
@@ -345,7 +372,7 @@ end
 mutable struct FillBlankNumericQ <: FillBlankQ
     question
     val
-    tol
+    atol
     label
     hint
     explanation
@@ -354,13 +381,15 @@ end
 
 
 """
-    fillblankq(question answer::Regex; label="", hint="", placeholder=nothing)
-    fillblankq(question, choices, answer; label="", hint="", keep_order=false)
-    fillblankq(question, val, tol=0; label="", hint="", placeholder=nothing)
+    fillblankq(question answer::Regex; placeholder=nothing, [label, hint, explanation])
+    fillblankq(question, choices, answer; keep_order=false,[label, hint, explanation])
+    fillblankq(question, val, atol=0; placeholder=nothing, [label, hint, explanation])
 
 Present a fill-in-the-blank question where the blank can be a selection, a number, or a string graded by a regular expression.
 
-* `question`: A string. Use `____` (4 or more under scores) to indicate the blank
+* `question`: A string. Use `____` (4 or more under scores) to indicate the blank.
+
+Other rguments from `stringq`, `radioq`, and `numericq`
 
 ## Examples
 ```
@@ -391,16 +420,16 @@ function fillblankq(question, choices, answer; label="", hint="", explanation=""
     FillBlankChoiceQ(question, choices, answer, label, hint, explanation)
 end
 
-fillblankq(question, val::Real, tol=0; label="", hint="", explanation="",
+fillblankq(question, val::Real, atol=0; label="", hint="", explanation="",
            placeholder=nothing) =
-    FillBlankNumericQ(question, val, tol, label, hint, explanation, placeholder)
+    FillBlankNumericQ(question, val, atol, label, hint, explanation, placeholder)
 
 ## ------
 
 mutable struct HotspotQ <: Question
     imgfile
-    xy
-    ΔxΔy
+    xs
+    ys
     label
     hint
     explanation
@@ -408,15 +437,18 @@ mutable struct HotspotQ <: Question
 end
 
 """
-    hotspotq(imagefile, xy, ΔxΔy; label="", hint="", explanation="",
+    hotspotq(imagefile, xs, ys=(0,1); label="", hint="", explanation="",
         correct_answer=nothing)
 
 Question type to check if user clicks in a specified region of an image.
 
-* `imgfile`: file of an image
-* `xy`: tuple of ``(x,y)`` coordinates in ``[0,1] × [0,1]`` relative to lower left corner
-* `ΔxΔy`: tuple of ``(w,h)`` coordinates used to describe rectangular region of the figure
-* `correct_answer`: a text snippet of javascript which can be specified to add more complicated logic to test if an answer is correct. It must use `x` and `y` for the coordinates of the click.
+* `imgfile`: File of an image. The images will be encoded and embedded in the web page.
+
+* `xs`: iterable specifying `(xmin, xmax)` with `0 <= xmin <= xmax <= 1`
+
+* `ys`: iterable specifying `(ymin, ymax)`
+
+* `correct_answer`: A text snippet of JavaScript which can be specified to add more complicated logic to test if an answer is correct. It must use `x` and `y` for the coordinates of the click.
 
 ## Examples
 
@@ -430,7 +462,7 @@ l = @layout [a b; c d]
 p = plot(p1, p2, p3, p4, layout=l)
 imgfile = tempname() * ".png"
 savefig(p, imgfile)
-hotspotq(imgfile, (0,0), (1/2, 1/2), label="What best matches the graph of ``f(x) = -x^4``?")
+hotspotq(imgfile, (0,1/2), (0, 1/2), label="What best matches the graph of ``f(x) = -x^4``?")
 ```
 
 !!! note
@@ -438,10 +470,10 @@ hotspotq(imgfile, (0,0), (1/2, 1/2), label="What best matches the graph of ``f(x
     be managed separately.
 
 """
-function hotspotq(imgfile, xy, ΔxΔy;
+function hotspotq(imgfile, xs, ys=(0,1);
                   label = "", hint="", explanation="",
                   correct_answer=nothing)
-    HotspotQ(imgfile, xy, ΔxΔy, label, hint, explanation, correct_answer)
+    HotspotQ(imgfile, xs, ys, label, hint, explanation, correct_answer)
 end
 
 
@@ -461,37 +493,45 @@ end
                  label="", hint="", explanation="",
                  correct_answer=nothing)
 
-Display a `PlotlyLight` graph. By default, correct answers select a value on the graph with `x` in the range specified by `xs` and `y` in the range specified by `ys`.
 
-* `xs`: specifies interval for selected pont `[x₀,x₁]`, defaults = `(-Inf,Inf)`
+From a plotly graph of a function present a question about the `x-y` point on a graph shown on hover. (For figures with multiple graphs, the hover of the first one is taken. For parameterized plots, the hover may be computed in an unexpected manner.)
+
+By default, correct answers select a value on the graph with `x` in the range specified by `xs` and `y` in the range specified by `ys`.
+
+* `xs`: specifies interval for selected point `[x₀,x₁]`, defaults to `(-Inf,Inf)`
+
 * `ys`: range `[y₀,y₁]`
-* `correct_answer`: when speficied, allows more advanced notions of correct. This is a JavaScript code snippet with `x` and `y` representing the point on the graph that is clicked on.
+
+* `correct_answer`: When specified, allows more advanced notions of correct. This is a JavaScript code snippet with `x` and `y` representing the hovered point on the graph that is highlighted on clicking.
 
 ## Examples
 
 ```
-using PlotlyLight # not loaded by default
+using PlotlyLight
 xs = range(0, 2pi, length=100)
 ys = sin.(xs)
 p = Plot(Config(x=xs, y=ys))
 plotlylightq(p, (3,Inf); label="Click a value with ``x>3``")
 ```
 
-An example where the default grading script needs modification. Note also, the `x`, `y` values refer to the *first* graph. (One could modify their definition in `correct answer`; they are found through `x=e.points[0].x`, `y=e.points[0].y`.)
+An example where the default grading script needs modification. Note
+also, the `x`, `y` values refer to the *first* graph. (One could
+modify their definition in `correct answer`; they are found through
+`x=e.points[0].x`, `y=e.points[0].y`.)
 
 ```
 xs = range(0, 2pi, length=100)
 ys = sin.(xs)
-p = Plot(Config(x=xs, y=ys))
-push!(p.data, Config(x=xs, y=cos.(xs)));
+p = Plot(Config(x=xs, y=ys));
+push!(p.data, Config(x=xs, y=cos.(xs)));  # add layer
 question = "Click a value where `sin(x)` is increasing"
 # evalute pi/2 as no pi in JavaScript, also Inf -> Infinity
 correct_answer = "((x >= 0 && x <= $(pi/2)) || (x >= $(3pi/2) && x <= $(2pi)))"
-plotlylightq(p, (3,Inf); label=question, correct_answer=correct_answer)
+plotlylightq(p; label=question, correct_answer=correct_answer)
 ```
 
 !!! note
-    The use of `PlotlyLight` graphics works with `Weave`, but is unusable from `Documenter`.
+    The use of `PlotlyLight` graphics works with `Weave` and `Pluto`, but is unusable from `Documenter`.
 
 """
 function plotlylightq(p, xs=(-Inf, Inf), ys=(-Inf,Inf);

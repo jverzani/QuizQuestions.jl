@@ -37,7 +37,7 @@ function prepare_question(x::Numericq, ID)
     GRADING_SCRIPT =
         Mustache.render(html_templates["input_grading_script"];
                         ID = ID,
-                        CORRECT_ANSWER = "(Math.abs(this.value - $(x.val)) <= $(x.tol))",
+                        CORRECT_ANSWER = "(Math.abs(this.value - $(x.val)) <= $(x.atol))",
                         INCORRECT = "Incorrect",
                         CORRECT = "Correct"
                         )
@@ -208,7 +208,7 @@ function blank(x::FillBlankNumericQ, ID)
     GRADING_SCRIPT =
         Mustache.render(html_templates["input_grading_script"];
                         ID = ID,
-                        CORRECT_ANSWER = "(Math.abs(this.value - $(x.val)) <= $(x.tol))",
+                        CORRECT_ANSWER = "(Math.abs(this.value - $(x.val)) <= $(x.atol))",
                         INCORRECT = "Incorrect",
                         CORRECT = "Correct"
                         )
@@ -231,9 +231,8 @@ end
 ## ----
 function prepare_question(x::HotspotQ, ID)
 
-    x₀,y₀ = x.xy
-    Δx, Δy = x.ΔxΔy
-    x₁, y₁ = x₀ + Δx, y₀ + Δy
+    x₀,x₁ = extrema(x.xs)
+    y₀,y₁ = extrema(x.ys)
 
     CORRECT_ANSWER = isnothing(x.correct_answer) ?
         "(x >= $(x₀) && x <= $(x₁) && y >= $(y₀) && y <= $(y₁));" :
@@ -275,7 +274,7 @@ function prepare_question(x::PlotlyLightQ, ID)
                         )
 
     FORM = sprint(io -> show(io, "text/html", p))
-    FORM = "<script>window.PlotlyConfig = {MathJaxConfig: 'local'};</script>" * FORM
+    FORM = "<script>window.PlotlyConfig = {MathJaxConfig: 'local'};</script>\n" * FORM
 
     (FORM, GRADING_SCRIPT)
 end
