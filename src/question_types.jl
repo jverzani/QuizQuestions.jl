@@ -140,13 +140,14 @@ end
 mutable struct Buttonq <: Question
     choices
     answer
-    explanation
     label
     hint
+    explanation
+    colors
 end
 
 """
-    buttonq(choices, answer; label="", hint="")
+    buttonq(choices, answer; label="", hint="", [colors])
 
 Use buttons for multiple choice (one of many). Show answer after first click.
 
@@ -174,10 +175,14 @@ buttonq(choices, answer; label="Which is the Greek symbol?",
 ```
 """
 function buttonq(choices, answer::Integer;
-                 explanation="",
-                 label="", hint="")
+                 label="", hint="", explanation="",
+                 colors=(GREEN="#FF0000AA",
+                         RED = "#00AA33AA",
+                         BLUE = nothing) #"#0033CC11",
+                 )
+
     answers = [i == answer ? "correct" : "incorrect" for i ∈ eachindex(choices)]
-    Buttonq(choices, answers, explanation, label, hint)
+    Buttonq(choices, answers, label, hint, explanation, colors)
 end
 
 
