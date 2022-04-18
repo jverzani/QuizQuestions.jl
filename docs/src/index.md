@@ -43,6 +43,8 @@ For each question:
 
 * The optional `label` argument is used to flag the question.
 
+* The optional `explanation` argument is used to give feedback to the user in case there is an incorrect answer given.
+
 For example, the question can be asked in the body of the document
 (the position of any hint will be different):
 
@@ -75,13 +77,14 @@ buttonq(["``1 + 1``", "``2+2``", "``-1 + -1``"], 1;
 ### Multiple choices (one or more from many)
 
 
-A multiple choice question (one or *more* from many) can be constructed with `multieq`:
+A multiple choice question (one or *more* from many) can be constructed with `multiq`:
 
 ```@example quiz_question
-choices =["Four score and seven years ago",
-"Lorum ipsum",
-"The quick brown fox jumped over the lazy dog",
-"One and one and one makes three"
+choices =[
+	"Four score and seven years ago",
+	"Lorum ipsum",
+	"The quick brown fox jumped over the lazy dog",
+	"One and one and one makes three"
 ]
 ans = (1, 4)
 multiq(choices, ans,
@@ -110,7 +113,7 @@ A question graded by a regular expression can be asked with `stringq`. The quest
 
 
 ```@example quiz_question
-stringq(r"^Washington"; label="Who was the first president?",
+stringq(r"^Washington"; label="Who was the first US president?",
         placeholder="last name")
 ```
 
@@ -122,7 +125,7 @@ A question involving matching can be asked with `matchq`.
 ```@example quiz_question
 questions = ("Select a Volvo", "Select a Mercedes", "Select an Audi")
 choices = ("XC90", "A4", "GLE 350", "X1") # may be more than questions
-answer = (1,3,2) # indices of correct
+answer = (1,3,2) # indices of choices that match correct answer for each question
 matchq(questions, choices, answer;
     label="For each question, select the correct answer.")
 ```
@@ -159,13 +162,13 @@ fillblankq(question, r"^lazy$")
 (like `numericq`)
 
 ```@example quiz_question
-question = "____ ``+ 2  = 4``"
+question = "____ `` + 2  = 4``"
 fillblankq(question, 2)
 ```
 
 ### Select from an image question
 
-The `hotspotq` shows an image, specified by a file, and grades an answer correct if a mouse click is in a specified rectangular region. The region is given in terms of lower corner and width/height as if the entire region was in ``[0,1] \times [0,1]``.
+The `hotspotq` shows an image, specified by a file, and grades an answer correct if a mouse click is in a specified rectangular region. The region is given in terms of `(xmin,xmax)` and `(ymin, ymax)` as if the entire region was in ``[0,1] \times [0,1]``, though the `correct_answer` argument allows for more complicated regions.
 
 ```@example quiz_question
 using Plots
@@ -177,16 +180,16 @@ l = @layout [a b; c d]
 p = plot(p1, p2, p3, p4, layout=l)
 imgfile = tempname() * ".png"
 savefig(p, imgfile)
-hotspotq(imgfile, (0,0), (1/2, 1/2),
+hotspotq(imgfile, (0,1/2), (0, 1/2),
     label="What best matches the graph of ``f(x) = -x^4``?")
 ```
 
 ----
 
-The `PlotlyLight` package provides a very lightweight interface for producing JavaScript based graphs with the `plotly.js` library. The `plotlylight` allows questions involving an `(x,y)` selection from a graph.
+The `PlotlyLight` package provides a very lightweight interface for producing JavaScript based graphs with the `plotly.js` library. The `plotlylight` type allows questions involving an `(x,y)` selection from a graph (`(x,y)` is a point on a graph).
 
-Unfortunately, this only seems to work from within `Weave.jl`.
-
+!!! note
+    The `plotlylight` question type does not work with `Documenter`.
 
 ## Reference
 

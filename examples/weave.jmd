@@ -65,5 +65,31 @@ Button choice
 ```julia; echo=false
 choices = ["beta", raw"``\beta``", "`beta`"]
 answer = 2
-buttonq(choices, answer; hint="Which is the Greek symbol?")
+buttonq(choices, answer; label="chose the letter", hint="Which is the Greek symbol?")
+```
+
+Hotspot
+
+```julia; hold=true; echo=false
+using Plots
+p1 = plot(x -> x^2, axis=nothing, legend=false)
+p2 = plot(x -> x^3, axis=nothing, legend=false)
+p3 = plot(x -> -x^2, axis=nothing, legend=false)
+p4 = plot(x -> -x^3, axis=nothing, legend=false)
+l = @layout [a b; c d]
+p = plot(p1, p2, p3, p4, layout=l)
+imgfile = tempname() * ".png"
+savefig(p, imgfile)
+hotspotq(imgfile, (0,1/2), (0, 1/2), label="What best matches the graph of ``f(x) = -x^4``?")
+```
+
+
+PlotlyLight
+
+```julia; hold=true; echo=false
+using PlotlyLight # not loaded by default
+xs = range(0, 2pi, length=100)
+ys = sin.(xs)
+p = Plot(Config(x=xs, y=ys))
+plotlylightq(p, (3,Inf); label="Click a value with ``x>3``")
 ```
