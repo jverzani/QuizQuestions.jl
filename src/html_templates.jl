@@ -98,7 +98,7 @@ rb.addEventListener("change", function() {
 html_templates["Buttonq"] = mt"""
 <div id="buttongroup_{{:ID}}" class="btn-group">
   {{#:BUTTONS}}
-  <button id="button_{{:ID}}_{{:i}}" value="{{:ANSWER}}" style="width:100%;text-align:left; padding:10px;padding-bottom:20px;padding-top:5px; background:{{{:BLUE}}}" onclick="return false;">
+  <button id="button_{{:ID}}_{{:i}}" value="{{:ANSWER}}" style="width:100%;text-align:left; padding:10px;padding-bottom:20px;padding-top:5px; {{#:BLUE}}background:{{{:BLUE}}}{{/:BLUE}}" onclick="return false;">
     {{{:TEXT}}
   </button>
   {{/:BUTTONS}}
@@ -109,7 +109,7 @@ document.querySelectorAll('[id^="button_{{:ID}}_"]').forEach(function(btn) {
 	var correct = this.value == "correct";
 	var id = this.id;
 	if (!correct) {
-	    this.style.background = "{{{:GREEN}}}";
+	    {{#:GREEN}}this.style.background = "{{{:GREEN}}}";{{/:GREEN}}
 	    var text = this.innerHTML;
 	    this.innerHTML = "<em>{{{:INCORRECT}}</em>&nbsp;" + text ;
             var explanation = document.getElementById("explanation_{{:ID}}")
@@ -120,7 +120,7 @@ document.querySelectorAll('[id^="button_{{:ID}}_"]').forEach(function(btn) {
 	document.querySelectorAll('[id^="button_{{:ID}}_"]').forEach(function(btn) {
 	    btn.disabled = true;
 	    if (btn.value == "correct") {
-                btn.style.background = "{{{:RED}}}";
+                {{#:RED}}btn.style.background = "{{{:RED}}}";{{/:RED}}
 		var text = btn.innerHTML;
 		btn.innerHTML =  " <em>{{{:CORRECT}}}</em>&nbsp;" + text ;
 		btn.style.fontSize = "1.1rem";

@@ -110,9 +110,9 @@ function prepare_question(x::Buttonq, ID)
     FORM = Mustache.render(html_templates["Buttonq"];
                            ID = ID,
                            BUTTONS = buttons,
-                           GREEN = "#FF0000AA",
-                           RED = "#00AA33AA",
-                           BLUE = "#0033CC11",
+                           GREEN = x.colors.GREEN,
+                           RED = x.colors.RED,
+                           BLUE = x.colors.BLUE,
                            CORRECT = "✓",
                            INCORRECT="⨉"
                            )
