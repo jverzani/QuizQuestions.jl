@@ -11,7 +11,7 @@ include("show_methods.jl")
 
 export numericq,
     buttonq, radioq, booleanq, yesnoq,
-    multiq,  matchq,
+    multiq,  multibuttonq, matchq,
     stringq, fillblankq,
     hotspotq, plotlylightq
 
