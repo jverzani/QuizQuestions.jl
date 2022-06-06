@@ -140,6 +140,31 @@ function prepare_question(x::Multiq, ID)
 
 end
 
+function prepare_question(x::MultiButtonq, ID)
+
+    n = length(x.choices)
+    choices = _markdown_to_html.(x.choices)
+    buttons = [(i=i, TEXT=_markdown_to_html(x.choices[i])) for i ∈ 1:n]
+    BLUE = "#0033CC11"
+
+    GRADING_SCRIPT = Mustache.render(html_templates["multi_button_grading_script"];
+                                     ID = ID,
+                                     CORRECT_ANSWER = length(x.answer) > 0 ? x.answer : "[]",
+                                     SELECTED_COLOR = BLUE,
+                                     INCORRECT = "Something isn't correct",
+                                     CORRECT = "Correct",
+                                     CORRECT_flag = "✓ ",
+                                     INCORRECT_flag ="⨉ "
+
+                                     )
+
+    FORM = Mustache.render(html_templates["MultiButtonq"];
+                           ID = ID,
+                           BUTTONS = buttons,
+                           )
+    (FORM, GRADING_SCRIPT)
+
+end
 
 function prepare_question(x::Matchq, ID)
 

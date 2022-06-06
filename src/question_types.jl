@@ -244,6 +244,62 @@ function multiq(choices, answers;
            values, labels[inds], label, hint, explanation, inline)
 end
 
+## ----
+mutable struct MultiButtonq <: Question
+    choices
+    answer
+    values
+    labels
+    label
+    hint
+    explanation
+    inline
+end
+
+"""
+    multibuttonq(choices, answers; label="", hint="", explanation="", keep_order=false)
+
+Multiple choice question (zero, one *or more* of several) using buttons and a "done" button to reveal  the answers and whether the user input is correct.
+
+Arguments:
+
+* `choices`: indexable collection of choices. As seen in the example, choices can be formatted with markdown.
+
+* `answers::Vector{Int}`: index of correct choice(s)
+
+* `keep_order::Boolean`: if `true` keeps display order of choices, otherwise they are shuffled
+
+* `inline::Bool`: hint to render inline (or not) if supported
+
+* `label`: optional label for the form element
+
+* `hint`: optional plain-text hint that can be seen on hover
+
+* `explanation`: text to display on a wrong selection
+
+## Example
+
+```
+choices = ["pear", "tomato", "banana"]
+answers = [1,3]
+multibuttonq(choices, answers; label="yellow foods", hint="not the red one!")
+```
+
+"""
+function multibuttonq(choices, answers;
+                label="", hint="", explanation="",
+                inline::Bool=(hint!=""),
+                      keep_order::Bool=false)
+
+    inds = collect(1:length(choices))
+    values = copy(inds)
+    labels = choices
+    !keep_order && shuffle!(inds)
+
+    MultiButtonq(choices[inds], findall(in(answers), inds),
+           values, labels[inds], label, hint, explanation, inline)
+end
+
 ##
 mutable struct Matchq <: Question
     questions

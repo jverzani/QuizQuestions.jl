@@ -92,6 +92,22 @@ multiq(choices, ans,
 ```
 
 
+The `multibuttonq` question is similar, but it uses a "done" button to initiate the grading. This allows for answers with ``0``, ``1``, or more correct answers.
+
+```@example quiz_question
+choices =[
+	"Four score and seven years ago",
+	"Lorum ipsum",
+	"The quick brown fox jumped over the lazy dog",
+	"One and one and one makes three"
+]
+ans = (1, 4)
+multibuttonq(choices, ans,
+    label="Select the sentences with numbers (one or more)")
+```
+
+
+
 ### Numeric answers
 
 Questions with numeric answers use `numericq`. The question is graded when the input widget loses focus.
@@ -201,6 +217,7 @@ buttonq
 yesnoq
 booleanq
 multiq
+multibuttonq
 matchq
 numericq
 stringq

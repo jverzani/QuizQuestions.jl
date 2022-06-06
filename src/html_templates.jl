@@ -38,7 +38,7 @@ html_templates["question_tpl"] = mt"""
       </div>
       <div id='{{:ID}}_message' style="padding-bottom: 15px"></div>
       {{#:EXPLANATION}}
-      <div id="explanation_{{:ID}}" class='pluto-output admonition alert alert-danger' style="display:none;">{{{:EXPLANATION}}}</div>
+      <div id="explanation_{{:ID}}" class='pluto-output admonition alert alert-danger' style="display:none;;background-color:#D3D3D366;">{{{:EXPLANATION}}}</div>
       {{/:EXPLANATION}}
     </div>
   </div>
@@ -98,7 +98,7 @@ rb.addEventListener("change", function() {
 html_templates["Buttonq"] = mt"""
 <div id="buttongroup_{{:ID}}" class="btn-group">
   {{#:BUTTONS}}
-  <button id="button_{{:ID}}_{{:i}}" value="{{:ANSWER}}" style="width:100%;text-align:left; padding:10px;padding-bottom:20px;padding-top:5px; {{#:BLUE}}background:{{{:BLUE}}}{{/:BLUE}}" onclick="return false;">
+  <button class="toggle-btn" aria-pressed="false" id="button_{{:ID}}_{{:i}}" value="{{:ANSWER}}" style="width:100%;text-align:left; padding-left:10px; {{#:BLUE}}background:{{{:BLUE}}}{{/:BLUE}}" onclick="return false;">
     {{{:TEXT}}
   </button>
   {{/:BUTTONS}}
@@ -119,12 +119,14 @@ document.querySelectorAll('[id^="button_{{:ID}}_"]').forEach(function(btn) {
 	}
 	document.querySelectorAll('[id^="button_{{:ID}}_"]').forEach(function(btn) {
 	    btn.disabled = true;
+            btn.setAttribute("aria-pressed", "true");
 	    if (btn.value == "correct") {
                 {{#:RED}}btn.style.background = "{{{:RED}}}";{{/:RED}}
 		var text = btn.innerHTML;
 		btn.innerHTML =  " <em>{{{:CORRECT}}}</em>&nbsp;" + text ;
 		btn.style.fontSize = "1.1rem";
 		btn.style.color = "black";
+                btn.style.borderRadius = "12px";
 	    }
 	});
     });
@@ -166,6 +168,78 @@ rb.addEventListener("change", function() {
     var msgBox = document.getElementById('{{:ID}}_message');
     $(grading_partial)
 })});
+"""
+
+html_templates["MultiButtonq"] = mt"""
+<div id="buttongroup_{{:ID}}" class="btn-group">
+  {{#:BUTTONS}}
+  <button class="toggle-btn" aria-pressed="false" id="button_{{:ID}}_{{:i}}" name="{{:i}}" value="unclicked" style="width:100%;text-align:left; padding-left:10px; {{#:BLUE}}background:{{{:BLUE}}}{{/:BLUE}}" onclick="return false;">
+      {{{:TEXT}}
+  </button>
+  {{/:BUTTONS}}
+
+  <button id="button_{{:ID}}-done"
+     style="display:block; margin:auto;text-align:center;{{#:BLUE}}background:{{{:BLUE}}}{{/:BLUE}}" onclick="return false;">
+      DONE
+  </button>
+
+
+"""
+
+html_templates["multi_button_grading_script"] = """
+
+// toggle button select
+document.querySelectorAll('[id^="button_{{:ID}}_"]').forEach(function(btn) {
+    btn.addEventListener("click", function(btn) {
+	var unclicked = (this.value == "unclicked")
+	if (unclicked) {
+            this.style.background = "{{{:SELECTED_COLOR}}}";
+	    this.value = "clicked";
+            this.setAttribute("aria-pressed", "true");
+	} else {
+	    this.style.background = null;
+	    this.value="unclicked";
+            this.setAttribute("aria-pressed", "false");
+	}
+    });
+})
+
+// grade question
+document.querySelector('[id^="button_{{:ID}}-done"]').addEventListener("click", function() {
+                this.disabled = true;
+    var multi_choice_buttons = document.querySelectorAll('[id^="button_{{:ID}}_"]');
+    var selected = [];
+    var correct = {{{:CORRECT_ANSWER}}};
+    for (var i=0; i < multi_choice_buttons.length; i++) {
+	var btn = multi_choice_buttons[i];
+        btn.disabled = true;
+	var btn_txt = btn.innerHTML;
+	if (multi_choice_buttons[i].value == "clicked") {
+	    selected.push(i+1)
+	    if (correct.indexOf(i+1) < 0) {
+		btn.innerHTML = "{{{:INCORRECT_flag}}}" + btn_txt
+	    } else {
+		btn.innerHTML =  "{{{:CORRECT_flag}}}" + btn_txt
+                btn.style.fontSize = "1.1rem";
+                btn.style.borderRadius = "12px";
+            }
+	} else {
+	    if (correct.indexOf(i+1) < 0) {
+		btn.innerHTML =  "{{{:INCORRECT_flag}}}" + btn_txt
+	    } else {
+		btn.innerHTML =  "{{{:CORRECT_flag}}}" + btn_txt
+                btn.style.fontSize = "1.1rem";
+                btn.style.borderRadius = "12px";
+	    }
+	}
+      }
+      var a = selected;
+      var b = {{{:CORRECT_ANSWER}}}
+          // https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
+      var  correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
+      var msgBox = document.getElementById('{{:ID}}_message');
+      $(grading_partial)
+})
 """
 
 ## ----
