@@ -76,7 +76,7 @@ html_templates["Radioq"] = mt"""
   <label>
     <input class="form-check-input" type="radio" name="radio_{{:ID}}"
               id="radio_{{:ID}}_{{:VALUE}}" value="{{:VALUE}}">
-      <span = class="label-body">
+      <span class="label-body">
         {{{:LABEL}}}
       </span>
     </input>
@@ -142,7 +142,7 @@ html_templates["Multiq"] = mt"""
   <label>
     <input class="form-check-input" type="checkbox" name="check_{{:ID}}"
               id="check_{{:ID}}_{{:VALUE}}" value="{{:VALUE}}">
-      <span = class="label-body">
+      <span class="label-body">
         {{{:LABEL}}}
       </span>
     </input>
