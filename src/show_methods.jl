@@ -1,3 +1,17 @@
+# This is called when converting radio button labels from LaTeX
+# adjust by setting ENV["QQ_LaTeX_delimiters"]
+function Markdown.tohtml(io::IO, l::Markdown.LaTeX)
+    o, c = get(ENV, "QQ_LaTeX_delimiters", ("\\(", "\\)"))
+    print(io, o) # not print(io, '$', '$')
+    print(io, l.formula)
+    print(io, c)
+    # works with KaTeX -- but not weave
+    # println(io, raw"""<span class="math inline">""") #\\\\(")
+    # println(io, l.formula)
+    # println(io, raw"</span>") #\\\\)")
+end
+
+
 # show method for html output of question types
 function _markdown_to_html(x)
     length(x) == 0 && return("")
@@ -79,7 +93,6 @@ end
 
 
 function prepare_question(x::Radioq, ID)
-
     choices = string.(x.choices)
     items = [_make_item(i, choice) for (i,choice) ∈ enumerate(choices)]
 
