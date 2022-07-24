@@ -227,7 +227,7 @@ Arguments:
 ```
 choices = ["pear", "tomato", "banana"]
 answers = [1,3]
-multiplecq(choices, answers; label="yellow foods", hint="not the red one!")
+multiq(choices, answers; label="yellow foods", hint="not the red one!")
 ```
 
 """
@@ -592,7 +592,7 @@ plotlylightq(p; label=question, correct_answer=correct_answer)
 ```
 
 !!! note
-    The use of `PlotlyLight` graphics works with `Weave` and `Pluto`, but is unusable from `Documenter`.
+    The use of `PlotlyLight` graphics works with `Weave` and `Pluto`, but is unusable from `quarto` and `Documenter`.
 
 """
 function plotlylightq(p, xs=(-Inf, Inf), ys=(-Inf,Inf);

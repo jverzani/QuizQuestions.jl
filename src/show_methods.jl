@@ -225,6 +225,7 @@ function blank(x::FillBlankStringQ, ID)
     BLANK = Mustache.render(html_templates["fill_in_blank_input"],
                             ID = ID,
                             TYPE="text",
+                            INLINE=true,
                             PLACEHOLDER=PLACEHOLDER)
 
     GRADING_SCRIPT =
@@ -242,6 +243,7 @@ function blank(x::FillBlankNumericQ, ID)
     BLANK = Mustache.render(html_templates["fill_in_blank_input"],
                             ID = ID,
                             TYPE="number",
+                            INLINE=true,
                             PLACEHOLDER=PLACEHOLDER)
     GRADING_SCRIPT =
         Mustache.render(html_templates["input_grading_script"];

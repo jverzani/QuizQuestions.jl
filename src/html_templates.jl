@@ -26,14 +26,14 @@ html_templates["question_tpl"] = mt"""
 <form class="mx-2 my-3" name='WeaveQuestion' data-id='{{:ID}}' data-controltype='{{:TYPE}}'>
   <div class='form-group {{:STATUS}}'>
     <div class='controls'>
-      <div class="form-floating input-group" id="controls_{{:ID}}">
     {{#:LABEL}}
-        <label for="controls_{{:ID}}">{{{:LABEL}}}{{#:HINT}}<span href="#" title='{{{:HINT}}}'>&nbsp;🎁</span>{{/:HINT}}
+        <label for="controls_{{:ID}}">{{{:LABEL}}}{{#:HINT}}<span href="#" title="{{{:HINT}}}">&nbsp;🎁</span>{{/:HINT}}
 </label>
     {{/:LABEL}}
+      <div class="form" id="controls_{{:ID}}">
         <div style="padding-top: 5px">
     {{{:FORM}}}
-    {{^:LABEL}}{{#:HINT}}<label for="controls_{{:ID}}"><span href="#" title='{{{:HINT}}}'>&nbsp;🎁</span></label>{{/:HINT}}{{/:LABEL}}
+    {{^:LABEL}}{{#:HINT}}<label for="controls_{{:ID}}"><span href="#" title="{{{:HINT}}}">&nbsp;🎁</span></label>{{/:HINT}}{{/:LABEL}}
         </div>
       </div>
       <div id='{{:ID}}_message' style="padding-bottom: 15px"></div>
@@ -59,28 +59,33 @@ document.getElementById("{{:ID}}").addEventListener("change", function() {
 
 ##
 html_templates["inputq_form"] = mt"""
-<div class="row">
-  <span style="width:90%">
+</br>
+<div class="input-group">
     <input id="{{:ID}}" type="{{:TYPE}}" class="form-control" placeholder="{{:PLACEHOLDER}}">
-  </span>
-  <span style="width:10%">{{#:UNITS}}{{{:UNITS}}}{{/:UNITS}}{{#:HINT}}<span href="#" title='{{{:HINT}}}'>&nbsp;🎁</span>{{/:HINT}}
-  </span>
+    {{#:UNITS}}
+    <span class="input-group-append">&nbsp;{{{:UNITS}}}&nbsp;</span>
+    {{/:UNITS}}
+    {{#:HINT}}
+    <span  class="input-group-append" href="#" title="{{{:HINT}}}">&nbsp;🎁</span>
+    {{/:HINT}}
 </div>
 """
 
+
 ## Multiple choice (one of many)
 ## XXX add {{INLINE}}
+## We do *not* use sibling elements, as suggested by Bootstrap here
 html_templates["Radioq"] = mt"""
 {{#:ITEMS}}
 <div class="form-check">
-  <label>
-    <input class="form-check-input" type="radio" name="radio_{{:ID}}"
+    <label class="form-check-label" for="radio_{{:ID}}_{{:VALUE}}">
+      <input class="form-check-input" type="radio" name="radio_{{:ID}}"
               id="radio_{{:ID}}_{{:VALUE}}" value="{{:VALUE}}">
-      <span class="label-body">
+      </input>
+      <span class="label-body px-1">
         {{{:LABEL}}}
       </span>
-    </input>
-  </label>
+    </label>
 </div>
 {{/:ITEMS}}
 """
@@ -96,9 +101,9 @@ rb.addEventListener("change", function() {
 ## ----
 
 html_templates["Buttonq"] = mt"""
-<div id="buttongroup_{{:ID}}" class="btn-group">
+<div id="buttongroup_{{:ID}}" class="btn-group-vertical">
   {{#:BUTTONS}}
-  <button class="toggle-btn" aria-pressed="false" id="button_{{:ID}}_{{:i}}" value="{{:ANSWER}}" style="width:100%;text-align:left; padding-left:10px; {{#:BLUE}}background:{{{:BLUE}}}{{/:BLUE}}" onclick="return false;">
+  <button type="button" class="btn toggle-btn px-4 my-1 btn-light active" aria-pressed="false" id="button_{{:ID}}_{{:i}}" value="{{:ANSWER}}" style="width:100%;text-align:left; padding-left:10px; {{#:BLUE}}background:{{{:BLUE}}}{{/:BLUE}}" onclick="return false;">
     {{{:TEXT}}
   </button>
   {{/:BUTTONS}}
@@ -171,18 +176,21 @@ rb.addEventListener("change", function() {
 """
 
 html_templates["MultiButtonq"] = mt"""
-<div id="buttongroup_{{:ID}}" class="btn-group">
+<div id="buttongroup_{{:ID}}" class="btn-group-vertical">
   {{#:BUTTONS}}
-  <button class="toggle-btn" aria-pressed="false" id="button_{{:ID}}_{{:i}}" name="{{:i}}" value="unclicked" style="width:100%;text-align:left; padding-left:10px; {{#:BLUE}}background:{{{:BLUE}}}{{/:BLUE}}" onclick="return false;">
+  <button type="button" class="btn toggle-btn px-4 my-1 btn-light active" aria-pressed="false"
+    id="button_{{:ID}}_{{:i}}" name="{{:i}}" value="unclicked"
+    style="width:100%;text-align:left; padding-left:10px; {{#:BLUE}}background:{{{:BLUE}}}{{/:BLUE}}" onclick="return false;">
       {{{:TEXT}}
   </button>
   {{/:BUTTONS}}
-
-  <button id="button_{{:ID}}-done"
+  <div class="row mt-1">
+  <button id="button_{{:ID}}-done" class="btn btn-primary"
      style="display:block; margin:auto;text-align:center;{{#:BLUE}}background:{{{:BLUE}}}{{/:BLUE}}" onclick="return false;">
       DONE
   </button>
-
+  </div>
+</div>
 
 """
 
@@ -295,7 +303,7 @@ html_templates["fill_in_blank_select"] = """
 """
 
 html_templates["fill_in_blank_input"] = """
-<input id="{{:ID}}" type="{{:TYPE}}" class="form-control" placeholder="{{:PLACEHOLDER}}">
+<input id="{{:ID}}" type="{{:TYPE}}" class="form-{{^:INLINE}}control{{/:INLINE}}" placeholder="{{:PLACEHOLDER}}">
 """
 
 ## -------
