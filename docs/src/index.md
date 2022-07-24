@@ -1,6 +1,6 @@
 # QuizQuestions
 
-[QuizQuestions](https://github.com/jverzani/QuizQuestions.jl) allows the inclusion of self-grading quiz questions within a `Documenter`, `Weave`, or `Pluto` HTML page.
+[QuizQuestions](https://github.com/jverzani/QuizQuestions.jl) allows the inclusion of self-grading quiz questions within a `Documenter`, `Weave`, [quarto](https://quarto.org),  or `Pluto` HTML page.
 
 ## Basics
 
@@ -26,9 +26,10 @@ radioq(choices, answer; label=question, hint="A hint")
 
 The quizzes are written in markdown with the questions in `Julia`
 blocks. The above code cells would be enclosed in triple-backtick
-blocks and would typically have their contents hidden from the user. How this is
-done varies between `Documenter`, `Weave`, and `Pluto`. The `examples`
-directory shows examples of each.
+blocks and would typically have their contents hidden from the
+user. How this is done varies between `Documenter`, `Weave`,
+[quarto](https://quarto.org), and `Pluto`. The `examples` directory
+shows examples of each.
 
 ----
 
