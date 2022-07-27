@@ -22,7 +22,9 @@ function _markdown_to_html(x)
 end
 
 function Base.show(io::IO, m::MIME"text/html", x::Question)
-    ID = hash(x) #randstring()
+    # hashing would be more "github friendly" *but*, we might have questions
+    # repeated (eg `yesonq(true)`, say). So we use a random string for the ID
+    ID = randstring()
 
     FORM, GRADING_SCRIPT = prepare_question(x, ID)
 
