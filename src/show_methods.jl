@@ -22,7 +22,7 @@ function _markdown_to_html(x)
 end
 
 function Base.show(io::IO, m::MIME"text/html", x::Question)
-    ID = randstring()
+    ID = hash(x) #randstring()
 
     FORM, GRADING_SCRIPT = prepare_question(x, ID)
 
@@ -80,24 +80,24 @@ function prepare_question(x::Stringq, ID)
 end
 
 
-function _make_item(i, choice)
+function _make_item(i, choice, ID)
     choice′ = sprint(io -> Markdown.html(io, Markdown.parse(choice)))
     # strip <p> tag
     choice′ = chomp(choice′)
     choice′ = replace(choice′, r"^<p>" => "")
     choice′ = replace(choice′, r"</p>$" => "")
 
-    return (NO=i, LABEL=choice′, VALUE=i)
+    return (NO=i, LABEL=choice′, VALUE=i, ID=ID)
 end
 
 
 
 function prepare_question(x::Radioq, ID)
     choices = string.(x.choices)
-    items = [_make_item(i, choice) for (i,choice) ∈ enumerate(choices)]
+    items = [_make_item(i, choice, ID) for (i,choice) ∈ enumerate(choices)]
 
     GRADING_SCRIPT = Mustache.render(html_templates["radio_grading_script"];
-                             ID = ID,
+                                     ID = ID,
                                      CORRECT_ANSWER = x.answer,
                                      INCORRECT = "Incorrect",
                                      CORRECT = "Correct"
@@ -116,7 +116,8 @@ function prepare_question(x::Buttonq, ID)
 
     n = length(x.choices)
     choices = _markdown_to_html.(x.choices)
-    buttons = [(i=i, TEXT=_markdown_to_html(x.choices[i]), ANSWER=x.answer[i]) for i ∈ 1:n]
+    buttons = [(i=i, TEXT=_markdown_to_html(x.choices[i]),
+                ANSWER=x.answer[i], ID=ID) for i ∈ 1:n]
 
 
     GRADING_SCRIPT = nothing
@@ -136,7 +137,7 @@ end
 function prepare_question(x::Multiq, ID)
 
     choices = string.(x.choices)
-    items = [_make_item(i, choice) for (i,choice) ∈ enumerate(choices)]
+    items = [_make_item(i, choice, ID) for (i,choice) ∈ enumerate(choices)]
 
     GRADING_SCRIPT = Mustache.render(html_templates["multi_grading_script"];
                                      ID = ID,
@@ -157,7 +158,7 @@ function prepare_question(x::MultiButtonq, ID)
 
     n = length(x.choices)
     choices = _markdown_to_html.(x.choices)
-    buttons = [(i=i, TEXT=_markdown_to_html(x.choices[i])) for i ∈ 1:n]
+    buttons = [(i=i, TEXT=_markdown_to_html(x.choices[i]), ID=ID) for i ∈ 1:n]
     BLUE = "#0033CC11"
 
     GRADING_SCRIPT = Mustache.render(html_templates["multi_button_grading_script"];
@@ -182,7 +183,7 @@ end
 function prepare_question(x::Matchq, ID)
 
     BLANK = "Choose..."
-    ANSWER_CHOICES = [(INDEX=i, LABEL=_markdown_to_html(label)) for (i, label) in enumerate(x.choices)]
+    ANSWER_CHOICES = [(INDEX=i, LABEL=_markdown_to_html(label), ID=ID) for (i, label) in enumerate(x.choices)]
     items = [(ID=ID, NO=i, BLANK=BLANK,  QUESTION=_markdown_to_html(question), ANSWER_CHOICES=ANSWER_CHOICES) for (i,question) ∈ enumerate(x.questions)]
     GRADING_SCRIPT = Mustache.render(html_templates["matchq_grading_script"];
                                      ID = ID,
@@ -204,7 +205,7 @@ end
 function blank(x::FillBlankChoiceQ, ID)
     _blank = "Choose..."
 
-    ANSWER_CHOICES = [(INDEX=i, LABEL=_markdown_to_html(choice)) for
+    ANSWER_CHOICES = [(INDEX=i, LABEL=_markdown_to_html(choice), ID=ID) for
                       (i,choice) ∈ enumerate(x.choices)]
     BLANK = Mustache.render(html_templates["fill_in_blank_select"],
                             ID = ID,

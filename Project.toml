@@ -1,7 +1,7 @@
 name = "QuizQuestions"
 uuid = "612c44de-1021-4a21-84fb-7261cf5eb2d4"
 authors = ["jverzani <jverzani@gmail.com> and contributors"]
-version = "0.3.14"
+version = "0.3.15"
 
 [deps]
 Base64 = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
