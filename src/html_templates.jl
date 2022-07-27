@@ -23,7 +23,7 @@ grading_partial = """
 ## Hint is put with label when present; otherwise, it appears at bottom of form.
 ## this is overridden with input widget in how show method is called
 html_templates["question_tpl"] = mt"""
-<form class="mx-2 my-3" name='WeaveQuestion' data-id='{{:ID}}' data-controltype='{{:TYPE}}'>
+<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='{{:ID}}' data-controltype='{{:TYPE}}'>
   <div class='form-group {{:STATUS}}'>
     <div class='controls'>
     {{#:LABEL}}
@@ -99,11 +99,10 @@ rb.addEventListener("change", function() {
 })});
 """
 ## ----
-
 html_templates["Buttonq"] = mt"""
-<div id="buttongroup_{{:ID}}" class="btn-group-vertical">
+<div id="buttongroup_{{:ID}}" class="btn-group-vertical w-100">
   {{#:BUTTONS}}
-  <button type="button" class="btn toggle-btn px-4 my-1 btn-light active" aria-pressed="false" id="button_{{:ID}}_{{:i}}" value="{{:ANSWER}}" style="width:100%;text-align:left; padding-left:10px; {{#:BLUE}}background:{{{:BLUE}}}{{/:BLUE}}" onclick="return false;">
+  <button type="button" class="btn toggle-btn px-4 my-1 btn-light btn-block active" aria-pressed="false" id="button_{{:ID}}_{{:i}}" value="{{:ANSWER}}" style="width:100%;text-align:left; padding-left:10px; {{#:BLUE}}background:{{{:BLUE}}}{{/:BLUE}}" onclick="return false;">
     {{{:TEXT}}
   </button>
   {{/:BUTTONS}}
@@ -176,15 +175,15 @@ rb.addEventListener("change", function() {
 """
 
 html_templates["MultiButtonq"] = mt"""
-<div id="buttongroup_{{:ID}}" class="btn-group-vertical">
+<div id="buttongroup_{{:ID}}" class="btn-group-vertical w-100">
   {{#:BUTTONS}}
-  <button type="button" class="btn toggle-btn px-4 my-1 btn-light active" aria-pressed="false"
+  <button type="button" class="btn toggle-btn px-4 my-1  btn-light btn-block active" aria-pressed="false"
     id="button_{{:ID}}_{{:i}}" name="{{:i}}" value="unclicked"
     style="width:100%;text-align:left; padding-left:10px; {{#:BLUE}}background:{{{:BLUE}}}{{/:BLUE}}" onclick="return false;">
       {{{:TEXT}}
   </button>
   {{/:BUTTONS}}
-  <div class="row mt-1">
+  <div class="col mt-1 align-self-center">
   <button id="button_{{:ID}}-done" class="btn btn-primary"
      style="display:block; margin:auto;text-align:center;{{#:BLUE}}background:{{{:BLUE}}}{{/:BLUE}}" onclick="return false;">
       DONE
