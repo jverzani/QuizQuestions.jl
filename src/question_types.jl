@@ -600,3 +600,60 @@ function plotlylightq(p, xs=(-Inf, Inf), ys=(-Inf,Inf);
                   correct_answer=nothing)
     PlotlyLightQ(p, xs, ys, label, hint, explanation, correct_answer)
 end
+
+## -----
+
+struct Scorecard <: Question
+    values
+    ONCOMPLETION::Bool
+    NOT_COMPLETED_MSG
+end
+
+"""
+    scorecard(values; oncompletion::Bool=false, not_completed_msg::String="")
+
+Add a scorecard
+
+* `values` is a collection of pairs, `interval => message`. See below.
+
+* The `oncompletion` flag can be set to only show the message if all the questions have been attempted. When set, and not all questions have been attempted, the `not_completed_msg` message is shown.
+
+The interval is specified as `(l,r)`, with `0 <= l < r <= 100`, or *optionally* as `(l,r,interval_type)` where `interval_type`, a string, is one of `"[]"`, `"[)"`,`"(]"`, or `"()"`. The default interval type is `"[)"` unless `r` is `100`, in which case it is `"[]"`.
+
+The message is shown when the percent correct is in the interval. The following values are substituted, when present:
+
+- `{{:total_questions}}` - the number of total questions
+- `{{:correct}}` - the number of correct answers
+- `{{:attempted}}` - the number of attempted questions
+- `{{:total_attempts}}` -- the number of attempts.
+
+The message may have Markdown formatting.
+
+
+Example
+```
+values = [(0,99)=>"Keep trying",
+          (99, 100) => "You got {{:correct}} **correct** of {{:total_questions}} total *questions*"]
+scorecard(values)
+```
+"""
+function scorecard(values;
+                   oncompletion::Bool=false,
+                   not_completed_msg::String = "")
+
+    function _tohtml(txt)
+        txt = _markdown_to_html(txt)
+        txt = replace(txt, "&#123;" => "{") # replace
+        txt = replace(txt, "&#125;" => "}")
+        txt = chomp(txt)
+        txt
+    end
+
+    NOT_COMPLETED_MSG = oncompletion ? not_completed_msg : ""
+    Scorecard(
+        [first(pair) => _tohtml(pair[end]) for pair ∈ values],
+        oncompletion,
+        chomp(_markdown_to_html(NOT_COMPLETED_MSG))
+    )
+
+end

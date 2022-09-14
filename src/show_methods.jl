@@ -321,3 +321,40 @@ function prepare_question(x::PlotlyLightQ, ID)
 
     (FORM, GRADING_SCRIPT)
 end
+
+
+## ---
+function Base.show(io::IO, m::MIME"text/html", x::Scorecard)
+    tpl = html_templates["scorecard_tpl"]
+
+    ## make javascript conditions
+    msg = IOBuffer()
+
+    for (i, pr) ∈ enumerate(x.values)
+        I, txt = pr
+        if length(I) == 2
+            l,r = I
+            lbrace, rbrace = (">=", ifelse(r==100, "<=", "<"))
+        else
+            l,r,braces = I
+            braces ∈ ("[]", "[)", "(]", "()") || throw(ArgumentError("""brace specification is incorrect. Use one of "[]", "[)", "(]", "()" """))
+            lbrace = ifelse(braces[1:1] == "[", ">=", ">")
+            rbrace = ifelse(braces[2:2] == "]", "<=", "<")
+        end
+        txt = replace(txt, "\"" => "“")
+        println(msg, "if (percent_correct $lbrace $l && percent_correct $rbrace $r) {",)
+        println(msg, """txt = `\n$txt\n`;""") # use `` for javascript multiline string
+        print(msg, "}")
+        print(msg, ifelse(i < length(x.values), " else ", "\n"))
+    end
+
+    Mustache.render(io, tpl;
+                    MESSAGE=String(take!(msg)),
+                    ONCOMPLETION=x.ONCOMPLETION,
+                    NOT_COMPLETED_MSG=x.NOT_COMPLETED_MSG,
+                    attempted = "{{:attempted}}", # hack
+                    total_attempts = "{{:total_attempts}}",
+                    correct = "{{:correct}}",
+                    total_questions = "{{:total_questions}}"
+                    )
+end

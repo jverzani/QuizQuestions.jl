@@ -13,6 +13,7 @@ export numericq,
     buttonq, radioq, booleanq, yesnoq,
     multiq,  multibuttonq, matchq,
     stringq, fillblankq,
-    hotspotq, plotlylightq
+    hotspotq, plotlylightq,
+    scorecard
 
 end
