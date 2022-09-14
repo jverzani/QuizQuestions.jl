@@ -55,7 +55,7 @@ radioq(choices, answer; hint="Which is the Greek symbol?")  # hide
 
 
 ```@example quiz
-choices = [raw"``\sin(\pi/6)``", raw"``\cos(\pi/4)``", raw"\tan(\pi/3)``"]
+choices = [raw"``\sin(\pi/6)``", raw"``\cos(\pi/4)``", raw"``\tan(\pi/3)``"]
 matches = [raw"``1/2``", raw"``\sqrt{2}/2``", raw"``\sqrt{3}/2``", raw"``\sqrt{3}``"]
 answer = (1, 2, 4)
 matchq(choices, matches, answer, label="Match the expression with the value")
@@ -71,5 +71,5 @@ l = @layout [a b; c d]
 p = plot(p1, p2, p3, p4, layout=l)
 imgfile = tempname() * ".png"
 savefig(p, imgfile)
-hotspotq(imgfile, (0,0), (1/2, 1/2), label="What best matches the graph of ``f(x) = -x^4``?")
+hotspotq(imgfile, (0,1/2), (0, 1/2), label="What best matches the graph of ``f(x) = -x^4``?")
 ```

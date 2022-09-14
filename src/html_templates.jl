@@ -1,20 +1,42 @@
 ## Could tidy up this HTML to make it look nicer
 html_templates = Dict()
 
+# code to support scorecard widget
+scorecard_partial = """
+  quizquestions_scorecard["{{:ID}}"]["attempts"] += 1;
+"""
+scorecard_correct_partial = """
+  quizquestions_scorecard["{{:ID}}"]["correct"] = true;
+  if (typeof score_summary !== 'undefined') {
+     score_summary()
+  }
+
+"""
+scorecard_incorrect_partial = """
+  quizquestions_scorecard["{{:ID}}"]["correct"] = false;
+  if (typeof score_summary !== 'undefined') {
+     score_summary()
+  }
+"""
+
 # thumbs up/down don't show in my editor
 grading_partial = """
+
+  $(scorecard_partial)
   if(correct) {
     msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span> 👍&nbsp; {{#:CORRECT}}{{{:CORRECT}}}{{/:CORRECT}}{{^:CORRECT}}Correct{{/:CORRECT}} </span></div>";
     var explanation = document.getElementById("explanation_{{:ID}}")
     if (explanation != null) {
        explanation.style.display = "none";
     }
+    $(scorecard_correct_partial)
   } else {
     msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span>👎&nbsp; {{#:INCORRECT}}{{{:INCORRECT}}}{{/:INCORRECT}}{{^:INCORRECT}}Incorrect{{/:INCORRECT}} </span></div>";
     var explanation = document.getElementById("explanation_{{:ID}}")
     if (explanation != null) {
        explanation.style.display = "block";
     }
+    $(scorecard_incorrect_partial)
   }
 """
 
@@ -23,6 +45,15 @@ grading_partial = """
 ## Hint is put with label when present; otherwise, it appears at bottom of form.
 ## this is overridden with input widget in how show method is called
 html_templates["question_tpl"] = mt"""
+<script>
+if (typeof quizquestions_scorecard === 'undefined') {
+   quizquestions_scorecard = {};
+}
+var ID = "{{:ID}}"
+if (typeof quizquestions_scorecard[ID] === 'undefined') {
+      quizquestions_scorecard[ID] = {attempts: 0, correct: false};
+}
+</script>
 <form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='{{:ID}}' data-controltype='{{:TYPE}}'>
   <div class='form-group {{:STATUS}}'>
     <div class='controls'>
@@ -99,7 +130,7 @@ rb.addEventListener("change", function() {
 })});
 """
 ## ----
-html_templates["Buttonq"] = mt"""
+html_templates["Buttonq"] = jmt"""
 <div id="buttongroup_{{:ID}}" class="btn-group-vertical w-100">
   {{#:BUTTONS}}
   <button type="button" class="btn toggle-btn px-4 my-1 btn-light btn-block active" aria-pressed="false" id="button_{{:ID}}_{{:i}}" value="{{:ANSWER}}" style="width:100%;text-align:left; padding-left:10px; {{#:BLUE}}background:{{{:BLUE}}}{{/:BLUE}}" onclick="return false;">
@@ -112,7 +143,9 @@ document.querySelectorAll('[id^="button_{{:ID}}_"]').forEach(function(btn) {
     btn.addEventListener("click", function(btn) {
 	var correct = this.value == "correct";
 	var id = this.id;
+        $(scorecard_partial)
 	if (!correct) {
+            $(scorecard_incorrect_partial)
 	    {{#:GREEN}}this.style.background = "{{{:GREEN}}}";{{/:GREEN}}
 	    var text = this.innerHTML;
 	    this.innerHTML = "<em>{{{:INCORRECT}}</em>&nbsp;" + text ;
@@ -120,7 +153,9 @@ document.querySelectorAll('[id^="button_{{:ID}}_"]').forEach(function(btn) {
             if (explanation != null) {
                explanation.style.display = "block";
             }
-	}
+	} else {
+          $(scorecard_correct_partial)
+        }
 	document.querySelectorAll('[id^="button_{{:ID}}_"]').forEach(function(btn) {
 	    btn.disabled = true;
             btn.setAttribute("aria-pressed", "true");
@@ -341,4 +376,63 @@ document.getElementById("{{{:ID}}}").on("plotly_click", function(e) {
       $(grading_partial)
 
   })
+"""
+
+
+## ------
+## hacky way to keep a scorecard
+html_templates["scorecard_tpl"] = """
+<div id="scorecard"></div>
+<script>
+function score_summary() {
+    var s = quizquestions_scorecard;
+    var score = []; // array of arrays
+    var n = 0;
+    var n_correct = 0;
+    var n_attempted = 0;
+    var n_attempts = 0;
+    Object.entries(s).forEach(([key, value]) => {
+	n++;
+	if (value["correct"]) {
+	    correct = 1;
+	    n_correct++
+	} else {
+	    correct = 0
+	};
+        attempts = value["attempts"];
+	if (attempts == 0) {
+	    attempted = 0
+	} else {
+	    attempted = 1;
+	    n_attempted++
+	};
+	n_attempts = n_attempts + attempts;
+	score.push([correct, attempts, attempted]);
+    })
+
+    var completed = (n_attempted == n);
+    {{#:IFCOMPLETED}}if (completed) { {{/:IFCOMPLETED}}
+
+	var percent_correct = n_correct * 100 / n
+
+	{{{:MESSAGE}}}
+
+	txt = txt.replace("{{:attempted}}", n_attempted);
+	txt = txt.replace("{{:total_attempts}}", n_attempts)    ;
+	txt = txt.replace("{{:correct}}", n_correct);
+	txt = txt.replace("{{:total_questions}}", n);
+    {{#:IFCOMPLETED}}
+    } else {
+	// not completed
+	txt = "{{:NOTCOMPLETED}}";
+    }
+    {{/:IFCOMPLETED}}
+
+    el = document.getElementById("scorecard")
+    if (el !== null && txt.length > 0) {
+	el.innerHTML = txt;
+    }
+}
+
+</script>
 """

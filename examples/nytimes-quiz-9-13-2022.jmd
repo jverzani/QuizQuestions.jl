@@ -1,0 +1,57 @@
+# A NY Times quiz
+
+```julia; echo=false
+using QuizQuestions
+```
+
+
+The New York Times has interactive quizzes that have a `buttonq` type widget. In this demo we use that widget and the `scorecard` widget to give a summary when
+the quiz is completed.
+
+This is part of a weekly news quiz from September 13, 2022
+
+1) Queen Elizabeth II, who died on Thursday, was Britain’s longest-serving monarch. When did she ascend to the throne?
+
+```julia, echo=false
+buttonq(string.(1932:20:2012), 2; explanation="""
+Elizabeth ascended to the throne on Feb. 6, 1952, at age 25, upon the death of her father, King George VI. She reigned for the next seven decades. Read her [obituary](https://www.nytimes.com/2022/09/08/world/europe/queen-elizabeth-dead.html) and see her life in photos.
+""")
+```
+
+2) A federal judge this week ordered the appointment of an independent arbiter to review documents that the F.B.I. seized from Donald Trump’s Mar-a-Lago club and residence. What is the arbiter known as?
+
+```julia; echo=false
+choices = ("A chief justice","A master chief","A special advocate",
+           "A special master", "A staff secretary")
+explanation = """
+Judge Aileen Cannon granted Trump’s request for a special master. She also temporarily barred the Justice Department from using the seized documents for any “investigative purpose.” The department on Thursday asked her to revisit her [decision](https://www.nytimes.com/2022/09/08/us/politics/trump-special-master-doj.html).
+"""
+buttonq(choices, 4; explanation=explanation)
+```
+
+3) Ten people were killed in knife attacks in Canada this week. Near where did the attacks occur?
+
+```julia; echo=false
+choices = (
+"Banff National Park in Alberta",
+"The James Smith Cree Nation reserve in Saskatchewan",
+"Kejimkujik National Park in Nova Scotia",
+"The Nipissing First Nation in Ontario",
+"Stanley Park in British Columbia"
+)
+explanation = """
+The victims were attacked in several locations across the James Smith Cree Nation and the village of Weldon in Saskatchewan. The attacks, allegedly committed by two brothers, stunned Canada and horrified the reserve’s tight-knit community.
+"""
+buttonq(choices, 2; explanation=explanation)
+```
+
+
+```julia; echo=false
+scorecard([(0, 100) => """
+## Congratulations
+
+You got {{:correct}} correct of {{:total_questions}} questions
+"""],
+           IFCOMPLETED=true;
+           NOTCOMPLETED="Do all the questions")
+```

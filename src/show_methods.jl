@@ -321,3 +321,33 @@ function prepare_question(x::PlotlyLightQ, ID)
 
     (FORM, GRADING_SCRIPT)
 end
+
+
+## ---
+function Base.show(io::IO, m::MIME"text/html", x::Scorecard)
+    tpl = html_templates["scorecard_tpl"]
+
+    ## make javascript conditions
+    msg = IOBuffer()
+
+    for (i, pr) ∈ enumerate(x.values)
+        I, txt = pr
+        l,r = I
+        txt = replace(txt, "\"" => "“")
+        println(msg, "if (percent_correct >= $l && percent_correct ",
+                ifelse(r == 100, "<=", "<"), " $r) {")
+        println(msg, """txt = `\n$txt\n`;""")
+        print(msg, "}")
+        print(msg, ifelse(i < length(x.values), " else ", "\n"))
+    end
+
+    Mustache.render(io, tpl;
+                    MESSAGE=String(take!(msg)),
+                    IFCOMPLETED=x.IFCOMPLETED,
+                    NOTCOMPLETED=x.NOTCOMPLETED,
+                    attempted = "{{:attempted}}", # hack
+                    total_attempts = "{{:total_attempts}}",
+                    correct = "{{:correct}}",
+                    total_questions = "{{:total_questions}}"
+                    )
+end

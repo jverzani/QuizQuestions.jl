@@ -600,3 +600,58 @@ function plotlylightq(p, xs=(-Inf, Inf), ys=(-Inf,Inf);
                   correct_answer=nothing)
     PlotlyLightQ(p, xs, ys, label, hint, explanation, correct_answer)
 end
+
+## -----
+
+struct Scorecard <: Question
+    values
+    IFCOMPLETED::Bool
+    NOTCOMPLETED
+end
+
+"""
+    scorecard(values; IFCOMPLETED::Bool=false, NOTCOMPLETED::String="")
+
+Add a scorecard
+
+* `values` is a collection of pairs, `interval => message`.
+
+An interval is specified as `(l,r)` with `0 <= l < r <= 100`. These are open on right, unless `r` is `100`.
+
+The message is shown when the percent correct is in the interval. The following values are substituted, when present:
+
+- `{{:total_questions}}` - the number of total questions
+- `{{:correct}}` - the number of correct answers
+- `{{:attempted}}` - the number of attempted questions
+- `{{:total_attempts}}` -- the number of attempts.
+
+The message may have Markdown formatting.
+
+* The `IFCOMPLETED` flag can be set to only show the message if all the questions have been attempted. When set, and not all questions have been attempted, the `NOTCOMPLETED` message is shown.
+
+Example
+```
+values = [(0,99)=>"Keep trying",
+          (99, 100) => "You got {{:correct}} **correct** of {{:total_questions}} total *questions*"]
+scorecard(values)
+```
+"""
+function scorecard(values;
+                   IFCOMPLETED::Bool=false,
+                   NOTCOMPLETED::String = "")
+
+    function _tohtml(txt)
+        txt = _markdown_to_html(txt)
+        txt = replace(txt, "&#123;" => "{") # replace
+        txt = replace(txt, "&#125;" => "}")
+        txt = chomp(txt)
+        txt
+    end
+
+    Scorecard(
+        [first(pair) => _tohtml(pair[end]) for pair ∈ values],
+        IFCOMPLETED,
+        chomp(_markdown_to_html(NOTCOMPLETED))
+    )
+
+end
