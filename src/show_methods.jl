@@ -332,19 +332,26 @@ function Base.show(io::IO, m::MIME"text/html", x::Scorecard)
 
     for (i, pr) ∈ enumerate(x.values)
         I, txt = pr
-        l,r = I
+        if length(I) == 2
+            l,r = I
+            lbrace, rbrace = (">=", ifelse(r==100, "<=", "<"))
+        else
+            l,r,braces = I
+            braces ∈ ("[]", "[)", "(]", "()") || throw(ArgumentError("""brace specification is incorrect. Use one of "[]", "[)", "(]", "()" """))
+            lbrace = ifelse(braces[1:1] == "[", ">=", ">")
+            rbrace = ifelse(braces[2:2] == "]", "<=", "<")
+        end
         txt = replace(txt, "\"" => "“")
-        println(msg, "if (percent_correct >= $l && percent_correct ",
-                ifelse(r == 100, "<=", "<"), " $r) {")
-        println(msg, """txt = `\n$txt\n`;""")
+        println(msg, "if (percent_correct $lbrace $l && percent_correct $rbrace $r) {",)
+        println(msg, """txt = `\n$txt\n`;""") # use `` for javascript multiline string
         print(msg, "}")
         print(msg, ifelse(i < length(x.values), " else ", "\n"))
     end
 
     Mustache.render(io, tpl;
                     MESSAGE=String(take!(msg)),
-                    IFCOMPLETED=x.IFCOMPLETED,
-                    NOTCOMPLETED=x.NOTCOMPLETED,
+                    ONCOMPLETION=x.ONCOMPLETION,
+                    NOT_COMPLETED_MSG=x.NOT_COMPLETED_MSG,
                     attempted = "{{:attempted}}", # hack
                     total_attempts = "{{:total_attempts}}",
                     correct = "{{:correct}}",

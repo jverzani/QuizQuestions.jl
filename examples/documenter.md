@@ -56,7 +56,7 @@ radioq(choices, answer; hint="Which is the Greek symbol?")  # hide
 
 ```@example quiz
 choices = [raw"``\sin(\pi/6)``", raw"``\cos(\pi/4)``", raw"``\tan(\pi/3)``"]
-matches = [raw"``1/2``", raw"``\sqrt{2}/2``", raw"``\sqrt{3}/2``", raw"``\sqrt{3}``"]
+matches = ["`1/2`", raw"`sqrt(2)/2`", raw"`sqrt(3)/2`", raw"`sqrt(3)`"]
 answer = (1, 2, 4)
 matchq(choices, matches, answer, label="Match the expression with the value")
 ```

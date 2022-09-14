@@ -31,4 +31,14 @@ using Test
     r = plotlylightq("empty"; label="XXX")
     @test r.label == "XXX"
 
+    r = scorecard([(0,60) => "not passing",
+                   (60,70) => "D range",
+                   (70, 80) => "C range",
+                   (80, 90) => "B range",
+                   (90, 100) => """
+# Congratulations
+You will get an **A**. You got {{:correct}}/{{:total_questions}}.
+"""])
+    @test r.ONCOMPLETION == false # default setting
+
 end

@@ -52,6 +52,6 @@ scorecard([(0, 100) => """
 
 You got {{:correct}} correct of {{:total_questions}} questions
 """],
-           IFCOMPLETED=true;
-           NOTCOMPLETED="Do all the questions")
+          oncompletion=true;
+          not_completed_msg="Do all the questions")
 ```

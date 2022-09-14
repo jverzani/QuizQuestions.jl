@@ -605,18 +605,20 @@ end
 
 struct Scorecard <: Question
     values
-    IFCOMPLETED::Bool
-    NOTCOMPLETED
+    ONCOMPLETION::Bool
+    NOT_COMPLETED_MSG
 end
 
 """
-    scorecard(values; IFCOMPLETED::Bool=false, NOTCOMPLETED::String="")
+    scorecard(values; oncompletion::Bool=false, not_completed_msg::String="")
 
 Add a scorecard
 
-* `values` is a collection of pairs, `interval => message`.
+* `values` is a collection of pairs, `interval => message`. See below.
 
-An interval is specified as `(l,r)` with `0 <= l < r <= 100`. These are open on right, unless `r` is `100`.
+* The `oncompletion` flag can be set to only show the message if all the questions have been attempted. When set, and not all questions have been attempted, the `not_completed_msg` message is shown.
+
+The interval is specified as `(l,r)`, with `0 <= l < r <= 100`, or *optionally* as `(l,r,interval_type)` where `interval_type`, a string, is one of `"[]"`, `"[)"`,`"(]"`, or `"()"`. The default interval type is `"[)"` unless `r` is `100`, in which case it is `"[]"`.
 
 The message is shown when the percent correct is in the interval. The following values are substituted, when present:
 
@@ -627,7 +629,6 @@ The message is shown when the percent correct is in the interval. The following 
 
 The message may have Markdown formatting.
 
-* The `IFCOMPLETED` flag can be set to only show the message if all the questions have been attempted. When set, and not all questions have been attempted, the `NOTCOMPLETED` message is shown.
 
 Example
 ```
@@ -637,8 +638,8 @@ scorecard(values)
 ```
 """
 function scorecard(values;
-                   IFCOMPLETED::Bool=false,
-                   NOTCOMPLETED::String = "")
+                   oncompletion::Bool=false,
+                   not_completed_msg::String = "")
 
     function _tohtml(txt)
         txt = _markdown_to_html(txt)
@@ -648,10 +649,11 @@ function scorecard(values;
         txt
     end
 
+    NOT_COMPLETED_MSG = oncompletion ? not_completed_msg : ""
     Scorecard(
         [first(pair) => _tohtml(pair[end]) for pair ∈ values],
-        IFCOMPLETED,
-        chomp(_markdown_to_html(NOTCOMPLETED))
+        oncompletion,
+        chomp(_markdown_to_html(NOT_COMPLETED_MSG))
     )
 
 end

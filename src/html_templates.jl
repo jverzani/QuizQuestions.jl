@@ -411,9 +411,9 @@ function score_summary() {
     })
 
     var completed = (n_attempted == n);
-    {{#:IFCOMPLETED}}if (completed) { {{/:IFCOMPLETED}}
+    {{#:ONCOMPLETION}}if (completed) { {{/:ONCOMPLETION}}
 
-	var percent_correct = n_correct * 100 / n
+	var percent_correct = (n_correct / n) * 100
 
 	{{{:MESSAGE}}}
 
@@ -421,12 +421,12 @@ function score_summary() {
 	txt = txt.replace("{{:total_attempts}}", n_attempts)    ;
 	txt = txt.replace("{{:correct}}", n_correct);
 	txt = txt.replace("{{:total_questions}}", n);
-    {{#:IFCOMPLETED}}
+    {{#:ONCOMPLETION}}
     } else {
 	// not completed
-	txt = "{{:NOTCOMPLETED}}";
+	txt = "{{:NOT_COMPLETED_MSG}}";
     }
-    {{/:IFCOMPLETED}}
+    {{/:ONCOMPLETION}}
 
     el = document.getElementById("scorecard")
     if (el !== null && txt.length > 0) {
