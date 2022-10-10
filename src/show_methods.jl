@@ -21,6 +21,7 @@ function _markdown_to_html(x)
     return x
 end
 
+## Show text/html
 function Base.show(io::IO, m::MIME"text/html", x::Question)
     # hashing would be more "github friendly" *but*, we might have questions
     # repeated (eg `yesonq(true)`, say). So we use a random string for the ID
