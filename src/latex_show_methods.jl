@@ -45,7 +45,7 @@ end
 
 const LATEXBOX = raw"${\quad\Box}$ "
 function _show_latex(io::IO,  m::MIME"text/latex", x::Union{Radioq, Buttonq})
-    for l ∈ x.labels
+    for l ∈ x.choices
         print(io, LATEXBOX)
         show(io, m, Markdown.parse(l))
     end
