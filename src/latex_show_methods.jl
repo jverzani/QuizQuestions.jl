@@ -11,7 +11,7 @@ end
 function _hint(x)
    !(:hint ∈ fieldnames(typeof(x))) && return nothing
     hint = x.hint
-    length(hint) > 0 ? label : nothing
+    length(hint) > 0 ? hint : nothing
 end
 
 
@@ -32,7 +32,7 @@ function Base.show(io::IO, m::MIME"text/latex", x::Question)
     _show_latex(io, m, x)
     hint = _hint(x)
     if hint !== nothing
-        show(io, m, Markdown.parse("*Hint: "))
+        show(io, m, Markdown.parse("*Hint: *"))
         show(io, m, Markdown.parse(hint))
     end
 end
