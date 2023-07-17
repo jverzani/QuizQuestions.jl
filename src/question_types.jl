@@ -632,9 +632,9 @@ The message may have Markdown formatting.
 
 Example
 ```
-values = [(0,99)=>"Keep trying",
+vals = [(0,99)=>"Keep trying",
           (99, 100) => "You got {{:correct}} **correct** of {{:total_questions}} total *questions*"]
-scorecard(values)
+scorecard(vals)
 ```
 """
 function scorecard(values;
