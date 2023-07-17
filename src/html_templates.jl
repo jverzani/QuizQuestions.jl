@@ -2,27 +2,17 @@
 html_templates = Dict()
 
 # code to support scorecard widget
-scorecard_partial = """
-  window.quizquestions_scorecard["{{:ID}}"]["attempts"] += 1;
-"""
 scorecard_correct_partial = """
-  window.quizquestions_scorecard["{{:ID}}"]["correct"] = true;
-  if (typeof score_summary !== 'undefined') {
-     score_summary()
-  }
-
+  typeof correct_answer   != "undefined" && this.dispatchEvent(correct_answer);
 """
+
 scorecard_incorrect_partial = """
-  window.quizquestions_scorecard["{{:ID}}"]["correct"] = false;
-  if (typeof score_summary !== 'undefined') {
-     score_summary()
-  }
+  typeof incorrect_answer != "undefined" && this.dispatchEvent(incorrect_answer);
 """
 
 # thumbs up/down don't show in my editor
 grading_partial = """
 
-  $(scorecard_partial)
   if(correct) {
     msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span> 👍&nbsp; {{#:CORRECT}}{{{:CORRECT}}}{{/:CORRECT}}{{^:CORRECT}}Correct{{/:CORRECT}} </span></div>";
     var explanation = document.getElementById("explanation_{{:ID}}")
@@ -46,13 +36,7 @@ grading_partial = """
 ## this is overridden with input widget in how show method is called
 html_templates["question_tpl"] = mt"""
 <script>
-if (typeof window.quizquestions_scorecard === 'undefined') {
-   var quizquestions_scorecard = {};
-}
 var ID = "{{:ID}}"
-if (typeof window.quizquestions_scorecard[ID] === 'undefined') {
-      window.quizquestions_scorecard[ID] = {attempts: 0, correct: false};
-}
 </script>
 <form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='{{:ID}}' data-controltype='{{:TYPE}}'>
   <div class='form-group {{:STATUS}}'>
@@ -61,7 +45,7 @@ if (typeof window.quizquestions_scorecard[ID] === 'undefined') {
         <label for="controls_{{:ID}}">{{{:LABEL}}}{{#:HINT}}<span href="#" title="{{{:HINT}}}">&nbsp;🎁</span>{{/:HINT}}
 </label>
     {{/:LABEL}}
-      <div class="form" id="controls_{{:ID}}">
+      <div class="form" id="controls_{{:ID}}" correct='-1' attempts='0'>
         <div style="padding-top: 5px">
     {{{:FORM}}}
     {{^:LABEL}}{{#:HINT}}<label for="controls_{{:ID}}"><span href="#" title="{{{:HINT}}}">&nbsp;🎁</span></label>{{/:HINT}}{{/:LABEL}}
@@ -74,6 +58,15 @@ if (typeof window.quizquestions_scorecard[ID] === 'undefined') {
     </div>
   </div>
 </form>
+<script>
+document.getElementById('controls_{{:ID}}').addEventListener("quizquestion_answer", (e) =>
+	  {
+	      o = document.getElementById('controls_{{:ID}}')
+	      o.setAttribute("correct",  e.detail.correct);
+	      atts = Number(o.getAttribute("attempts"))
+	      o.setAttribute("attempts", atts + 1)
+	  }, true)
+</script>
 
 <script text='text/javascript'>
 {{{:GRADING_SCRIPT}}
@@ -143,7 +136,7 @@ document.querySelectorAll('[id^="button_{{:ID}}_"]').forEach(function(btn) {
     btn.addEventListener("click", function(btn) {
 	var correct = this.value == "correct";
 	var id = this.id;
-        $(scorecard_partial)
+
 	if (!correct) {
             $(scorecard_incorrect_partial)
 	    {{#:GREEN}}this.style.background = "{{{:GREEN}}}";{{/:GREEN}}
@@ -380,38 +373,45 @@ document.getElementById("{{{:ID}}}").on("plotly_click", function(e) {
 
 
 ## ------
-## hacky way to keep a scorecard
+## keep scorecard by reading values in each form control box.
 html_templates["scorecard_tpl"] = """
 <div id="scorecard"></div>
 <script>
-function score_summary() {
-    var s = window.quizquestions_scorecard;
-    var score = []; // array of arrays
-    var n = 0;
-    var n_correct = 0;
-    var n_attempted = 0;
-    var n_attempts = 0;
-    Object.entries(s).forEach(([key, value]) => {
-	n++;
-	if (value["correct"]) {
-	    correct = 1;
-	    n_correct++
-	} else {
-	    correct = 0
-	};
-        attempts = value["attempts"];
-	if (attempts == 0) {
-	    attempted = 0
-	} else {
-	    attempted = 1;
-	    n_attempted++
-	};
-	n_attempts = n_attempts + attempts;
-	score.push([correct, attempts, attempted]);
-    })
+      const correct_answer   = new CustomEvent("quizquestion_answer", {bubbles:true, detail:{correct: 1}});
+      const incorrect_answer = new CustomEvent("quizquestion_answer", {bubbles:true, detail:{correct: 0}});
+      window.addEventListener("quizquestion_answer",
+        (e) => {
+            // compute values for each here!
+            var score = []; // array of arrays
+            var n = 0;
+            var n_correct = 0;
+            var n_attempted = 0;
+            var n_attempts = 0;
 
-    var completed = (n_attempted == n);
-    {{#:ONCOMPLETION}}if (completed) { {{/:ONCOMPLETION}}
+            document.querySelectorAll('[id^="controls_"]').forEach(function(o) {
+                correct = Number(o.getAttribute("correct"));
+                attempts = Number(o.getAttribute("attempts"));
+                n++
+                if (correct == 1) {
+                  n_correct++
+                  n_attempted++
+                  attempted = 1
+                } else if (correct == 0) {
+                  n_attempted++
+                  attempted = 1
+                } else {
+                  // no attempt
+                  attempted = 0
+                }
+                n_attempts += attempts
+               	score.push([correct, attempts, attempted]);
+            });
+
+        // debug
+        console.log("attempted", n_attempted, "total attempts", n_attempts, "correct", n_correct, "questions", n);
+
+        var completed = (n_attempted == n);
+        {{#:ONCOMPLETION}}if (completed) { {{/:ONCOMPLETION}}
 
 	var percent_correct = (n_correct / n) * 100
 
@@ -421,18 +421,19 @@ function score_summary() {
 	txt = txt.replace("{{:total_attempts}}", n_attempts)    ;
 	txt = txt.replace("{{:correct}}", n_correct);
 	txt = txt.replace("{{:total_questions}}", n);
-    {{#:ONCOMPLETION}}
-    } else {
-	// not completed
-	txt = "{{:NOT_COMPLETED_MSG}}";
-    }
-    {{/:ONCOMPLETION}}
+        {{#:ONCOMPLETION}}
+        } else {
+	    // not completed
+	    txt = "{{:NOT_COMPLETED_MSG}}";
+        }
+        {{/:ONCOMPLETION}}
 
-    el = document.getElementById("scorecard")
-    if (el !== null && txt.length > 0) {
-	el.innerHTML = txt;
-    }
-}
+        el = document.getElementById("scorecard")
+        if (el !== null && txt.length > 0) {
+	    el.innerHTML = txt;
+        }
+
+    }, false);
 
 </script>
 """
