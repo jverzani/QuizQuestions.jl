@@ -607,20 +607,23 @@ struct Scorecard <: Question
     values
     ONCOMPLETION::Bool
     NOT_COMPLETED_MSG
+    WHICH_PERCENT::Symbol
 end
 
 """
-    scorecard(values; oncompletion::Bool=false, not_completed_msg::String="")
+    scorecard(values; oncompletion::Bool=false, not_completed_msg::String="", which_attempt=:completed)
 
 Add a scorecard
 
-* `values` is a collection of pairs, `interval => message`. See below. The default summarizes the number of correct of the number of questions attempted and the total number of questions.
+* `values` is a collection of pairs, `interval => message`. See below. The default summarizes the number of correct/attempted of the number of questions attempted and the total number of questions.
 
 * The `oncompletion` flag can be set to only show the message if all the questions have been attempted. When set, and not all questions have been attempted, the `not_completed_msg` message is shown.
 
+* `which_percent` is either `:correct` or `:attempted`
+
 The interval is specified as `(l,r)`, with `0 <= l < r <= 100`, or *optionally* as `(l,r,interval_type)` where `interval_type`, a string, is one of `"[]"`, `"[)"`,`"(]"`, or `"()"`. The default interval type is `"[)"` unless `r` is `100`, in which case it is `"[]"`.
 
-The message is shown when the percent correct is in the interval. The following values are substituted, when present:
+The message is shown when the percent correct/attempted is in the interval. The following values are substituted, when present:
 
 - `{{:total_questions}}` - the number of total questions
 - `{{:correct}}` - the number of correct answers
@@ -642,7 +645,8 @@ function scorecard(values=[(0,99) =>
                            (99,100) => "You have {{:correct}} *correct* of the {{:total_questions}} total questions to try.",
                            ];
                    oncompletion::Bool=false,
-                   not_completed_msg::String = "")
+                   not_completed_msg::String = "",
+                   which_percent=:completed)
 
     function _tohtml(txt)
         txt = _markdown_to_html(txt)
@@ -656,7 +660,8 @@ function scorecard(values=[(0,99) =>
     Scorecard(
         [first(pair) => _tohtml(pair[end]) for pair ∈ values],
         oncompletion,
-        chomp(_markdown_to_html(NOT_COMPLETED_MSG))
+        chomp(_markdown_to_html(NOT_COMPLETED_MSG)),
+        Symbol(which_percent)
     )
 
 end
