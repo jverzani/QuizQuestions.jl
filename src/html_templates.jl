@@ -3,10 +3,12 @@ html_templates = Dict()
 
 # code to support scorecard widget
 scorecard_correct_partial = """
+  console.log("dispatch correct")
   typeof correct_answer   != "undefined" && this.dispatchEvent(correct_answer);
 """
 
 scorecard_incorrect_partial = """
+  console.log("dispatch incorrect")
   typeof incorrect_answer != "undefined" && this.dispatchEvent(incorrect_answer);
 """
 
@@ -59,8 +61,8 @@ var ID = "{{:ID}}"
   </div>
 </form>
 <script>
-document.getElementById('controls_{{:ID}}').addEventListener("quizquestion_answer", (e) =>
-	  {
+document.getElementById('controls_{{:ID}}').addEventListener("quizquestion_answer", (e) => {
+                  console.log("event qq_answer")
 	      var o = document.getElementById('controls_{{:ID}}')
 	      var atts = Number(o.getAttribute("attempts"))
 	      o.setAttribute("correct",  e.detail.correct);
