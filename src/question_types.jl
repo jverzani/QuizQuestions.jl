@@ -636,9 +636,6 @@ vals = [(0,99)=>"Keep trying",
           (99, 100) => "You got {{:correct}} **correct** of {{:total_questions}} total *questions*"]
 scorecard(vals)
 ```
-
-!!! note "Does not work with Pluto"
-    This widget does not work within a Pluto page.
 """
 function scorecard(values=[(0,99) =>
                            "You have {{:correct}} *correct* in {{:attempted}} *attempted* questions. There are {{:total_questions}} total questions to try.",
