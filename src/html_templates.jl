@@ -391,8 +391,9 @@ html_templates["scorecard_tpl"] = """
             var n_attempts = 0;
 
             document.querySelectorAll('[id^="controls_"]').forEach(function(o) {
-                correct = Number(o.getAttribute("correct"));
-                attempts = Number(o.getAttribute("attempts"));
+                var correct = Number(o.getAttribute("correct"));
+                var attempts = Number(o.getAttribute("attempts"));
+                var attempted = 0
                 n++
                 if (correct == 1) {
                   n_correct++
@@ -403,7 +404,6 @@ html_templates["scorecard_tpl"] = """
                   attempted = 1
                 } else {
                   // no attempt
-                  attempted = 0
                 }
                 n_attempts += attempts
                	score.push([correct, attempts, attempted]);
