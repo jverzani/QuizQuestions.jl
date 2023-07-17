@@ -3,11 +3,15 @@ html_templates = Dict()
 
 # code to support scorecard widget
 scorecard_correct_partial = """
-  typeof correct_answer   != "undefined" && this.dispatchEvent(correct_answer);
+  const correct_answer   = new CustomEvent("quizquestion_answer", {bubbles:true, detail:{correct: 1}});
+  this.dispatchEvent(correct_answer);
+  //typeof correct_answer   != "undefined" && this.dispatchEvent(correct_answer);
 """
 
 scorecard_incorrect_partial = """
-  typeof incorrect_answer != "undefined" && this.dispatchEvent(incorrect_answer);
+  const incorrect_answer = new CustomEvent("quizquestion_answer", {bubbles:true, detail:{correct: 0}});
+  this.dispatchEvent(incorrect_answer);
+  //typeof incorrect_answer != "undefined" && this.dispatchEvent(incorrect_answer);
 """
 
 # thumbs up/down don't show in my editor
@@ -376,8 +380,8 @@ document.getElementById("{{{:ID}}}").on("plotly_click", function(e) {
 html_templates["scorecard_tpl"] = """
 <div id="scorecard"></div>
 <script>
-      const correct_answer   = new CustomEvent("quizquestion_answer", {bubbles:true, detail:{correct: 1}});
-      const incorrect_answer = new CustomEvent("quizquestion_answer", {bubbles:true, detail:{correct: 0}});
+//      const correct_answer   = new CustomEvent("quizquestion_answer", {bubbles:true, detail:{correct: 1}});
+//      const incorrect_answer = new CustomEvent("quizquestion_answer", {bubbles:true, detail:{correct: 0}});
       window.addEventListener("quizquestion_answer",
         (e) => {
             // compute values for each here!
