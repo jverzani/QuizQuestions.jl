@@ -344,7 +344,7 @@ function Base.show(io::IO, m::MIME"text/html", x::Scorecard)
         end
         txt = replace(txt, "\"" => "“")
         println(msg, "if (percent_correct $lbrace $l && percent_correct $rbrace $r) {",)
-        println(msg, """txt = `\n$txt\n`;""") # use `` for javascript multiline string
+        println(msg, """var txt = `\n$txt\n`;""") # use `` for javascript multiline string
         print(msg, "}")
         print(msg, ifelse(i < length(x.values), " else ", "\n"))
     end
