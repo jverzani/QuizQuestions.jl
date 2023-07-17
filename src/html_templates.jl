@@ -378,7 +378,7 @@ html_templates["scorecard_tpl"] = """
 <div id="scorecard"></div>
 <script>
       const correct_answer   = new CustomEvent("quizquestion_answer", {bubbles:true, detail:{correct: 1}});
-      let incorrect_answer = new CustomEvent("quizquestion_answer", {bubbles:true, detail:{correct: 0}});
+      const incorrect_answer = new CustomEvent("quizquestion_answer", {bubbles:true, detail:{correct: 0}});
       window.addEventListener("quizquestion_answer",
         (e) => {
             // compute values for each here!
