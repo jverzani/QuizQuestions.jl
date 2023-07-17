@@ -3,17 +3,17 @@ html_templates = Dict()
 
 # code to support scorecard widget
 scorecard_partial = """
-  quizquestions_scorecard["{{:ID}}"]["attempts"] += 1;
+  window.quizquestions_scorecard["{{:ID}}"]["attempts"] += 1;
 """
 scorecard_correct_partial = """
-  quizquestions_scorecard["{{:ID}}"]["correct"] = true;
+  window.quizquestions_scorecard["{{:ID}}"]["correct"] = true;
   if (typeof score_summary !== 'undefined') {
      score_summary()
   }
 
 """
 scorecard_incorrect_partial = """
-  quizquestions_scorecard["{{:ID}}"]["correct"] = false;
+  window.quizquestions_scorecard["{{:ID}}"]["correct"] = false;
   if (typeof score_summary !== 'undefined') {
      score_summary()
   }
@@ -46,12 +46,12 @@ grading_partial = """
 ## this is overridden with input widget in how show method is called
 html_templates["question_tpl"] = mt"""
 <script>
-if (typeof quizquestions_scorecard === 'undefined') {
+if (typeof window.quizquestions_scorecard === 'undefined') {
    var quizquestions_scorecard = {};
 }
 var ID = "{{:ID}}"
-if (typeof quizquestions_scorecard[ID] === 'undefined') {
-      quizquestions_scorecard[ID] = {attempts: 0, correct: false};
+if (typeof window.quizquestions_scorecard[ID] === 'undefined') {
+      window.quizquestions_scorecard[ID] = {attempts: 0, correct: false};
 }
 </script>
 <form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='{{:ID}}' data-controltype='{{:TYPE}}'>
