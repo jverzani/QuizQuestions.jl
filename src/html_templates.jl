@@ -61,9 +61,9 @@ var ID = "{{:ID}}"
 <script>
 document.getElementById('controls_{{:ID}}').addEventListener("quizquestion_answer", (e) =>
 	  {
-	      o = document.getElementById('controls_{{:ID}}')
+	      var o = document.getElementById('controls_{{:ID}}')
+	      var atts = Number(o.getAttribute("attempts"))
 	      o.setAttribute("correct",  e.detail.correct);
-	      atts = Number(o.getAttribute("attempts"))
 	      o.setAttribute("attempts", atts + 1)
 	  }, true)
 </script>
@@ -196,7 +196,7 @@ rb.addEventListener("change", function() {
     var a = selected;
     var b = {{{:CORRECT_ANSWER}}};
     // https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
-    var  correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
+    var correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
     var msgBox = document.getElementById('{{:ID}}_message');
     $(grading_partial)
 })});
@@ -428,7 +428,7 @@ html_templates["scorecard_tpl"] = """
         }
         {{/:ONCOMPLETION}}
 
-        el = document.getElementById("scorecard")
+        var el = document.getElementById("scorecard")
         if (el !== null && txt.length > 0) {
 	    el.innerHTML = txt;
         }
