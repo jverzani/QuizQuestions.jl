@@ -47,7 +47,7 @@ grading_partial = """
 html_templates["question_tpl"] = mt"""
 <script>
 if (typeof quizquestions_scorecard === 'undefined') {
-   quizquestions_scorecard = {};
+   var quizquestions_scorecard = {};
 }
 var ID = "{{:ID}}"
 if (typeof quizquestions_scorecard[ID] === 'undefined') {
@@ -385,7 +385,7 @@ html_templates["scorecard_tpl"] = """
 <div id="scorecard"></div>
 <script>
 function score_summary() {
-    var s = quizquestions_scorecard;
+    var s = window.quizquestions_scorecard;
     var score = []; // array of arrays
     var n = 0;
     var n_correct = 0;
