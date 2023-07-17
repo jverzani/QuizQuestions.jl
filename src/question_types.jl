@@ -614,7 +614,7 @@ end
 
 Add a scorecard
 
-* `values` is a collection of pairs, `interval => message`. See below.
+* `values` is a collection of pairs, `interval => message`. See below. The default summarizes the number of correct of the number of questions attempted and the total number of questions.
 
 * The `oncompletion` flag can be set to only show the message if all the questions have been attempted. When set, and not all questions have been attempted, the `not_completed_msg` message is shown.
 
@@ -632,12 +632,15 @@ The message may have Markdown formatting.
 
 Example
 ```
-values = [(0,99)=>"Keep trying",
+vals = [(0,99)=>"Keep trying",
           (99, 100) => "You got {{:correct}} **correct** of {{:total_questions}} total *questions*"]
-scorecard(values)
+scorecard(vals)
 ```
 """
-function scorecard(values;
+function scorecard(values=[(0,99) =>
+                           "You have {{:correct}} *correct* in {{:attempted}} *attempted* questions. There are {{:total_questions}} total questions to try.",
+                           (99,100) => "You have {{:correct}} *correct* of the {{:total_questions}} total questions to try.",
+                           ];
                    oncompletion::Bool=false,
                    not_completed_msg::String = "")
 
