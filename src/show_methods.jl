@@ -327,7 +327,7 @@ end
 ## ---
 function Base.show(io::IO, m::MIME"text/html", x::Scorecard)
     tpl = html_templates["scorecard_tpl"]
-
+    which_percent = x.WHICH_PERCENT == :attempted ? "percent_attempted" : "percent_correct"
     ## make javascript conditions
     msg = IOBuffer()
 
@@ -343,7 +343,7 @@ function Base.show(io::IO, m::MIME"text/html", x::Scorecard)
             rbrace = ifelse(braces[2:2] == "]", "<=", "<")
         end
         txt = replace(txt, "\"" => "“")
-        println(msg, "if (percent_correct $lbrace $l && percent_correct $rbrace $r) {",)
+        println(msg, "if ($which_percent $lbrace $l && $which_percent $rbrace $r) {",)
         println(msg, """var txt = `\n$txt\n`;""") # use `` for javascript multiline string
         print(msg, "}")
         print(msg, ifelse(i < length(x.values), " else ", "\n"))

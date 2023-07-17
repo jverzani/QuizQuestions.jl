@@ -416,7 +416,8 @@ html_templates["scorecard_tpl"] = """
         var completed = (n_attempted == n);
         {{#:ONCOMPLETION}}if (completed) { {{/:ONCOMPLETION}}
 
-	var percent_correct = (n_correct / n) * 100
+	var percent_correct = (n_correct / n) * 100;
+        var percent_attempted = (n_attempted / n) * 100;
 
 	{{{:MESSAGE}}}
 
