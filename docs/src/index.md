@@ -10,12 +10,13 @@ The basic idea is:
 
 ```@example quiz_question
 using QuizQuestions
+using LaTeXStrings # helper for using math notation
 ```
 
 * create a question with `Julia` code:
 
 ```@example quiz_question
-choices = ["one", "``2``", raw"``\sqrt{9}``"]
+choices = ["one", L"2", L"\sqrt{9}"]
 question = "Which is largest?"
 answer = 3
 radioq(choices, answer; label=question, hint="A hint")
@@ -54,7 +55,7 @@ For example, the question can be asked in the body of the document
 answer = sqrt(2)
 tol = 1e-3
 numericq(answer, tol,
-    label=raw"What is ``\sqrt{2}``?",
+    label=L"What is $\sqrt{2}$?",
 	hint="you need to be within 1/1000")
 ```
 
@@ -70,8 +71,8 @@ The `buttonq` question is alternative to radio buttons where the correct answer 
 
 
 ```@example quiz_question
-buttonq(["``1 + 1``", "``2+2``", "``-1 + -1``"], 1;
-    label = "Which adds to ``2``?",
+buttonq([L"1 + 1", L"2+2", L"-1 + -1"], 1;
+    label = L"Which adds to $2$?",
 	explanation="Add 'em up")
 ```
 
@@ -87,8 +88,8 @@ choices =[
 	"The quick brown fox jumped over the lazy dog",
 	"One and one and one makes three"
 ]
-ans = (1, 4)
-multiq(choices, ans,
+answer = (1, 4)
+multiq(choices, answer,
     label="Select the sentences with numbers (one or more)")
 ```
 
@@ -102,8 +103,8 @@ choices =[
 	"The quick brown fox jumped over the lazy dog",
 	"One and one and one makes three"
 ]
-ans = (1, 4)
-multibuttonq(choices, ans,
+answer = (1, 4)
+multibuttonq(choices, answer,
     label="Select the sentences with numbers (one or more)")
 ```
 
@@ -116,7 +117,7 @@ Questions with numeric answers use `numericq`. The question is graded when the i
 ```@example quiz_question
 answer = 1 + 1
 numericq(answer;
-    label="``1 + 1``?",
+    label=L"1 + 1?",
 	hint="Do the math")
 ```
 
@@ -198,7 +199,7 @@ p = plot(p1, p2, p3, p4, layout=l)
 imgfile = tempname() * ".png"
 savefig(p, imgfile)
 hotspotq(imgfile, (0,1/2), (0, 1/2),
-    label="What best matches the graph of ``f(x) = -x^4``?")
+    label=L"What best matches the graph of $f(x) = -x^4$?")
 ```
 
 ----
