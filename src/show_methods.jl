@@ -1,7 +1,7 @@
 # This is called when converting radio button labels from LaTeX
 # adjust by setting ENV["QQ_LaTeX_delimiters"]
 function Markdown.tohtml(io::IO, l::Markdown.LaTeX)
-    o, c = get(ENV, "QQ_LaTeX_delimiters", ("\\(", "\\)"))
+    o, c = get(ENV, "QQ_LaTeX_delimiters", ("\$", "\$")) #("\\(", "\\)"))
     print(io, o) # not print(io, '$', '$')
     print(io, l.formula)
     print(io, c)

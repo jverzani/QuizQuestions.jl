@@ -45,11 +45,11 @@ var ID = "{{:ID}}"
 <form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='{{:ID}}' data-controltype='{{:TYPE}}'>
   <div class='form-group {{:STATUS}}'>
     <div class='controls'>
-    {{#:LABEL}}
-        <label for="controls_{{:ID}}">{{{:LABEL}}}{{#:HINT}}<span href="#" title="{{{:HINT}}}">&nbsp;🎁</span>{{/:HINT}}
-</label>
-    {{/:LABEL}}
       <div class="form" id="controls_{{:ID}}" correct='-1' attempts='0'>
+    {{#:LABEL}}
+    {{{:LABEL}}}
+            {{#:HINT}}<span href="#" title="{{{:HINT}}}">&nbsp;🎁</span>{{/:HINT}}
+    {{/:LABEL}}
         <div style="padding-top: 5px">
     {{{:FORM}}}
     {{^:LABEL}}{{#:HINT}}<label for="controls_{{:ID}}"><span href="#" title="{{{:HINT}}}">&nbsp;🎁</span></label>{{/:HINT}}{{/:LABEL}}
@@ -87,8 +87,8 @@ document.getElementById("{{:ID}}").addEventListener("change", function() {
 ##
 html_templates["inputq_form"] = mt"""
 </br>
-<div class="input-group">
-    <input id="{{:ID}}" type="{{:TYPE}}" class="form-control" placeholder="{{:PLACEHOLDER}}">
+<div class="input-group" aria-label="Input form: {{:PLACEHOLDER}}">
+    <input id="{{:ID}}" type="{{:TYPE}}" class="form-control" placeholder="{{:PLACEHOLDER}}" aria-label="{{:PLACEHOLDER}}">
     {{#:UNITS}}
     <span class="input-group-append">&nbsp;{{{:UNITS}}}&nbsp;</span>
     {{/:UNITS}}
@@ -103,6 +103,8 @@ html_templates["inputq_form"] = mt"""
 ## XXX add {{INLINE}}
 ## We do *not* use sibling elements, as suggested by Bootstrap here
 html_templates["Radioq"] = mt"""
+<fieldset style="border:0px">
+<legend style="display: none" aria-label="Select an item">Select an item</legend>
 {{#:ITEMS}}
 <div class="form-check">
     <label class="form-check-label" for="radio_{{:ID}}_{{:VALUE}}">
@@ -115,6 +117,7 @@ html_templates["Radioq"] = mt"""
     </label>
 </div>
 {{/:ITEMS}}
+</fieldset>
 """
 
 html_templates["radio_grading_script"] = """
@@ -283,23 +286,22 @@ document.querySelector('[id^="button_{{:ID}}-done"]').addEventListener("click", 
 ## ----
 
 html_templates["Matchq"] = mt"""
-<table>
+<div style="display: grid;grid-template-columns: 1fr 5fr">
 {{#:ITEMS}}
-<tr>
-  <td>
-   <label for "select_{{:ID}}">{{{:QUESTION}}}</label>
-  </td>
-  <td>
-  <select name = "select_{{:ID}}" id="select_{{:ID}}">
+
+<div>
+  <select name = "select_{{:ID}}" id="select_{{:ID}}" aria-label="Select one">
      <option value=0 selected="selected">{{{:BLANK}}}</option>
      {{#:ANSWER_CHOICES}}
      <option value="{{:INDEX}}">{{{:LABEL}}}</option>
     {{/:ANSWER_CHOICES}}
   </select>
-  </td>
-<tr>
+</div>
+<div>{{{:QUESTION}}}</div>
+
 {{/:ITEMS}}
-</table>
+</div>
+
 """
 
 html_templates["matchq_grading_script"] = """
@@ -324,22 +326,25 @@ html_templates["matchq_grading_script"] = """
 ## ----
 
 html_templates["fill_in_blank_select"] = """
-  <select name = "select_{{:ID}}" id="select_{{:ID}}">
-     <option value=0 selected="selected">{{{:BLANK}}}</option>
+  <select name = "select_{{:ID}}" id="select_{{:ID}}" aria-label"Make a selection">
+     <option value="0" selected="selected">{{{:BLANK}}}</option>
      {{#:ANSWER_CHOICES}}
      <option value="{{:INDEX}}">{{{:LABEL}}}</option>
     {{/:ANSWER_CHOICES}}
   </select>
+<label for="select_{{:ID}}" style="left: -100vw; position: absolute;">Make a selection</label>
 """
 
 html_templates["fill_in_blank_input"] = """
-<input id="{{:ID}}" type="{{:TYPE}}" class="form-{{^:INLINE}}control{{/:INLINE}}" placeholder="{{:PLACEHOLDER}}">
+<input id="{{:ID}}" type="{{:TYPE}}" class="form-{{^:INLINE}}control{{/:INLINE}}" placeholder="{{:PLACEHOLDER}}" aria-label="Fill in the blank">
+<label for="{{:ID}}" style="left: -100vw; position: absolute;">Fill in the blank</label>
 """
+
 
 ## -------
 html_templates["hotspot"] = """
-<div>
-<img  id="hotspot_{{{:ID}}}" src="data:image/gif;base64,{{{:IMG}}}"/>
+<div aria-label="Hotspot question for selection from an image">
+<img  id="hotspot_{{{:ID}}}" alt="Image for hotspot selection" src="data:image/gif;base64,{{{:IMG}}}" />
 </div>
 """
 
