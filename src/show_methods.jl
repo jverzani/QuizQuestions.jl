@@ -300,7 +300,7 @@ end
 handle_inf(x) = x == Inf ? "Infinity" : x == -Inf ? "-Infinity" : x
 function prepare_question(x::PlotlyLightQ, ID)
     p = x.p
-    p.id = ID
+#    p.id = ID
 
     x₀, x₁ = handle_inf.(x.xs)
     y₀, y₁ = handle_inf.(x.ys)
@@ -317,7 +317,7 @@ function prepare_question(x::PlotlyLightQ, ID)
                         CORRECT = "Correct"
                         )
 
-    FORM = sprint(io -> show(io, "text/html", p))
+    FORM = sprint(io -> show(io, MIME("text/html"), p, id=ID))
     FORM = "<script>window.PlotlyConfig = {MathJaxConfig: 'local'};</script>\n" * FORM
 
     (FORM, GRADING_SCRIPT)
