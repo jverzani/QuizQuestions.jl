@@ -59,6 +59,11 @@ numericq(answer, tol,
 	hint="you need to be within 1/1000")
 ```
 
+!!! note "Using Documenter adjustment"
+
+    Math  markup using ``\LaTeX`` in Markdown may be done with different delimiters. There are paired dollar signs (or double dollar signs); paired  `\(` and `\)` (or `\[`, `\]`)  delimiters; double backticks (which require no escaping); or even `math` flavors for triple backtick blocks. When displaying ``\LaTeX`` in HTML, the paired parentheses are used. **However** with `Documenter` paired dollar signs are needed for markup used by `QuizQuestions`.
+	As of `v"0.3.21"`, placing the line `ENV["QQ_LaTeX_dollar_delimiters"] = true` in `make.jl` will instruct that. This package documentation illustrates.
+
 
 ## Examples of question types
 

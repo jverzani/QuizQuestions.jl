@@ -1,6 +1,8 @@
 using Documenter
 using QuizQuestions
 
+ENV["QQ_LaTeX_dollar_delimiters"] = true
+
 makedocs(sitename="QuizQuestions documentation",
          format = Documenter.HTML(ansicolor=true)
          )
