@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<HTML lang = "en">
+<HEAD>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  
+  
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      TeX: { equationNumbers: { autoNumber: "AMS" } }
+    });
+  </script>
+
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+
+  
+<style>
+pre.hljl {
+    border: 1px solid #ccc;
+    margin: 5px;
+    padding: 5px;
+    overflow-x: auto;
+    color: rgb(68,68,68); background-color: rgb(251,251,251); }
+pre.hljl > span.hljl-t { }
+pre.hljl > span.hljl-w { }
+pre.hljl > span.hljl-e { }
+pre.hljl > span.hljl-eB { }
+pre.hljl > span.hljl-o { }
+pre.hljl > span.hljl-k { color: rgb(148,91,176); font-weight: bold; }
+pre.hljl > span.hljl-kc { color: rgb(59,151,46); font-style: italic; }
+pre.hljl > span.hljl-kd { color: rgb(214,102,97); font-style: italic; }
+pre.hljl > span.hljl-kn { color: rgb(148,91,176); font-weight: bold; }
+pre.hljl > span.hljl-kp { color: rgb(148,91,176); font-weight: bold; }
+pre.hljl > span.hljl-kr { color: rgb(148,91,176); font-weight: bold; }
+pre.hljl > span.hljl-kt { color: rgb(148,91,176); font-weight: bold; }
+pre.hljl > span.hljl-n { }
+pre.hljl > span.hljl-na { }
+pre.hljl > span.hljl-nb { }
+pre.hljl > span.hljl-nbp { }
+pre.hljl > span.hljl-nc { }
+pre.hljl > span.hljl-ncB { }
+pre.hljl > span.hljl-nd { color: rgb(214,102,97); }
+pre.hljl > span.hljl-ne { }
+pre.hljl > span.hljl-neB { }
+pre.hljl > span.hljl-nf { color: rgb(66,102,213); }
+pre.hljl > span.hljl-nfm { color: rgb(66,102,213); }
+pre.hljl > span.hljl-np { }
+pre.hljl > span.hljl-nl { }
+pre.hljl > span.hljl-nn { }
+pre.hljl > span.hljl-no { }
+pre.hljl > span.hljl-nt { }
+pre.hljl > span.hljl-nv { }
+pre.hljl > span.hljl-nvc { }
+pre.hljl > span.hljl-nvg { }
+pre.hljl > span.hljl-nvi { }
+pre.hljl > span.hljl-nvm { }
+pre.hljl > span.hljl-l { }
+pre.hljl > span.hljl-ld { color: rgb(148,91,176); font-style: italic; }
+pre.hljl > span.hljl-s { color: rgb(201,61,57); }
+pre.hljl > span.hljl-sa { color: rgb(201,61,57); }
+pre.hljl > span.hljl-sb { color: rgb(201,61,57); }
+pre.hljl > span.hljl-sc { color: rgb(201,61,57); }
+pre.hljl > span.hljl-sd { color: rgb(201,61,57); }
+pre.hljl > span.hljl-sdB { color: rgb(201,61,57); }
+pre.hljl > span.hljl-sdC { color: rgb(201,61,57); }
+pre.hljl > span.hljl-se { color: rgb(59,151,46); }
+pre.hljl > span.hljl-sh { color: rgb(201,61,57); }
+pre.hljl > span.hljl-si { }
+pre.hljl > span.hljl-so { color: rgb(201,61,57); }
+pre.hljl > span.hljl-sr { color: rgb(201,61,57); }
+pre.hljl > span.hljl-ss { color: rgb(201,61,57); }
+pre.hljl > span.hljl-ssB { color: rgb(201,61,57); }
+pre.hljl > span.hljl-nB { color: rgb(59,151,46); }
+pre.hljl > span.hljl-nbB { color: rgb(59,151,46); }
+pre.hljl > span.hljl-nfB { color: rgb(59,151,46); }
+pre.hljl > span.hljl-nh { color: rgb(59,151,46); }
+pre.hljl > span.hljl-ni { color: rgb(59,151,46); }
+pre.hljl > span.hljl-nil { color: rgb(59,151,46); }
+pre.hljl > span.hljl-noB { color: rgb(59,151,46); }
+pre.hljl > span.hljl-oB { color: rgb(102,102,102); font-weight: bold; }
+pre.hljl > span.hljl-ow { color: rgb(102,102,102); font-weight: bold; }
+pre.hljl > span.hljl-p { }
+pre.hljl > span.hljl-c { color: rgb(153,153,119); font-style: italic; }
+pre.hljl > span.hljl-ch { color: rgb(153,153,119); font-style: italic; }
+pre.hljl > span.hljl-cm { color: rgb(153,153,119); font-style: italic; }
+pre.hljl > span.hljl-cp { color: rgb(153,153,119); font-style: italic; }
+pre.hljl > span.hljl-cpB { color: rgb(153,153,119); font-style: italic; }
+pre.hljl > span.hljl-cs { color: rgb(153,153,119); font-style: italic; }
+pre.hljl > span.hljl-csB { color: rgb(153,153,119); font-style: italic; }
+pre.hljl > span.hljl-g { }
+pre.hljl > span.hljl-gd { }
+pre.hljl > span.hljl-ge { }
+pre.hljl > span.hljl-geB { }
+pre.hljl > span.hljl-gh { }
+pre.hljl > span.hljl-gi { }
+pre.hljl > span.hljl-go { }
+pre.hljl > span.hljl-gp { }
+pre.hljl > span.hljl-gs { }
+pre.hljl > span.hljl-gsB { }
+pre.hljl > span.hljl-gt { }
+</style>
+
+
+
+  <style type="text/css">
+  @font-face {
+  font-style: normal;
+  font-weight: 300;
+}
+@font-face {
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-style: normal;
+  font-weight: 600;
+}
+html {
+  font-family: sans-serif; /* 1 */
+  -ms-text-size-adjust: 100%; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+body {
+  margin: 0;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+audio,
+canvas,
+progress,
+video {
+  display: inline-block; /* 1 */
+  vertical-align: baseline; /* 2 */
+}
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+[hidden],
+template {
+  display: none;
+}
+a:active,
+a:hover {
+  outline: 0;
+}
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+b,
+strong {
+  font-weight: bold;
+}
+dfn {
+  font-style: italic;
+}
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+mark {
+  background: #ff0;
+  color: #000;
+}
+small {
+  font-size: 80%;
+}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+img {
+  border: 0;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+figure {
+  margin: 1em 40px;
+}
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+pre {
+  overflow: auto;
+}
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit; /* 1 */
+  font: inherit; /* 2 */
+  margin: 0; /* 3 */
+}
+button {
+  overflow: visible;
+}
+button,
+select {
+  text-transform: none;
+}
+button,
+html input[type="button"], /* 1 */
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button; /* 2 */
+  cursor: pointer; /* 3 */
+}
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+input {
+  line-height: normal;
+}
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+input[type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box; /* 2 */
+  box-sizing: content-box;
+}
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+legend {
+  border: 0; /* 1 */
+  padding: 0; /* 2 */
+}
+textarea {
+  overflow: auto;
+}
+optgroup {
+  font-weight: bold;
+}
+table {
+  font-family: monospace, monospace;
+  font-size : 0.8em;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+td,
+th {
+  padding: 0;
+}
+thead th {
+    border-bottom: 1px solid black;
+    background-color: white;
+}
+tr:nth-child(odd){
+  background-color: rgb(248,248,248);
+}
+
+
+/*
+* Skeleton V2.0.4
+* Copyright 2014, Dave Gamache
+* www.getskeleton.com
+* Free to use under the MIT license.
+* http://www.opensource.org/licenses/mit-license.php
+* 12/29/2014
+*/
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box; }
+.column,
+.columns {
+  width: 100%;
+  float: left;
+  box-sizing: border-box; }
+@media (min-width: 400px) {
+  .container {
+    width: 85%;
+    padding: 0; }
+}
+@media (min-width: 550px) {
+  .container {
+    width: 80%; }
+  .column,
+  .columns {
+    margin-left: 4%; }
+  .column:first-child,
+  .columns:first-child {
+    margin-left: 0; }
+
+  .one.column,
+  .one.columns                    { width: 4.66666666667%; }
+  .two.columns                    { width: 13.3333333333%; }
+  .three.columns                  { width: 22%;            }
+  .four.columns                   { width: 30.6666666667%; }
+  .five.columns                   { width: 39.3333333333%; }
+  .six.columns                    { width: 48%;            }
+  .seven.columns                  { width: 56.6666666667%; }
+  .eight.columns                  { width: 65.3333333333%; }
+  .nine.columns                   { width: 74.0%;          }
+  .ten.columns                    { width: 82.6666666667%; }
+  .eleven.columns                 { width: 91.3333333333%; }
+  .twelve.columns                 { width: 100%; margin-left: 0; }
+
+  .one-third.column               { width: 30.6666666667%; }
+  .two-thirds.column              { width: 65.3333333333%; }
+
+  .one-half.column                { width: 48%; }
+
+  /* Offsets */
+  .offset-by-one.column,
+  .offset-by-one.columns          { margin-left: 8.66666666667%; }
+  .offset-by-two.column,
+  .offset-by-two.columns          { margin-left: 17.3333333333%; }
+  .offset-by-three.column,
+  .offset-by-three.columns        { margin-left: 26%;            }
+  .offset-by-four.column,
+  .offset-by-four.columns         { margin-left: 34.6666666667%; }
+  .offset-by-five.column,
+  .offset-by-five.columns         { margin-left: 43.3333333333%; }
+  .offset-by-six.column,
+  .offset-by-six.columns          { margin-left: 52%;            }
+  .offset-by-seven.column,
+  .offset-by-seven.columns        { margin-left: 60.6666666667%; }
+  .offset-by-eight.column,
+  .offset-by-eight.columns        { margin-left: 69.3333333333%; }
+  .offset-by-nine.column,
+  .offset-by-nine.columns         { margin-left: 78.0%;          }
+  .offset-by-ten.column,
+  .offset-by-ten.columns          { margin-left: 86.6666666667%; }
+  .offset-by-eleven.column,
+  .offset-by-eleven.columns       { margin-left: 95.3333333333%; }
+
+  .offset-by-one-third.column,
+  .offset-by-one-third.columns    { margin-left: 34.6666666667%; }
+  .offset-by-two-thirds.column,
+  .offset-by-two-thirds.columns   { margin-left: 69.3333333333%; }
+
+  .offset-by-one-half.column,
+  .offset-by-one-half.columns     { margin-left: 52%; }
+
+}
+html {
+  font-size: 62.5%; }
+body {
+  font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #222; }
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  font-weight: 300; }
+h1 { font-size: 3.6rem; line-height: 1.2;  letter-spacing: -.1rem;}
+h2 { font-size: 3.4rem; line-height: 1.25; letter-spacing: -.1rem; }
+h3 { font-size: 3.2rem; line-height: 1.3;  letter-spacing: -.1rem; }
+h4 { font-size: 2.8rem; line-height: 1.35; letter-spacing: -.08rem; }
+h5 { font-size: 2.4rem; line-height: 1.5;  letter-spacing: -.05rem; }
+h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
+
+p {
+  margin-top: 0; }
+a {
+  color: #1EAEDB; }
+a:hover {
+  color: #0FA0CE; }
+.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  display: inline-block;
+  height: 38px;
+  padding: 0 30px;
+  color: #555;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  cursor: pointer;
+  box-sizing: border-box; }
+.button:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+.button:focus,
+button:focus,
+input[type="submit"]:focus,
+input[type="reset"]:focus,
+input[type="button"]:focus {
+  color: #333;
+  border-color: #888;
+  outline: 0; }
+.button.button-primary,
+button.button-primary,
+input[type="submit"].button-primary,
+input[type="reset"].button-primary,
+input[type="button"].button-primary {
+  color: #FFF;
+  background-color: #33C3F0;
+  border-color: #33C3F0; }
+.button.button-primary:hover,
+button.button-primary:hover,
+input[type="submit"].button-primary:hover,
+input[type="reset"].button-primary:hover,
+input[type="button"].button-primary:hover,
+.button.button-primary:focus,
+button.button-primary:focus,
+input[type="submit"].button-primary:focus,
+input[type="reset"].button-primary:focus,
+input[type="button"].button-primary:focus {
+  color: #FFF;
+  background-color: #1EAEDB;
+  border-color: #1EAEDB; }
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+  height: 38px;
+  padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
+  background-color: #fff;
+  border: 1px solid #D1D1D1;
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box; }
+/* Removes awkward default styles on some inputs for iOS */
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none; }
+textarea {
+  min-height: 65px;
+  padding-top: 6px;
+  padding-bottom: 6px; }
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  border: 1px solid #33C3F0;
+  outline: 0; }
+label,
+legend {
+  display: block;
+  margin-bottom: .5rem;
+  font-weight: 600; }
+fieldset {
+  padding: 0;
+  border-width: 0; }
+input[type="checkbox"],
+input[type="radio"] {
+  display: inline; }
+label > .label-body {
+  display: inline-block;
+  margin-left: .5rem;
+  font-weight: normal; }
+ul {
+  list-style: circle; }
+ol {
+  list-style: decimal; }
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin: 1.5rem 0 1.5rem 3rem;
+  font-size: 90%; }
+li > p {margin : 0;}
+th,
+td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #E1E1E1; }
+th:first-child,
+td:first-child {
+  padding-left: 0; }
+th:last-child,
+td:last-child {
+  padding-right: 0; }
+button,
+.button {
+  margin-bottom: 1rem; }
+input,
+textarea,
+select,
+fieldset {
+  margin-bottom: 1.5rem; }
+pre,
+blockquote,
+dl,
+figure,
+table,
+p,
+ul,
+ol,
+form {
+  margin-bottom: 1.0rem; }
+.u-full-width {
+  width: 100%;
+  box-sizing: border-box; }
+.u-max-full-width {
+  max-width: 100%;
+  box-sizing: border-box; }
+.u-pull-right {
+  float: right; }
+.u-pull-left {
+  float: left; }
+hr {
+  margin-top: 3rem;
+  margin-bottom: 3.5rem;
+  border-width: 0;
+  border-top: 1px solid #E1E1E1; }
+.container:after,
+.row:after,
+.u-cf {
+  content: "";
+  display: table;
+  clear: both; }
+
+pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  word-break: break-all;
+  word-wrap: break-word;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+pre.hljl {
+  margin: 0 0 10px;
+  display: block;
+  background: #f5f5f5;
+  border-radius: 4px;
+  padding : 5px;
+}
+
+pre.output {
+  background: #ffffff;
+}
+
+pre.code {
+  background: #ffffff;
+}
+
+pre.julia-error {
+  color : red
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-size: 0.9em;
+}
+
+
+@media (min-width: 400px) {}
+@media (min-width: 550px) {}
+@media (min-width: 750px) {}
+@media (min-width: 1000px) {}
+@media (min-width: 1200px) {}
+
+h1.title {margin-top : 20px}
+img {max-width : 100%}
+div.title {text-align: center;}
+
+  </style>
+</HEAD>
+
+<BODY>
+  <div class ="container">
+    <div class = "row">
+      <div class = "col-md-12 twelve columns">
+        <div class="title">
+          
+          
+          
+        </div>
+
+        <h1>Weave examples</h1>
+
+
+
+<script>
+var ID = "ovA2ceFE"
+</script>
+<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='ovA2ceFE' data-controltype=''>
+  <div class='form-group '>
+    <div class='controls'>
+      <div class="form" id="controls_ovA2ceFE" correct='-1' attempts='0'>
+    <p>Which adds to \(2\)? 
+
+            
+        <div style="padding-top: 5px">
+    <div id="buttongroup_ovA2ceFE" class="btn-group-vertical w-100">
+  <button type="button" class="btn toggle-btn px-4 my-1 btn-light btn-block active" aria-pressed="false" id="button_ovA2ceFE_1" value="correct" style="width:100%;text-align:left; padding-left:10px; " onclick="return false;">
+    \(1 + 1\)
+
+  </button>
+  <button type="button" class="btn toggle-btn px-4 my-1 btn-light btn-block active" aria-pressed="false" id="button_ovA2ceFE_2" value="incorrect" style="width:100%;text-align:left; padding-left:10px; " onclick="return false;">
+    \(2+2\)
+
+  </button>
+  <button type="button" class="btn toggle-btn px-4 my-1 btn-light btn-block active" aria-pressed="false" id="button_ovA2ceFE_3" value="incorrect" style="width:100%;text-align:left; padding-left:10px; " onclick="return false;">
+    \(-1 + -1\)
+
+  </button>
+</div>
+<script>
+document.querySelectorAll('[id^="button_ovA2ceFE_"]').forEach(function(btn) {
+    btn.addEventListener("click", function(btn) {
+	var correct = this.value == "correct";
+	var id = this.id;
+
+	if (!correct) {
+              const incorrect_answer = new CustomEvent("quizquestion_answer", {bubbles:true, detail:{correct: 0}});
+  this.dispatchEvent(incorrect_answer);
+  //typeof incorrect_answer != "undefined" && this.dispatchEvent(incorrect_answer);
+
+	    this.style.background = "#FF0000AA";
+	    var text = this.innerHTML;
+	    this.innerHTML = "<em>⨉</em>&nbsp;" + text ;
+            var explanation = document.getElementById("explanation_ovA2ceFE")
+            if (explanation != null) {
+               explanation.style.display = "block";
+            }
+	} else {
+            const correct_answer   = new CustomEvent("quizquestion_answer", {bubbles:true, detail:{correct: 1}});
+  this.dispatchEvent(correct_answer);
+  //typeof correct_answer   != "undefined" && this.dispatchEvent(correct_answer);
+
+        }
+	document.querySelectorAll('[id^="button_ovA2ceFE_"]').forEach(function(btn) {
+	    btn.disabled = true;
+            btn.setAttribute("aria-pressed", "true");
+	    if (btn.value == "correct") {
+                btn.style.background = "#00AA33AA";
+		var text = btn.innerHTML;
+		btn.innerHTML =  " <em>✓</em>&nbsp;" + text ;
+		btn.style.fontSize = "1.1rem";
+		btn.style.color = "black";
+                btn.style.borderRadius = "12px";
+	    }
+	});
+    });
+})
+</script>
+
+    
+        </div>
+      </div>
+      <div id='ovA2ceFE_message' style="padding-bottom: 15px"></div>
+      <div id="explanation_ovA2ceFE" class='pluto-output admonition alert alert-danger' style="display:none;;background-color:#D3D3D366;"><p>Add &#39;em up 
+</div>
+    </div>
+  </div>
+</form>
+<script>
+document.getElementById('controls_ovA2ceFE').addEventListener("quizquestion_answer", (e) => {
+	      var o = document.getElementById('controls_ovA2ceFE')
+	      var atts = Number(o.getAttribute("attempts"))
+	      o.setAttribute("correct",  e.detail.correct);
+	      o.setAttribute("attempts", atts + 1)
+	  }, true)
+</script>
+
+<script text='text/javascript'>
+
+</script>
+
+
+
+<script>
+var ID = "rhWScDCk"
+</script>
+<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='rhWScDCk' data-controltype=''>
+  <div class='form-group '>
+    <div class='controls'>
+      <div class="form" id="controls_rhWScDCk" correct='-1' attempts='0'>
+    <p>Select the sentences with numbers &#40;one or more&#41; 
+
+            
+        <div style="padding-top: 5px">
+    <div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_rhWScDCk"
+              id="check_rhWScDCk_1" value="1">
+      <span class="label-body">
+        Four score and seven years ago
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_rhWScDCk"
+              id="check_rhWScDCk_2" value="2">
+      <span class="label-body">
+        Lorum ipsum
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_rhWScDCk"
+              id="check_rhWScDCk_3" value="3">
+      <span class="label-body">
+        The quick brown fox jumped over the lazy dog
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input" type="checkbox" name="check_rhWScDCk"
+              id="check_rhWScDCk_4" value="4">
+      <span class="label-body">
+        One and one and one makes three
+      </span>
+    </input>
+  </label>
+</div>
+
+    
+        </div>
+      </div>
+      <div id='rhWScDCk_message' style="padding-bottom: 15px"></div>
+    </div>
+  </div>
+</form>
+<script>
+document.getElementById('controls_rhWScDCk').addEventListener("quizquestion_answer", (e) => {
+	      var o = document.getElementById('controls_rhWScDCk')
+	      var atts = Number(o.getAttribute("attempts"))
+	      o.setAttribute("correct",  e.detail.correct);
+	      o.setAttribute("attempts", atts + 1)
+	  }, true)
+</script>
+
+<script text='text/javascript'>
+document.querySelectorAll('input[name="check_rhWScDCk"]').forEach(function(rb) {
+rb.addEventListener("change", function() {
+    var choice_buttons = document.getElementsByName("check_rhWScDCk");
+    var selected = [];
+    for (var i=0; i < choice_buttons.length; i++) {
+        if (choice_buttons[i].checked) {
+           selected.push(i+1)
+        }
+    }
+    var a = selected;
+    var b = [1, 4];
+    // https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
+    var correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
+    var msgBox = document.getElementById('rhWScDCk_message');
+    
+  if(correct) {
+    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span> 👍&nbsp; Correct </span></div>";
+    var explanation = document.getElementById("explanation_rhWScDCk")
+    if (explanation != null) {
+       explanation.style.display = "none";
+    }
+      const correct_answer   = new CustomEvent("quizquestion_answer", {bubbles:true, detail:{correct: 1}});
+  this.dispatchEvent(correct_answer);
+  //typeof correct_answer   != "undefined" && this.dispatchEvent(correct_answer);
+
+  } else {
+    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span>👎&nbsp; Not yet </span></div>";
+    var explanation = document.getElementById("explanation_rhWScDCk")
+    if (explanation != null) {
+       explanation.style.display = "block";
+    }
+      const incorrect_answer = new CustomEvent("quizquestion_answer", {bubbles:true, detail:{correct: 0}});
+  this.dispatchEvent(incorrect_answer);
+  //typeof incorrect_answer != "undefined" && this.dispatchEvent(incorrect_answer);
+
+  }
+
+})});
+
+</script>
+
+
+
+<script>
+var ID = "6mkA54V7"
+</script>
+<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='6mkA54V7' data-controltype=''>
+  <div class='form-group '>
+    <div class='controls'>
+      <div class="form" id="controls_6mkA54V7" correct='-1' attempts='0'>
+    <p>Select the sentences with numbers &#40;one or more&#41; 
+
+            
+        <div style="padding-top: 5px">
+    <div id="buttongroup_6mkA54V7" class="btn-group-vertical w-100">
+  <button type="button" class="btn toggle-btn px-4 my-1  btn-light btn-block active" aria-pressed="false"
+    id="button_6mkA54V7_1" name="1" value="unclicked"
+    style="width:100%;text-align:left; padding-left:10px; " onclick="return false;">
+      <p>Four score and seven years ago 
+
+  </button>
+  <button type="button" class="btn toggle-btn px-4 my-1  btn-light btn-block active" aria-pressed="false"
+    id="button_6mkA54V7_2" name="2" value="unclicked"
+    style="width:100%;text-align:left; padding-left:10px; " onclick="return false;">
+      <p>The quick brown fox jumped over the lazy dog 
+
+  </button>
+  <button type="button" class="btn toggle-btn px-4 my-1  btn-light btn-block active" aria-pressed="false"
+    id="button_6mkA54V7_3" name="3" value="unclicked"
+    style="width:100%;text-align:left; padding-left:10px; " onclick="return false;">
+      <p>Lorum ipsum 
+
+  </button>
+  <button type="button" class="btn toggle-btn px-4 my-1  btn-light btn-block active" aria-pressed="false"
+    id="button_6mkA54V7_4" name="4" value="unclicked"
+    style="width:100%;text-align:left; padding-left:10px; " onclick="return false;">
+      <p>One and one and one makes three 
+
+  </button>
+  <div class="col mt-1 align-self-center">
+  <button id="button_6mkA54V7-done" class="btn btn-primary"
+     style="display:block; margin:auto;text-align:center;" onclick="return false;">
+      DONE
+  </button>
+  </div>
+</div>
+
+
+    
+        </div>
+      </div>
+      <div id='6mkA54V7_message' style="padding-bottom: 15px"></div>
+    </div>
+  </div>
+</form>
+<script>
+document.getElementById('controls_6mkA54V7').addEventListener("quizquestion_answer", (e) => {
+	      var o = document.getElementById('controls_6mkA54V7')
+	      var atts = Number(o.getAttribute("attempts"))
+	      o.setAttribute("correct",  e.detail.correct);
+	      o.setAttribute("attempts", atts + 1)
+	  }, true)
+</script>
+
+<script text='text/javascript'>
+
+// toggle button select
+document.querySelectorAll('[id^="button_6mkA54V7_"]').forEach(function(btn) {
+    btn.addEventListener("click", function(btn) {
+	var unclicked = (this.value == "unclicked")
+	if (unclicked) {
+            this.style.background = "#0033CC11";
+	    this.value = "clicked";
+            this.setAttribute("aria-pressed", "true");
+	} else {
+	    this.style.background = null;
+	    this.value="unclicked";
+            this.setAttribute("aria-pressed", "false");
+	}
+    });
+})
+
+// grade question
+document.querySelector('[id^="button_6mkA54V7-done"]').addEventListener("click", function() {
+                this.disabled = true;
+    var multi_choice_buttons = document.querySelectorAll('[id^="button_6mkA54V7_"]');
+    var selected = [];
+    var correct = [1, 4];
+    for (var i=0; i < multi_choice_buttons.length; i++) {
+	var btn = multi_choice_buttons[i];
+        btn.disabled = true;
+	var btn_txt = btn.innerHTML;
+	if (multi_choice_buttons[i].value == "clicked") {
+	    selected.push(i+1)
+	    if (correct.indexOf(i+1) < 0) {
+		btn.innerHTML = "⨉ " + btn_txt
+	    } else {
+		btn.innerHTML =  "✓ " + btn_txt
+                btn.style.fontSize = "1.1rem";
+                btn.style.borderRadius = "12px";
+            }
+	} else {
+	    if (correct.indexOf(i+1) < 0) {
+		btn.innerHTML =  "⨉ " + btn_txt
+	    } else {
+		btn.innerHTML =  "✓ " + btn_txt
+                btn.style.fontSize = "1.1rem";
+                btn.style.borderRadius = "12px";
+	    }
+	}
+      }
+      var a = selected;
+      var b = [1, 4]
+          // https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
+      var  correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
+      var msgBox = document.getElementById('6mkA54V7_message');
+      
+  if(correct) {
+    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span> 👍&nbsp; Correct </span></div>";
+    var explanation = document.getElementById("explanation_6mkA54V7")
+    if (explanation != null) {
+       explanation.style.display = "none";
+    }
+      const correct_answer   = new CustomEvent("quizquestion_answer", {bubbles:true, detail:{correct: 1}});
+  this.dispatchEvent(correct_answer);
+  //typeof correct_answer   != "undefined" && this.dispatchEvent(correct_answer);
+
+  } else {
+    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span>👎&nbsp; Something isn't correct </span></div>";
+    var explanation = document.getElementById("explanation_6mkA54V7")
+    if (explanation != null) {
+       explanation.style.display = "block";
+    }
+      const incorrect_answer = new CustomEvent("quizquestion_answer", {bubbles:true, detail:{correct: 0}});
+  this.dispatchEvent(incorrect_answer);
+  //typeof incorrect_answer != "undefined" && this.dispatchEvent(incorrect_answer);
+
+  }
+
+})
+
+</script>
+
+
+
+<script>
+var ID = "h8PSeyLQ"
+</script>
+<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='h8PSeyLQ' data-controltype=''>
+  <div class='form-group '>
+    <div class='controls'>
+      <div class="form" id="controls_h8PSeyLQ" correct='-1' attempts='0'>
+    \(1 + 1?\)
+
+            <span href="#" title="Do the math">&nbsp;🎁</span>
+        <div style="padding-top: 5px">
+    </br>
+<div class="input-group" aria-label="Input form: Numeric answer">
+    <input id="h8PSeyLQ" type="number" class="form-control" placeholder="Numeric answer" aria-label="Numeric answer">
+</div>
+
+    
+        </div>
+      </div>
+      <div id='h8PSeyLQ_message' style="padding-bottom: 15px"></div>
+    </div>
+  </div>
+</form>
+<script>
+document.getElementById('controls_h8PSeyLQ').addEventListener("quizquestion_answer", (e) => {
+	      var o = document.getElementById('controls_h8PSeyLQ')
+	      var atts = Number(o.getAttribute("attempts"))
+	      o.setAttribute("correct",  e.detail.correct);
+	      o.setAttribute("attempts", atts + 1)
+	  }, true)
+</script>
+
+<script text='text/javascript'>
+document.getElementById("h8PSeyLQ").addEventListener("change", function() {
+  var correct = (Math.abs(this.value - 2) <= 0);
+  var msgBox = document.getElementById('h8PSeyLQ_message');
+  
+  if(correct) {
+    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span> 👍&nbsp; Correct </span></div>";
+    var explanation = document.getElementById("explanation_h8PSeyLQ")
+    if (explanation != null) {
+       explanation.style.display = "none";
+    }
+      const correct_answer   = new CustomEvent("quizquestion_answer", {bubbles:true, detail:{correct: 1}});
+  this.dispatchEvent(correct_answer);
+  //typeof correct_answer   != "undefined" && this.dispatchEvent(correct_answer);
+
+  } else {
+    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span>👎&nbsp; Incorrect </span></div>";
+    var explanation = document.getElementById("explanation_h8PSeyLQ")
+    if (explanation != null) {
+       explanation.style.display = "block";
+    }
+      const incorrect_answer = new CustomEvent("quizquestion_answer", {bubbles:true, detail:{correct: 0}});
+  this.dispatchEvent(incorrect_answer);
+  //typeof incorrect_answer != "undefined" && this.dispatchEvent(incorrect_answer);
+
+  }
+
+});
+
+</script>
+
+
+
+<script>
+var ID = "EtlSHogI"
+</script>
+<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='EtlSHogI' data-controltype=''>
+  <div class='form-group '>
+    <div class='controls'>
+      <div class="form" id="controls_EtlSHogI" correct='-1' attempts='0'>
+    <p>What best matches the graph of \(f(x) = -x^4\)? 
+
+            
+        <div style="padding-top: 5px">
+    <div aria-label="Hotspot question for selection from an image">
+<img  id="hotspot_EtlSHogI" alt="Image for hotspot selection" src="data:image/gif;base64,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" />
+</div>
+
+    
+        </div>
+      </div>
+      <div id='EtlSHogI_message' style="padding-bottom: 15px"></div>
+    </div>
+  </div>
+</form>
+<script>
+document.getElementById('controls_EtlSHogI').addEventListener("quizquestion_answer", (e) => {
+	      var o = document.getElementById('controls_EtlSHogI')
+	      var atts = Number(o.getAttribute("attempts"))
+	      o.setAttribute("correct",  e.detail.correct);
+	      o.setAttribute("attempts", atts + 1)
+	  }, true)
+</script>
+
+<script text='text/javascript'>
+  document.getElementById("hotspot_EtlSHogI").addEventListener("click", function(e) {
+      var u = e.offsetX;
+      var v = e.offsetY;
+      var w = this.offsetWidth;
+      var h = this.offsetHeight
+
+      var x = u/w;
+      var y = (h-v)/h
+
+      var correct = (x >= 0.0 && x <= 0.5 && y >= 0.0 && y <= 0.5);
+      var msgBox = document.getElementById('EtlSHogI_message');
+      
+  if(correct) {
+    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span> 👍&nbsp; Correct </span></div>";
+    var explanation = document.getElementById("explanation_EtlSHogI")
+    if (explanation != null) {
+       explanation.style.display = "none";
+    }
+      const correct_answer   = new CustomEvent("quizquestion_answer", {bubbles:true, detail:{correct: 1}});
+  this.dispatchEvent(correct_answer);
+  //typeof correct_answer   != "undefined" && this.dispatchEvent(correct_answer);
+
+  } else {
+    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span>👎&nbsp; Incorrect </span></div>";
+    var explanation = document.getElementById("explanation_EtlSHogI")
+    if (explanation != null) {
+       explanation.style.display = "block";
+    }
+      const incorrect_answer = new CustomEvent("quizquestion_answer", {bubbles:true, detail:{correct: 0}});
+  this.dispatchEvent(incorrect_answer);
+  //typeof incorrect_answer != "undefined" && this.dispatchEvent(incorrect_answer);
+
+  }
+
+
+  })
+
+</script>
+
+
+<p>The <code>plotlylightq</code> type works with Weave:</p>
+
+
+<script>
+var ID = "DmNnJEtm"
+</script>
+<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='DmNnJEtm' data-controltype=''>
+  <div class='form-group '>
+    <div class='controls'>
+      <div class="form" id="controls_DmNnJEtm" correct='-1' attempts='0'>
+    <p>Click a value with \(x>3\) 
+
+            
+        <div style="padding-top: 5px">
+    <script>window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+<script src="https://cdn.plot.ly/plotly-2.24.3.min.js" charset="utf-8"></script><div style="height:100vh;width:100vw;" id="DmNnJEtm"></div><script>Plotly.newPlot("DmNnJEtm", [{"x":[0.0,0.06346651825433926,0.12693303650867852,0.19039955476301776,0.25386607301735703,0.3173325912716963,0.3807991095260355,0.44426562778037476,0.5077321460347141,0.5711986642890533,0.6346651825433925,0.6981317007977318,0.761598219052071,0.8250647373064103,0.8885312555607495,0.9519977738150889,1.0154642920694281,1.0789308103237674,1.1423973285781066,1.2058638468324459,1.269330365086785,1.3327968833411243,1.3962634015954636,1.4597299198498028,1.523196438104142,1.5866629563584813,1.6501294746128206,1.7135959928671598,1.777062511121499,1.8405290293758383,1.9039955476301778,1.967462065884517,2.0309285841388562,2.0943951023931953,2.1578616206475347,2.2213281389018737,2.284794657156213,2.3482611754105522,2.4117276936648917,2.4751942119192307,2.53866073017357,2.6021272484279097,2.6655937666822487,2.729060284936588,2.792526803190927,2.8559933214452666,2.9194598396996057,2.982926357953945,3.046392876208284,3.1098593944626236,3.1733259127169626,3.236792430971302,3.300258949225641,3.3637254674799806,3.4271919857343196,3.490658503988659,3.554125022242998,3.6175915404973376,3.6810580587516766,3.744524577006016,3.8079910952603555,3.8714576135146945,3.934924131769034,3.998390650023373,4.0618571682777125,4.1253236865320515,4.1887902047863905,4.25225672304073,4.3157232412950695,4.3791897595494085,4.4426562778037475,4.506122796058087,4.569589314312426,4.6330558325667655,4.6965223508211045,4.759988869075444,4.823455387329783,4.886921905584122,4.9503884238384614,5.013854942092801,5.07732146034714,5.140787978601479,5.204254496855819,5.267721015110158,5.331187533364497,5.394654051618836,5.458120569873176,5.521587088127515,5.585053606381854,5.648520124636193,5.711986642890533,5.775453161144872,5.838919679399211,5.90238619765355,5.96585271590789,6.029319234162229,6.092785752416568,6.156252270670907,6.219718788925247,6.283185307179586],"y":[0.0,0.0634239196565645,0.12659245357374926,0.1892512443604102,0.2511479871810792,0.31203344569848707,0.3716624556603275,0.4297949120891716,0.4861967361004687,0.5406408174555976,0.5929079290546404,0.6427876096865393,0.6900790114821119,0.7345917086575332,0.7761464642917568,0.8145759520503357,0.8497254299495144,0.8814533634475821,0.9096319953545183,0.9341478602651067,0.9549022414440739,0.9718115683235417,0.984807753012208,0.9938384644612541,0.998867339183008,0.9998741276738751,0.9968547759519424,0.9898214418809328,0.9788024462147787,0.9638421585599422,0.9450008187146685,0.9223542941045814,0.8959937742913359,0.8660254037844387,0.8325698546347714,0.7957618405308323,0.7557495743542583,0.712694171378863,0.6667690005162916,0.6181589862206055,0.5670598638627709,0.5136773915734063,0.4582265217274105,0.4009305354066136,0.3420201433256689,0.28173255684142967,0.2203105327865408,0.1580013959733499,0.09505604330418288,0.031727933498067656,-0.031727933498067414,-0.09505604330418263,-0.15800139597334964,-0.22031053278654056,-0.2817325568414294,-0.34202014332566866,-0.4009305354066134,-0.4582265217274103,-0.5136773915734061,-0.5670598638627706,-0.6181589862206053,-0.6667690005162915,-0.7126941713788629,-0.7557495743542582,-0.7957618405308321,-0.8325698546347713,-0.8660254037844385,-0.895993774291336,-0.9223542941045814,-0.9450008187146683,-0.9638421585599419,-0.9788024462147787,-0.9898214418809327,-0.9968547759519423,-0.9998741276738751,-0.998867339183008,-0.9938384644612541,-0.9848077530122081,-0.9718115683235419,-0.9549022414440739,-0.9341478602651068,-0.9096319953545186,-0.881453363447582,-0.8497254299495144,-0.8145759520503358,-0.7761464642917572,-0.7345917086575331,-0.690079011482112,-0.6427876096865396,-0.5929079290546408,-0.5406408174555974,-0.4861967361004688,-0.4297949120891719,-0.3716624556603281,-0.31203344569848707,-0.2511479871810794,-0.18925124436041063,-0.12659245357374993,-0.06342391965656452,-2.4492935982947064e-16]}], {"width":800,"height":600}, {"responsive":true}, )</script>
+    
+        </div>
+      </div>
+      <div id='DmNnJEtm_message' style="padding-bottom: 15px"></div>
+    </div>
+  </div>
+</form>
+<script>
+document.getElementById('controls_DmNnJEtm').addEventListener("quizquestion_answer", (e) => {
+	      var o = document.getElementById('controls_DmNnJEtm')
+	      var atts = Number(o.getAttribute("attempts"))
+	      o.setAttribute("correct",  e.detail.correct);
+	      o.setAttribute("attempts", atts + 1)
+	  }, true)
+</script>
+
+<script text='text/javascript'>
+document.getElementById("DmNnJEtm").on("plotly_click", function(e) {
+      var x = e.points[0].x
+      var y = e.points[0].y
+
+      var correct = (x >= 3 && x <= Infinity && y >= -Infinity && y <= Infinity);
+      var msgBox = document.getElementById('DmNnJEtm_message');
+      
+  if(correct) {
+    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span> 👍&nbsp; Correct </span></div>";
+    var explanation = document.getElementById("explanation_DmNnJEtm")
+    if (explanation != null) {
+       explanation.style.display = "none";
+    }
+      const correct_answer   = new CustomEvent("quizquestion_answer", {bubbles:true, detail:{correct: 1}});
+  this.dispatchEvent(correct_answer);
+  //typeof correct_answer   != "undefined" && this.dispatchEvent(correct_answer);
+
+  } else {
+    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span>👎&nbsp; Incorrect </span></div>";
+    var explanation = document.getElementById("explanation_DmNnJEtm")
+    if (explanation != null) {
+       explanation.style.display = "block";
+    }
+      const incorrect_answer = new CustomEvent("quizquestion_answer", {bubbles:true, detail:{correct: 0}});
+  this.dispatchEvent(incorrect_answer);
+  //typeof incorrect_answer != "undefined" && this.dispatchEvent(incorrect_answer);
+
+  }
+
+
+  })
+
+</script>
+
+
+
+        <HR/>
+        <div class="footer">
+          <p>
+            Published from <a href="weave-example.jmd">weave-example.jmd</a>
+            using <a href="http://github.com/JunoLab/Weave.jl">Weave.jl</a> v0.10.12 on 2023-10-29.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</BODY>
+
+</HTML>

@@ -2,6 +2,13 @@
 
 [QuizQuestions](https://github.com/jverzani/QuizQuestions.jl) allows the inclusion of self-grading quiz questions within a `Documenter`, `Weave`, [quarto](https://quarto.org),  or `Pluto` HTML page.
 
+A few examples:
+
+* [Quarto example](./quarto-example.html)
+* [Weave example](./weave-example.html)
+
+
+
 ## Basics
 
 The basic idea is:
@@ -24,6 +31,7 @@ radioq(choices, answer; label=question, hint="A hint")
 
 * repeat as desired.
 
+----
 
 The quizzes are written in markdown with the questions in `Julia`
 blocks. The above code cells would be enclosed in triple-backtick
@@ -32,7 +40,6 @@ user. How this is done varies between `Documenter`, `Weave`,
 [quarto](https://quarto.org), and `Pluto`. The `examples` directory
 shows examples of each.
 
-----
 
 For each question:
 
