@@ -1,0 +1,70 @@
+# Weave examples
+
+```{julia, echo=false}
+using QuizQuestions
+using LaTeXStrings
+```
+
+
+```{julia, echo=false}
+buttonq([L"1 + 1", L"2+2", L"-1 + -1"], 1;
+    label = L"Which adds to $2$?",
+	explanation="Add 'em up")
+```
+
+```{julia, echo=false}
+choices =[
+	"Four score and seven years ago",
+	"Lorum ipsum",
+	"The quick brown fox jumped over the lazy dog",
+	"One and one and one makes three"
+]
+answer = (1, 4)
+multiq(choices, answer,
+    label="Select the sentences with numbers (one or more)")
+```
+
+```{julia, echo=false}
+choices =[
+	"Four score and seven years ago",
+	"Lorum ipsum",
+	"The quick brown fox jumped over the lazy dog",
+	"One and one and one makes three"
+]
+answer = (1, 4)
+multibuttonq(choices, answer,
+    label="Select the sentences with numbers (one or more)")
+```
+
+
+
+```{julia, echo=false}
+answer = 1 + 1
+numericq(answer;
+    label=L"1 + 1?",
+	hint="Do the math")
+```
+
+```{julia, echo=false}
+using Plots
+p1 = plot(x -> x^2, axis=nothing, legend=false)
+p2 = plot(x -> x^3, axis=nothing, legend=false)
+p3 = plot(x -> -x^2, axis=nothing, legend=false)
+p4 = plot(x -> -x^3, axis=nothing, legend=false)
+l = @layout [a b; c d]
+p = plot(p1, p2, p3, p4, layout=l)
+imgfile = tempname() * ".png"
+savefig(p, imgfile)
+hotspotq(imgfile, (0,1/2), (0, 1/2),
+    label=L"What best matches the graph of $f(x) = -x^4$?")
+```
+
+The `plotlylightq` type works with Weave:
+
+```{julia, echo=false}
+using PlotlyLight
+xs = range(0, 2pi, length=100)
+ys = sin.(xs)
+p = Plot(;x=xs, y=ys, layout=Config(width=800, height=600))
+plotlylightq(p, (3,Inf); label="Click a value with ``x>3``")
+```
