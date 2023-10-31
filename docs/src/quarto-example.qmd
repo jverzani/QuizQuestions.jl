@@ -10,7 +10,6 @@ jupyter: julia-1.9
 ```{julia}
 #| echo: false
 using QuizQuestions
-using LaTeXStrings
 using Plots
 ```
 
@@ -19,7 +18,7 @@ $$
 
 ```{julia}
 #| echo: false
-buttonq([L"1 + 1", L"2+2", L"-1 + -1"], 1;
+buttonq(["1 + 1", L"2+2", L"-1 + -1"], 1;
     label = L"Which adds to $2$?",
 	explanation="Add 'em up")
 ```
