@@ -52,7 +52,7 @@ function prepare_question(x::Numericq, ID)
     FORM = Mustache.render(html_templates["inputq_form"];
                            ID=ID,
                            PLACEHOLDER = isnothing(x.placeholder) ? "Numeric answer" : x.placeholder,
-                           UNITS=x.units,
+                           UNITS=_markdown_to_html(x.units),
                            TYPE="number",
                            HINT = length(x.label) == 0 ? x.hint : ""
                            )
