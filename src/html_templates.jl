@@ -42,7 +42,7 @@ html_templates["question_tpl"] = mt"""
 <script>
 var ID = "{{:ID}}"
 </script>
-<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='{{:ID}}' data-controltype='{{:TYPE}}'>
+<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='{{:ID}}' data-controltype='{{:TYPE}}' onSubmit='return false;'>
   <div class='form-group {{:STATUS}}'>
     <div class='controls'>
       <div class="form" id="controls_{{:ID}}" correct='-1' attempts='0'>
