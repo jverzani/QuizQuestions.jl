@@ -36,6 +36,51 @@ stringq(re, label="First 3 letters...")
 stringq(re::Regex; label="", hint="", explanation="",  placeholder=nothing) =
     Stringq(re, label, hint, explanation, placeholder)
 
+##
+mutable struct Scriptq <: Question
+    script::AbstractString
+    runonce::AbstractString
+    label
+    hint
+    explanation
+    placeholder
+end
+
+"""
+    scriptq(script::AbstractString, runonce::AbstractString=""; label="", hint="", explanation="", placeholder="")
+
+Check string answer with custom script
+
+Arguments:
+
+* `script`: a JavaScript snippet to check if the contents of a text input is correct;
+            should use `this.value` to read the text and should store a boolean in `var correct`
+
+* `runonce`: an optional second JavaScript snippet containing code which is run once before defining the answer checking event
+            (e.g. a computation of a value to be used in the `script`)
+
+!!! warning
+    Contents of `runonce` are run in a *global* context; it is imperative that you give variables in these snippets unique names.
+
+* `label`: optional label for the form element
+
+* `hint`: optional plain-text hint that can be seen on hover
+
+* `explanation`: text to display on a wrong selection
+
+* `placeholder`: text shown when input widget is initially drawn
+
+## Example
+
+```
+runonce = "var threshhold = 2 * 3 * 7;"
+script = "var correct = this.value > threshold;"
+stringq(script, runonce, label="A large number")
+```
+
+"""
+scriptq(script::AbstractString, runonce=""; label="", hint="", explanation="",  placeholder=nothing) =
+    Scriptq(script, runonce, label, hint, explanation, placeholder)
 
 ##
 mutable struct Numericq <: Question

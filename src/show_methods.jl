@@ -89,6 +89,26 @@ function prepare_question(x::Stringq, ID)
 
 end
 
+function prepare_question(x::Scriptq, ID)
+
+    FORM = Mustache.render(html_templates["inputq_form"];
+                           ID=ID,
+                           PLACEHOLDER = isnothing(x.placeholder) ? "Text answer" : x.placeholder,
+                           TYPE="text",
+                           HINT = length(x.label) == 0 ? x.hint : ""
+                           )
+
+    GRADING_SCRIPT =
+        Mustache.render(html_templates["custom_grading_script"];
+                        ID = ID,
+                        RUNONCE = x.runonce,
+                        SNIPPET = x.script,
+                        INCORRECT = "Incorrect",
+                        CORRECT = "Correct"
+                        )
+    (FORM, GRADING_SCRIPT)
+
+end
 
 function _make_item(i, choice, ID)
     choice′ = sprint(io -> Markdown.html(io, Markdown.parse(choice)))
