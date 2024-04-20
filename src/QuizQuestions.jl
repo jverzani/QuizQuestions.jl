@@ -13,7 +13,7 @@ include("latex_show_methods.jl")
 export numericq,
     buttonq, radioq, booleanq, yesnoq,
     multiq,  multibuttonq, matchq,
-    stringq, fillblankq,
+    stringq, scriptq, fillblankq,
     hotspotq, plotlylightq,
     scorecard
 

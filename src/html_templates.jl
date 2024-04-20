@@ -85,6 +85,15 @@ document.getElementById("{{:ID}}").addEventListener("change", function() {
 """
 
 ##
+html_templates["function_grading_script"] = jmt"""
+document.getElementById("{{:ID}}").addEventListener("change", function() {
+  var correct = ({{{:FUNCTION}}})(this.value);
+  var msgBox = document.getElementById('{{:ID}}_message');
+  $(grading_partial)
+});
+"""
+
+##
 html_templates["inputq_form"] = mt"""
 </br>
 <div class="input-group" aria-label="Input form: {{:PLACEHOLDER}}">
