@@ -14,6 +14,14 @@ re = Regex("abc")
 stringq(re)
 ```
 
+Enter a large number
+
+```{julia}
+#| echo: false
+script = "var correct = this.value >= 42"
+scriptq(script, explanation="should be at least 6 * 7")
+```
+
 ```{julia}
 #| echo: false
 a = 1

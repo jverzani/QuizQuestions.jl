@@ -189,6 +189,15 @@ fillblankq(question, r"^lazy$")
 
 ----
 
+(like `scriptq`)
+
+```@example quiz_question
+script = "var correct = this.value >= 42"
+scriptq(script, label="a large number", explanation="should be at least 6 * 7")
+```
+
+----
+
 (like `numericq`)
 
 ```@example quiz_question
@@ -235,6 +244,7 @@ multibuttonq
 matchq
 numericq
 stringq
+scriptq
 fillblankq
 hotspotq
 plotlylightq
