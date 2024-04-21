@@ -81,7 +81,7 @@ function prepare_question(x::Stringq, ID)
     GRADING_SCRIPT =
         Mustache.render(html_templates["input_grading_script"];
                         ID = ID,
-                        CORRECT_ANSWER = """RegExp('$(x.re.pattern)').test(this.value)""",
+                        CORRECT_ANSWER = """RegExp('$(x.re.pattern)').test(this.value.replaceAll(RegExp('$(x.filter.pattern)', 'g'), ''))""",
                         INCORRECT = "Incorrect",
                         CORRECT = "Correct"
                         )

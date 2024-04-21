@@ -2,6 +2,7 @@ abstract type Question end
 
 mutable struct Stringq <: Question
     re::Regex
+    filter::Regex
     label
     hint
     explanation
@@ -9,13 +10,15 @@ mutable struct Stringq <: Question
 end
 
 """
-    stringq(re::Regex; label="", hint="", explanation="", placeholder="")
+    stringq(re::Regex; filter::Regex=r"", label="", hint="", explanation="", placeholder="")
 
 Match string answer with regular expression
 
 Arguments:
 
 * `re`: a regular expression for grading
+
+* `filter`: a regular expression for what to remove from the string before matching (e.g. `r"\\s"` to remove whitespace)
 
 * `label`: optional label for the form element
 
@@ -33,8 +36,8 @@ stringq(re, label="First 3 letters...")
 ```
 
 """
-stringq(re::Regex; label="", hint="", explanation="",  placeholder=nothing) =
-    Stringq(re, label, hint, explanation, placeholder)
+stringq(re::Regex; filter::Regex=r"", label="", hint="", explanation="",  placeholder=nothing) =
+    Stringq(re, filter, label, hint, explanation, placeholder)
 
 
 ##
