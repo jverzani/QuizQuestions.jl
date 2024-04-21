@@ -12,6 +12,13 @@ re = Regex("abc")  # hide
 stringq(re)  # hide
 ```
 
+Enter a large number
+
+```@example quiz
+funct = "(input) => input >= 42"
+scriptq(funct, explanation="should be at least 6 * 7")
+```
+
 What is ``\sin(\frac{\pi}{2})``?
 
 ```@example quiz
