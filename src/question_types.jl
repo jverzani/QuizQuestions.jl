@@ -57,7 +57,7 @@ Arguments:
 
 * `value`: the numeric answer
 
-* `atol`: ``|answer - value| \\le atol`` is used to determine correctness
+* `atol`: ``|\\mathrm{answer} - \\mathrm{value}| \\le \\mathrm{atol}`` is used to determine correctness
 
 * `label`: optional label for the form element
 

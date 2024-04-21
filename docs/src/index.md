@@ -238,4 +238,5 @@ stringq
 fillblankq
 hotspotq
 plotlylightq
+scorecard
 ```
