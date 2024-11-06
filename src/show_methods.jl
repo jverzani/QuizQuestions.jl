@@ -432,7 +432,7 @@ end
 
 function _show_plain(io::IO, m::MIME"text/plain", q::T) where {T <: Union{Matchq}}
     println(io, "Match as appropriate:")
-    qs, cs = q.questions, q.choices
+    qs, cs = collect(q.questions), q.choices
     for _ in (length(qs) +1):length(cs)
         push!(qs, "")
     end
