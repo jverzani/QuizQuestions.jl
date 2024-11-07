@@ -385,3 +385,86 @@ function Base.show(io::IO, m::MIME"text/html", x::Scorecard)
                     total_questions = "{{:total_questions}}"
                     )
 end
+
+
+## ---- text/plain useful with typst conversion via quarto
+function Base.show(io::IO, m::MIME"text/plain", q::Question)
+    length(q.label) > 0 && show(io, MIME("text/plain"), Markdown.parse(string(q.label)))
+    _show_plain(io, m, q)
+    println(io, "")
+    if length(q.hint) > 0
+        print(io, "hint: ")
+        show(io, MIME("text/plain"), Markdown.parse(string(q.hint)))
+    end
+end
+
+function _show_plain(io, m::MIME"text/plain", q::Union{Stringq, Numericq})
+    println(io, "")
+    println(io, "___________________________________________________")
+end
+
+function _show_plain(io, m::MIME"text/plain", q::Union{Scriptq})
+    println(io, "Answer below:")
+    for _ in 1:6
+        println(io, "")
+    end
+end
+
+
+function _show_plain(io::IO, m::MIME"text/plain",
+                   q::Union{Radioq, Multiq, MultiButtonq})
+    for c ∈ q.labels
+        print(io, "⃞ ")
+        show(io, MIME("text/plain"), Markdown.parse(string(c)))
+        println(io, "")
+    end
+end
+
+function _show_plain(io::IO, m::MIME"text/plain",
+                   q::Union{Buttonq})
+    for c ∈ q.choices
+        print(io, "⃞ ")
+        show(io, MIME("text/plain"), Markdown.parse(string(c)))
+        println(io, "")
+    end
+end
+
+
+function _show_plain(io::IO, m::MIME"text/plain", q::T) where {T <: Union{Matchq}}
+    println(io, "Match as appropriate:")
+    qs, cs = collect(q.questions), q.choices
+    for _ in (length(qs) +1):length(cs)
+        push!(qs, "")
+    end
+    println(io, "A                       B")
+    println(io, "-------------------------")
+    for (q,c) ∈ zip(qs, cs)
+        show(io, MIME("text/plain"), Markdown.parse(string(q)))
+        print(io, "\\t")
+        show(io, MIME("text/plain"), Markdown.parse(string(c)))
+        println(io, "")
+    end
+end
+
+
+function _show_plain(io::IO, m::MIME"text/plain", q::T) where {T <: FillBlankQ}
+    println(io, q.question)
+end
+
+function _show_plain(io::IO, m::MIME"text/plain", q::T) where {T <: Union{FillBlankChoiceQ}}
+    println(io, q.question)
+    println(io, "Choose one:")
+        for c ∈ q.choices
+        print(io, "⃞ ")
+        show(io, MIME("text/plain"), Markdown.parse(string(c)))
+        println(io, "")
+    end
+end
+
+function _show_plain(io::IO, m::MIME"text/plain", q::T) where {T <: Union{HotspotQ, PlotlyLightQ}}
+    println(io, "⚠⚠⚠ Unable to display in text output ⚠⚠⚠")
+end
+
+function Base.show(io::IO, m::MIME"text/plain", q::Scorecard)
+    nothing
+end
