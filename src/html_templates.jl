@@ -197,7 +197,7 @@ document.querySelectorAll('[id^="button_{{:ID}}_"]').forEach(function(btn) {
 
 	if (!correct) {
             $(scorecard_incorrect_partial)
-	    {{#:GREEN}}this.style.background = "{{{:GREEN}}}";{{/:GREEN}}
+	    {{#:RED}}this.style.background = "{{{:RED}}}";{{/:RED}}
 	    var text = this.innerHTML;
 	    this.innerHTML = "<em>{{{:INCORRECT}}</em>&nbsp;" + text ;
             var explanation = document.getElementById("explanation_{{:ID}}")
@@ -211,7 +211,7 @@ document.querySelectorAll('[id^="button_{{:ID}}_"]').forEach(function(btn) {
 	    btn.disabled = true;
             btn.setAttribute("aria-pressed", "true");
 	    if (btn.value == "correct") {
-                {{#:RED}}btn.style.background = "{{{:RED}}}";{{/:RED}}
+                {{#:GREEN}}btn.style.background = "{{{:GREEN}}}";{{/:GREEN}}
 		var text = btn.innerHTML;
 		btn.innerHTML =  " <em>{{{:CORRECT}}}</em>&nbsp;" + text ;
 		btn.style.fontSize = "1.1rem";
