@@ -3,29 +3,39 @@ html_templates = Dict()
 
 # code to support scorecard widget
 scorecard_correct_partial = """
-  const correct_answer   = new CustomEvent("quizquestion_answer", {bubbles:true, detail:{correct: 1}});
+  const correct_answer   = new CustomEvent("quizquestion_answer",
+          {bubbles:true, detail:{correct: 1}}
+  );
   this.dispatchEvent(correct_answer);
-  //typeof correct_answer   != "undefined" && this.dispatchEvent(correct_answer);
 """
 
 scorecard_incorrect_partial = """
-  const incorrect_answer = new CustomEvent("quizquestion_answer", {bubbles:true, detail:{correct: 0}});
+  const incorrect_answer = new CustomEvent("quizquestion_answer",
+           {bubbles:true, detail:{correct: 0}}
+  );
   this.dispatchEvent(incorrect_answer);
-  //typeof incorrect_answer != "undefined" && this.dispatchEvent(incorrect_answer);
 """
 
 # thumbs up/down don't show in my editor
 grading_partial = """
 
   if(correct) {
-    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'><span> 👍&nbsp; {{#:CORRECT}}{{{:CORRECT}}}{{/:CORRECT}}{{^:CORRECT}}Correct{{/:CORRECT}} </span></div>";
+    msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'> \
+       <span> 👍&nbsp; \
+       {{#:CORRECT}}{{{:CORRECT}}}{{/:CORRECT}}{{^:CORRECT}}Correct{{/:CORRECT}} \
+       </span> \
+    </div>";
     var explanation = document.getElementById("explanation_{{:ID}}")
     if (explanation != null) {
        explanation.style.display = "none";
     }
     $(scorecard_correct_partial)
   } else {
-    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'><span>👎&nbsp; {{#:INCORRECT}}{{{:INCORRECT}}}{{/:INCORRECT}}{{^:INCORRECT}}Incorrect{{/:INCORRECT}} </span></div>";
+    msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'> \
+         <span>👎&nbsp; \
+         {{#:INCORRECT}}{{{:INCORRECT}}}{{/:INCORRECT}}{{^:INCORRECT}}Incorrect{{/:INCORRECT}} \
+         </span> \
+    </div>";
     var explanation = document.getElementById("explanation_{{:ID}}")
     if (explanation != null) {
        explanation.style.display = "block";
@@ -42,25 +52,39 @@ html_templates["question_tpl"] = mt"""
 <script>
 var ID = "{{:ID}}"
 </script>
-<form class="mx-2 my-3 mw-100" name='WeaveQuestion' data-id='{{:ID}}' data-controltype='{{:TYPE}}' onSubmit='return false;'>
+<form class="mx-2 my-3 mw-100 qqquestion"
+      name='WeaveQuestion'
+      data-id='{{:ID}}'
+      data-controltype='{{:TYPE}}'
+      onSubmit='return false;'
+      >
   <div class='form-group {{:STATUS}}'>
     <div class='controls'>
       <div class="form" id="controls_{{:ID}}" correct='-1' attempts='0'>
     {{#:LABEL}}
     {{{:LABEL}}}
-            {{#:HINT}}<span href="#" title="{{{:HINT}}}">&nbsp;🎁</span>{{/:HINT}}
+    {{#:HINT}}<span href="#" title="{{{:HINT}}}">&nbsp;🎁</span>{{/:HINT}}
     {{/:LABEL}}
-        <div style="padding-top: 5px">
+
+    <div style="padding-top: 5px">
     {{{:FORM}}}
-    {{^:LABEL}}{{#:HINT}}<label for="controls_{{:ID}}"><span href="#" title="{{{:HINT}}}">&nbsp;🎁</span></label>{{/:HINT}}{{/:LABEL}}
-        </div>
-      </div>
-      <div id='{{:ID}}_message' style="padding-bottom: 15px"></div>
-      {{#:EXPLANATION}}
-      <div id="explanation_{{:ID}}" class='pluto-output admonition alert alert-danger' style="display:none;;background-color:#D3D3D366;">{{{:EXPLANATION}}}</div>
-      {{/:EXPLANATION}}
+    {{^:LABEL}}
+    {{#:HINT}}<label for="controls_{{:ID}}"><span href="#" title="{{{:HINT}}}">&nbsp;🎁</span></label>
+    {{/:HINT}}
+    {{/:LABEL}}
+     </div>
     </div>
-  </div>
+    <div id='{{:ID}}_message'
+         class='qqmessage'
+         style="padding-bottom: 15px">
+    {{#:EXPLANATION}}
+     <div id="explanation_{{:ID}}"
+          class='pluto-output admonition alert alert-danger qqexplanation'
+          style="display:none;background-color:{{:EXPLANATION_BG}};">
+     {{{:EXPLANATION}}}
+     </div>
+     {{/:EXPLANATION}}
+    </div>
 </form>
 <script>
 document.getElementById('controls_{{:ID}}').addEventListener("quizquestion_answer", (e) => {
@@ -96,13 +120,20 @@ document.getElementById("{{:ID}}").addEventListener("change", function() {
 ##
 html_templates["inputq_form"] = mt"""
 </br>
-<div class="input-group" aria-label="Input form: {{:PLACEHOLDER}}">
-    <input id="{{:ID}}" type="{{:TYPE}}" class="form-control" placeholder="{{:PLACEHOLDER}}" aria-label="{{:PLACEHOLDER}}">
+<div class="input-group"
+     aria-label="Input form: {{:PLACEHOLDER}}">
+    <input id="{{:ID}}"
+           type="{{:TYPE}}"
+           class="form-control qqinput"
+           placeholder="{{:PLACEHOLDER}}"
+           aria-label="{{:PLACEHOLDER}}">
     {{#:UNITS}}
     <span class="input-group-append">&nbsp;{{{:UNITS}}}&nbsp;</span>
     {{/:UNITS}}
     {{#:HINT}}
-    <span  class="input-group-append" href="#" title="{{{:HINT}}}">&nbsp;🎁</span>
+    <span  class="input-group-append"
+           href="#"
+            title="{{{:HINT}}}">&nbsp;🎁</span>
     {{/:HINT}}
 </div>
 """
@@ -113,16 +144,21 @@ html_templates["inputq_form"] = mt"""
 ## We do *not* use sibling elements, as suggested by Bootstrap here
 html_templates["Radioq"] = mt"""
 <fieldset style="border:0px">
-<legend style="display: none" aria-label="Select an item">Select an item</legend>
+<legend style="display: none"
+        aria-label="Select an item">Select an item</legend>
 {{#:ITEMS}}
 <div class="form-check">
-    <label class="form-check-label" for="radio_{{:ID}}_{{:VALUE}}">
-      <input class="form-check-input" type="radio" name="radio_{{:ID}}"
-              id="radio_{{:ID}}_{{:VALUE}}" value="{{:VALUE}}">
-      </input>
-      <span class="label-body px-1">
+    <label class="form-check-label qqradio"
+           for="radio_{{:ID}}_{{:VALUE}}">
+    <input class="form-check-input"
+           type="radio"
+           name="radio_{{:ID}}"
+           id="radio_{{:ID}}_{{:VALUE}}"
+           value="{{:VALUE}}">
+    </input>
+    <span class="label-body px-1">
         {{{:LABEL}}}
-      </span>
+    </span>
     </label>
 </div>
 {{/:ITEMS}}
@@ -139,9 +175,16 @@ rb.addEventListener("change", function() {
 """
 ## ----
 html_templates["Buttonq"] = jmt"""
-<div id="buttongroup_{{:ID}}" class="btn-group-vertical w-100">
+<div id="buttongroup_{{:ID}}"
+     class="btn-group-vertical w-100">
   {{#:BUTTONS}}
-  <button type="button" class="btn toggle-btn px-4 my-1 btn-light btn-block active" aria-pressed="false" id="button_{{:ID}}_{{:i}}" value="{{:ANSWER}}" style="width:100%;text-align:left; padding-left:10px; {{#:BLUE}}background:{{{:BLUE}}}{{/:BLUE}}" onclick="return false;">
+  <button type="button"
+          class="btn toggle-btn px-4 my-1 btn-light btn-block active qqbutton"
+          aria-pressed="false"
+          id="button_{{:ID}}_{{:i}}"
+          value="{{:ANSWER}}"
+          style="width:100%;text-align:left; padding-left:10px; {{#:BLUE}}background:{{{:BLUE}}}{{/:BLUE}}"
+          onclick="return false;">
     {{{:TEXT}}
   </button>
   {{/:BUTTONS}}
@@ -187,8 +230,11 @@ html_templates["Multiq"] = mt"""
 {{#:ITEMS}}
 <div class="form-check">
   <label>
-    <input class="form-check-input" type="checkbox" name="check_{{:ID}}"
-              id="check_{{:ID}}_{{:VALUE}}" value="{{:VALUE}}">
+    <input class="form-check-input qqmulti"
+           type="checkbox"
+           name="check_{{:ID}}"
+           id="check_{{:ID}}_{{:VALUE}}"
+           value="{{:VALUE}}">
       <span class="label-body">
         {{{:LABEL}}}
       </span>
@@ -218,17 +264,25 @@ rb.addEventListener("change", function() {
 """
 
 html_templates["MultiButtonq"] = mt"""
-<div id="buttongroup_{{:ID}}" class="btn-group-vertical w-100">
+<div id="buttongroup_{{:ID}}"
+     class="btn-group-vertical w-100">
   {{#:BUTTONS}}
-  <button type="button" class="btn toggle-btn px-4 my-1  btn-light btn-block active" aria-pressed="false"
-    id="button_{{:ID}}_{{:i}}" name="{{:i}}" value="unclicked"
-    style="width:100%;text-align:left; padding-left:10px; {{#:BLUE}}background:{{{:BLUE}}}{{/:BLUE}}" onclick="return false;">
-      {{{:TEXT}}
+  <button type="button"
+          class="btn toggle-btn px-4 my-1  btn-light btn-block active qqmultibutton"
+          aria-pressed="false"
+          id="button_{{:ID}}_{{:i}}"
+          name="{{:i}}"
+          value="unclicked"
+          style="width:100%;text-align:left; padding-left:10px; {{#:BLUE}}background:{{{:BLUE}}}{{/:BLUE}}"
+          onclick="return false;">
+       {{{:TEXT}}
   </button>
   {{/:BUTTONS}}
   <div class="col mt-1 align-self-center">
-  <button id="button_{{:ID}}-done" class="btn btn-primary"
-     style="display:block; margin:auto;text-align:center;{{#:BLUE}}background:{{{:BLUE}}}{{/:BLUE}}" onclick="return false;">
+  <button id="button_{{:ID}}-done"
+          class="btn btn-primary"
+          style="display:block; margin:auto;text-align:center;{{#:BLUE}}background:{{{:BLUE}}}{{/:BLUE}}"
+          onclick="return false;">
       DONE
   </button>
   </div>
@@ -299,11 +353,13 @@ html_templates["Matchq"] = mt"""
 {{#:ITEMS}}
 
 <div>
-  <select name = "select_{{:ID}}" id="select_{{:ID}}" aria-label="Select one">
+  <select name="select_{{:ID}}"
+          id="select_{{:ID}}"
+          aria-label="Select one">
      <option value=0 selected="selected">{{{:BLANK}}}</option>
      {{#:ANSWER_CHOICES}}
      <option value="{{:INDEX}}">{{{:LABEL}}}</option>
-    {{/:ANSWER_CHOICES}}
+     {{/:ANSWER_CHOICES}}
   </select>
 </div>
 <div>{{{:QUESTION}}}</div>
@@ -335,25 +391,36 @@ html_templates["matchq_grading_script"] = """
 ## ----
 
 html_templates["fill_in_blank_select"] = """
-  <select name = "select_{{:ID}}" id="select_{{:ID}}" aria-label"Make a selection">
-     <option value="0" selected="selected">{{{:BLANK}}}</option>
+  <select name="select_{{:ID}}"
+          id="select_{{:ID}}"
+          aria-label="Make a selection"> TTT
+     <option value="0"
+             selected="selected">{{{:BLANK}}}</option>
      {{#:ANSWER_CHOICES}}
      <option value="{{:INDEX}}">{{{:LABEL}}}</option>
     {{/:ANSWER_CHOICES}}
   </select>
-<label for="select_{{:ID}}" style="left: -100vw; position: absolute;">Make a selection</label>
+<label for="select_{{:ID}}"
+       style="left: -100vw; position: absolute;">Make a selection</label>
 """
 
 html_templates["fill_in_blank_input"] = """
-<input id="{{:ID}}" type="{{:TYPE}}" class="form-{{^:INLINE}}control{{/:INLINE}}" placeholder="{{:PLACEHOLDER}}" aria-label="Fill in the blank">
-<label for="{{:ID}}" style="left: -100vw; position: absolute;">Fill in the blank</label>
+<input id="{{:ID}}"
+       type="{{:TYPE}}"
+       class="form-{{^:INLINE}}control{{/:INLINE}} qqfillinblank"
+       placeholder="{{:PLACEHOLDER}}"
+       aria-label="Fill in the blank">
+<label for="{{:ID}}"
+       style="left: -100vw; position: absolute;">Fill in the blank</label>
 """
 
 
 ## -------
 html_templates["hotspot"] = """
 <div aria-label="Hotspot question for selection from an image">
-<img  id="hotspot_{{{:ID}}}" alt="Image for hotspot selection" src="data:image/gif;base64,{{{:IMG}}}" />
+<img id="hotspot_{{{:ID}}}"
+     alt="Image for hotspot selection"
+     src="data:image/gif;base64,{{{:IMG}}}" />
 </div>
 """
 
