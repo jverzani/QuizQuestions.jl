@@ -21,7 +21,7 @@ grading_partial = """
 
   if(correct) {
     msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'> \
-       <span> 👍&nbsp; \
+       <span>✔&nbsp; \
        {{#:CORRECT}}{{{:CORRECT}}}{{/:CORRECT}}{{^:CORRECT}}Correct{{/:CORRECT}} \
        </span> \
     </div>";
@@ -32,7 +32,7 @@ grading_partial = """
     $(scorecard_correct_partial)
   } else {
     msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'> \
-         <span>👎&nbsp; \
+         <span>Χ&nbsp; \
          {{#:INCORRECT}}{{{:INCORRECT}}}{{/:INCORRECT}}{{^:INCORRECT}}Incorrect{{/:INCORRECT}} \
          </span> \
     </div>";
