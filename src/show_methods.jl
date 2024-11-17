@@ -24,7 +24,7 @@ function _markdown_to_html(x)
     length(x) == 0 && return("")
     x = Markdown.parse(x)
     x = sprint(io -> Markdown.html(io, x))
-    x = replace(x, r"\n<p>"=>" ", r"</p>$"=>" ")
+    x = replace(x, r"<p>"=>" ", r"</p>$"=>" ")
     return x
 end
 
@@ -42,6 +42,7 @@ function Base.show(io::IO, m::MIME"text/html", x::Question)
                     LABEL=_markdown_to_html(x.label),
                     HINT = length(x.label) > 0 ? x.hint : "",
                     EXPLANATION = _markdown_to_html(x.explanation),
+                    EXPLANATION_BG = julia_colors.PURPLE, #"#D39558B2", TODO: confiugrable
                     FORM = FORM,
                     GRADING_SCRIPT = GRADING_SCRIPT
                     )

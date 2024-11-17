@@ -192,6 +192,17 @@ mutable struct Buttonq <: Question
     colors
 end
 
+const old_colors = (GREEN="#FF0000AA",
+              RED = "#00AA33AA",
+              BLUE = nothing)
+
+#https://github.com/JuliaLang/julia-logo-graphics/blob/master/images/julia-colors.svg
+#https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4
+const julia_colors = (GREEN="#3898261A",
+                      RED = "#CB3C331A",
+                      BLUE = "#4063D81A",
+                      PURPLE = "#9558B21A")
+#D3D3D366 was this bg color
 """
     buttonq(choices, answer; label="", hint="", [colors])
 
@@ -209,6 +220,7 @@ Arguments:
 
 * `explanation`: text to display on a wrong selection
 
+* `colors` a named tuple with colors for `GREEN`, `RED`, and `BLUE`
 
 ## Example:
 
@@ -222,9 +234,7 @@ buttonq(choices, answer; label="Which is the Greek symbol?",
 """
 function buttonq(choices, answer::Integer;
                  label="", hint="", explanation="",
-                 colors=(GREEN="#FF0000AA",
-                         RED = "#00AA33AA",
-                         BLUE = nothing) #"#0033CC11",
+                 colors=julia_colors
                  )
 
     answers = [i == answer ? "correct" : "incorrect" for i ∈ eachindex(choices)]
