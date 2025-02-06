@@ -4,17 +4,17 @@ using LaTeXStrings # helper for using math notation</code></pre><ul><li>create a
 question = &quot;Which is largest?&quot;
 answer = 3
 radioq(choices, answer; label=question, hint=&quot;A hint&quot;)</code></pre><script>
-var ID = "3JJjLywq"
+var ID = "WE1v4w6c"
 </script>
 <form class="mx-2 my-3 mw-100 qqquestion"
       name='WeaveQuestion'
-      data-id='3JJjLywq'
+      data-id='WE1v4w6c'
       data-controltype=''
       onSubmit='return false;'
       >
   <div class='form-group '>
     <div class='controls'>
-      <div class="form" id="controls_3JJjLywq" correct='-1' attempts='0'>
+      <div class="form" id="controls_WE1v4w6c" correct='-1' attempts='0'>
      Which is largest? 
 
     <span href="#" title="A hint">&nbsp;🎁</span>
@@ -25,11 +25,11 @@ var ID = "3JJjLywq"
         aria-label="Select an item">Select an item</legend>
 <div class="form-check">
     <label class="form-check-label qqradio"
-           for="radio_3JJjLywq_1">
+           for="radio_WE1v4w6c_1">
     <input class="form-check-input"
            type="radio"
-           name="radio_3JJjLywq"
-           id="radio_3JJjLywq_1"
+           name="radio_WE1v4w6c"
+           id="radio_WE1v4w6c_1"
            value="1">
     </input>
     <span class="label-body px-1">
@@ -39,29 +39,29 @@ var ID = "3JJjLywq"
 </div>
 <div class="form-check">
     <label class="form-check-label qqradio"
-           for="radio_3JJjLywq_2">
+           for="radio_WE1v4w6c_2">
     <input class="form-check-input"
            type="radio"
-           name="radio_3JJjLywq"
-           id="radio_3JJjLywq_2"
+           name="radio_WE1v4w6c"
+           id="radio_WE1v4w6c_2"
            value="2">
     </input>
     <span class="label-body px-1">
-        $2$
+        one
     </span>
     </label>
 </div>
 <div class="form-check">
     <label class="form-check-label qqradio"
-           for="radio_3JJjLywq_3">
+           for="radio_WE1v4w6c_3">
     <input class="form-check-input"
            type="radio"
-           name="radio_3JJjLywq"
-           id="radio_3JJjLywq_3"
+           name="radio_WE1v4w6c"
+           id="radio_WE1v4w6c_3"
            value="3">
     </input>
     <span class="label-body px-1">
-        one
+        $2$
     </span>
     </label>
 </div>
@@ -69,14 +69,14 @@ var ID = "3JJjLywq"
 
      </div>
     </div>
-    <div id='3JJjLywq_message'
+    <div id='WE1v4w6c_message'
          class='qqmessage'
          style="padding-bottom: 15px">
     </div>
 </form>
 <script>
-document.getElementById('controls_3JJjLywq').addEventListener("quizquestion_answer", (e) => {
-	      var o = document.getElementById('controls_3JJjLywq')
+document.getElementById('controls_WE1v4w6c').addEventListener("quizquestion_answer", (e) => {
+	      var o = document.getElementById('controls_WE1v4w6c')
 	      var atts = Number(o.getAttribute("attempts"))
 	      o.setAttribute("correct",  e.detail.correct);
 	      o.setAttribute("attempts", atts + 1)
@@ -84,14 +84,14 @@ document.getElementById('controls_3JJjLywq').addEventListener("quizquestion_answ
 </script>
 
 <script text='text/javascript'>
-document.querySelectorAll('input[name="radio_3JJjLywq"]').forEach(function(rb) {
+document.querySelectorAll('input[name="radio_WE1v4w6c"]').forEach(function(rb) {
 rb.addEventListener("change", function() {
     var correct = rb.value == 1;
-    var msgBox = document.getElementById('3JJjLywq_message');
+    var msgBox = document.getElementById('WE1v4w6c_message');
     
   if(correct) {
     msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'> <span>✔&nbsp; Correct </span> </div>";
-    var explanation = document.getElementById("explanation_3JJjLywq")
+    var explanation = document.getElementById("explanation_WE1v4w6c")
     if (explanation != null) {
        explanation.style.display = "none";
     }
@@ -102,7 +102,7 @@ rb.addEventListener("change", function() {
 
   } else {
     msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'> <span>Χ&nbsp; Incorrect </span> </div>";
-    var explanation = document.getElementById("explanation_3JJjLywq")
+    var explanation = document.getElementById("explanation_WE1v4w6c")
     if (explanation != null) {
        explanation.style.display = "block";
     }
@@ -121,17 +121,17 @@ tol = 1e-3
 numericq(answer, tol,
     label=L&quot;What is $\sqrt{2}$?&quot;,
 	hint=&quot;you need to be within 1/1000&quot;)</code></pre><script>
-var ID = "FCSnW4qV"
+var ID = "4ty76XuD"
 </script>
 <form class="mx-2 my-3 mw-100 qqquestion"
       name='WeaveQuestion'
-      data-id='FCSnW4qV'
+      data-id='4ty76XuD'
       data-controltype=''
       onSubmit='return false;'
       >
   <div class='form-group '>
     <div class='controls'>
-      <div class="form" id="controls_FCSnW4qV" correct='-1' attempts='0'>
+      <div class="form" id="controls_4ty76XuD" correct='-1' attempts='0'>
      What is $\sqrt{2}$? 
 
     <span href="#" title="you need to be within 1/1000">&nbsp;🎁</span>
@@ -140,8 +140,9 @@ var ID = "FCSnW4qV"
     </br>
 <div class="input-group"
      aria-label="Input form: Numeric answer">
-    <input id="FCSnW4qV"
+    <input id="4ty76XuD"
            type="number"
+           step="any"
            class="form-control qqinput"
            placeholder="Numeric answer"
            aria-label="Numeric answer">
@@ -149,14 +150,14 @@ var ID = "FCSnW4qV"
 
      </div>
     </div>
-    <div id='FCSnW4qV_message'
+    <div id='4ty76XuD_message'
          class='qqmessage'
          style="padding-bottom: 15px">
     </div>
 </form>
 <script>
-document.getElementById('controls_FCSnW4qV').addEventListener("quizquestion_answer", (e) => {
-	      var o = document.getElementById('controls_FCSnW4qV')
+document.getElementById('controls_4ty76XuD').addEventListener("quizquestion_answer", (e) => {
+	      var o = document.getElementById('controls_4ty76XuD')
 	      var atts = Number(o.getAttribute("attempts"))
 	      o.setAttribute("correct",  e.detail.correct);
 	      o.setAttribute("attempts", atts + 1)
@@ -164,13 +165,13 @@ document.getElementById('controls_FCSnW4qV').addEventListener("quizquestion_answ
 </script>
 
 <script text='text/javascript'>
-document.getElementById("FCSnW4qV").addEventListener("change", function() {
+document.getElementById("4ty76XuD").addEventListener("change", function() {
   var correct = (Math.abs(this.value - 1.4142135623730951) <= 0.001);
-  var msgBox = document.getElementById('FCSnW4qV_message');
+  var msgBox = document.getElementById('4ty76XuD_message');
   
   if(correct) {
     msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'> <span>✔&nbsp; Correct </span> </div>";
-    var explanation = document.getElementById("explanation_FCSnW4qV")
+    var explanation = document.getElementById("explanation_4ty76XuD")
     if (explanation != null) {
        explanation.style.display = "none";
     }
@@ -181,7 +182,7 @@ document.getElementById("FCSnW4qV").addEventListener("change", function() {
 
   } else {
     msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'> <span>Χ&nbsp; Incorrect </span> </div>";
-    var explanation = document.getElementById("explanation_FCSnW4qV")
+    var explanation = document.getElementById("explanation_4ty76XuD")
     if (explanation != null) {
        explanation.style.display = "block";
     }
@@ -198,28 +199,28 @@ document.getElementById("FCSnW4qV").addEventListener("change", function() {
 <div class="admonition is-info"><header class="admonition-header">Using Documenter adjustment</header><div class="admonition-body"><p>Math  markup using <span>$\LaTeX$</span> in Markdown may be done with different delimiters. There are paired dollar signs (or double dollar signs); paired  <code>\(</code> and <code>\)</code> (or <code>\[</code>, <code>\]</code>)  delimiters; double backticks (which require no escaping); or even <code>math</code> flavors for triple backtick blocks. When displaying <span>$\LaTeX$</span> in HTML, the paired parentheses are used. <strong>However</strong> with <code>Documenter</code> paired dollar signs are needed for markup used by <code>QuizQuestions</code>. As of <code>v&quot;0.3.21&quot;</code>, placing the line <code>ENV[&quot;QQ_LaTeX_dollar_delimiters&quot;] = true</code> in <code>make.jl</code> will instruct that. This package documentation illustrates.</p></div></div><h2 id="Examples-of-question-types"><a class="docs-heading-anchor" href="#Examples-of-question-types">Examples of question types</a><a id="Examples-of-question-types-1"></a><a class="docs-heading-anchor-permalink" href="#Examples-of-question-types" title="Permalink"></a></h2><h3 id="Choice-questions-(one-from-many)"><a class="docs-heading-anchor" href="#Choice-questions-(one-from-many)">Choice questions (one from many)</a><a id="Choice-questions-(one-from-many)-1"></a><a class="docs-heading-anchor-permalink" href="#Choice-questions-(one-from-many)" title="Permalink"></a></h3><p>The <code>radioq</code> question was shown above.</p><p>The <code>buttonq</code> question is alternative to radio buttons where the correct answer is shown after the first choice. If this choice is wrong, the explanation is shown along with the correct answer.</p><pre><code class="language-julia hljs">buttonq([L&quot;1 + 1&quot;, L&quot;2+2&quot;, L&quot;-1 + -1&quot;], 1;
     label = L&quot;Which adds to $2$?&quot;,
 	explanation=&quot;Add &#39;em up&quot;)</code></pre><script>
-var ID = "EYwet1vJ"
+var ID = "EhxXCPA4"
 </script>
 <form class="mx-2 my-3 mw-100 qqquestion"
       name='WeaveQuestion'
-      data-id='EYwet1vJ'
+      data-id='EhxXCPA4'
       data-controltype=''
       onSubmit='return false;'
       >
   <div class='form-group '>
     <div class='controls'>
-      <div class="form" id="controls_EYwet1vJ" correct='-1' attempts='0'>
+      <div class="form" id="controls_EhxXCPA4" correct='-1' attempts='0'>
      Which adds to $2$? 
 
     
 
     <div style="padding-top: 5px">
-    <div id="buttongroup_EYwet1vJ"
+    <div id="buttongroup_EhxXCPA4"
      class="btn-group-vertical w-100">
   <button type="button"
           class="btn toggle-btn px-4 my-1 btn-light btn-block active qqbutton"
           aria-pressed="false"
-          id="button_EYwet1vJ_1"
+          id="button_EhxXCPA4_1"
           value="correct"
           style="width:100%;text-align:left; padding-left:10px; background:#4063D81A"
           onclick="return false;">
@@ -229,7 +230,7 @@ var ID = "EYwet1vJ"
   <button type="button"
           class="btn toggle-btn px-4 my-1 btn-light btn-block active qqbutton"
           aria-pressed="false"
-          id="button_EYwet1vJ_2"
+          id="button_EhxXCPA4_2"
           value="incorrect"
           style="width:100%;text-align:left; padding-left:10px; background:#4063D81A"
           onclick="return false;">
@@ -239,7 +240,7 @@ var ID = "EYwet1vJ"
   <button type="button"
           class="btn toggle-btn px-4 my-1 btn-light btn-block active qqbutton"
           aria-pressed="false"
-          id="button_EYwet1vJ_3"
+          id="button_EhxXCPA4_3"
           value="incorrect"
           style="width:100%;text-align:left; padding-left:10px; background:#4063D81A"
           onclick="return false;">
@@ -248,7 +249,7 @@ var ID = "EYwet1vJ"
   </button>
 </div>
 <script>
-document.querySelectorAll('[id^="button_EYwet1vJ_"]').forEach(function(btn) {
+document.querySelectorAll('[id^="button_EhxXCPA4_"]').forEach(function(btn) {
     btn.addEventListener("click", function(btn) {
 	var correct = this.value == "correct";
 	var id = this.id;
@@ -262,7 +263,7 @@ document.querySelectorAll('[id^="button_EYwet1vJ_"]').forEach(function(btn) {
 	    this.style.background = "#CB3C331A";
 	    var text = this.innerHTML;
 	    this.innerHTML = "<em>⨉</em>&nbsp;" + text ;
-            var explanation = document.getElementById("explanation_EYwet1vJ")
+            var explanation = document.getElementById("explanation_EhxXCPA4")
             if (explanation != null) {
                explanation.style.display = "block";
             }
@@ -273,7 +274,7 @@ document.querySelectorAll('[id^="button_EYwet1vJ_"]').forEach(function(btn) {
   this.dispatchEvent(correct_answer);
 
         }
-	document.querySelectorAll('[id^="button_EYwet1vJ_"]').forEach(function(btn) {
+	document.querySelectorAll('[id^="button_EhxXCPA4_"]').forEach(function(btn) {
 	    btn.disabled = true;
             btn.setAttribute("aria-pressed", "true");
 	    if (btn.value == "correct") {
@@ -291,10 +292,10 @@ document.querySelectorAll('[id^="button_EYwet1vJ_"]').forEach(function(btn) {
 
      </div>
     </div>
-    <div id='EYwet1vJ_message'
+    <div id='EhxXCPA4_message'
          class='qqmessage'
          style="padding-bottom: 15px">
-     <div id="explanation_EYwet1vJ"
+     <div id="explanation_EhxXCPA4"
           class='pluto-output admonition alert alert-danger qqexplanation'
           style="display:none;background-color:#9558B21A;">
       Add &#39;em up 
@@ -303,8 +304,8 @@ document.querySelectorAll('[id^="button_EYwet1vJ_"]').forEach(function(btn) {
     </div>
 </form>
 <script>
-document.getElementById('controls_EYwet1vJ').addEventListener("quizquestion_answer", (e) => {
-	      var o = document.getElementById('controls_EYwet1vJ')
+document.getElementById('controls_EhxXCPA4').addEventListener("quizquestion_answer", (e) => {
+	      var o = document.getElementById('controls_EhxXCPA4')
 	      var atts = Number(o.getAttribute("attempts"))
 	      o.setAttribute("correct",  e.detail.correct);
 	      o.setAttribute("attempts", atts + 1)
@@ -323,17 +324,17 @@ document.getElementById('controls_EYwet1vJ').addEventListener("quizquestion_answ
 answer = (1, 4)
 multiq(choices, answer,
     label=&quot;Select the sentences with numbers (one or more)&quot;)</code></pre><script>
-var ID = "p0L0XvKa"
+var ID = "XJTtqgon"
 </script>
 <form class="mx-2 my-3 mw-100 qqquestion"
       name='WeaveQuestion'
-      data-id='p0L0XvKa'
+      data-id='XJTtqgon'
       data-controltype=''
       onSubmit='return false;'
       >
   <div class='form-group '>
     <div class='controls'>
-      <div class="form" id="controls_p0L0XvKa" correct='-1' attempts='0'>
+      <div class="form" id="controls_XJTtqgon" correct='-1' attempts='0'>
      Select the sentences with numbers &#40;one or more&#41; 
 
     
@@ -343,8 +344,8 @@ var ID = "p0L0XvKa"
   <label>
     <input class="form-check-input qqmulti"
            type="checkbox"
-           name="check_p0L0XvKa"
-           id="check_p0L0XvKa_1"
+           name="check_XJTtqgon"
+           id="check_XJTtqgon_1"
            value="1">
       <span class="label-body">
         The quick brown fox jumped over the lazy dog
@@ -356,22 +357,9 @@ var ID = "p0L0XvKa"
   <label>
     <input class="form-check-input qqmulti"
            type="checkbox"
-           name="check_p0L0XvKa"
-           id="check_p0L0XvKa_2"
+           name="check_XJTtqgon"
+           id="check_XJTtqgon_2"
            value="2">
-      <span class="label-body">
-        One and one and one makes three
-      </span>
-    </input>
-  </label>
-</div>
-<div class="form-check">
-  <label>
-    <input class="form-check-input qqmulti"
-           type="checkbox"
-           name="check_p0L0XvKa"
-           id="check_p0L0XvKa_3"
-           value="3">
       <span class="label-body">
         Four score and seven years ago
       </span>
@@ -382,8 +370,21 @@ var ID = "p0L0XvKa"
   <label>
     <input class="form-check-input qqmulti"
            type="checkbox"
-           name="check_p0L0XvKa"
-           id="check_p0L0XvKa_4"
+           name="check_XJTtqgon"
+           id="check_XJTtqgon_3"
+           value="3">
+      <span class="label-body">
+        One and one and one makes three
+      </span>
+    </input>
+  </label>
+</div>
+<div class="form-check">
+  <label>
+    <input class="form-check-input qqmulti"
+           type="checkbox"
+           name="check_XJTtqgon"
+           id="check_XJTtqgon_4"
            value="4">
       <span class="label-body">
         Lorum ipsum
@@ -394,14 +395,14 @@ var ID = "p0L0XvKa"
 
      </div>
     </div>
-    <div id='p0L0XvKa_message'
+    <div id='XJTtqgon_message'
          class='qqmessage'
          style="padding-bottom: 15px">
     </div>
 </form>
 <script>
-document.getElementById('controls_p0L0XvKa').addEventListener("quizquestion_answer", (e) => {
-	      var o = document.getElementById('controls_p0L0XvKa')
+document.getElementById('controls_XJTtqgon').addEventListener("quizquestion_answer", (e) => {
+	      var o = document.getElementById('controls_XJTtqgon')
 	      var atts = Number(o.getAttribute("attempts"))
 	      o.setAttribute("correct",  e.detail.correct);
 	      o.setAttribute("attempts", atts + 1)
@@ -409,9 +410,9 @@ document.getElementById('controls_p0L0XvKa').addEventListener("quizquestion_answ
 </script>
 
 <script text='text/javascript'>
-document.querySelectorAll('input[name="check_p0L0XvKa"]').forEach(function(rb) {
+document.querySelectorAll('input[name="check_XJTtqgon"]').forEach(function(rb) {
 rb.addEventListener("change", function() {
-    var choice_buttons = document.getElementsByName("check_p0L0XvKa");
+    var choice_buttons = document.getElementsByName("check_XJTtqgon");
     var selected = [];
     for (var i=0; i < choice_buttons.length; i++) {
         if (choice_buttons[i].checked) {
@@ -422,11 +423,11 @@ rb.addEventListener("change", function() {
     var b = [2, 3];
     // https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
     var correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
-    var msgBox = document.getElementById('p0L0XvKa_message');
+    var msgBox = document.getElementById('XJTtqgon_message');
     
   if(correct) {
     msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'> <span>✔&nbsp; Correct </span> </div>";
-    var explanation = document.getElementById("explanation_p0L0XvKa")
+    var explanation = document.getElementById("explanation_XJTtqgon")
     if (explanation != null) {
        explanation.style.display = "none";
     }
@@ -437,7 +438,7 @@ rb.addEventListener("change", function() {
 
   } else {
     msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'> <span>Χ&nbsp; Not yet </span> </div>";
-    var explanation = document.getElementById("explanation_p0L0XvKa")
+    var explanation = document.getElementById("explanation_XJTtqgon")
     if (explanation != null) {
        explanation.style.display = "block";
     }
@@ -460,28 +461,28 @@ rb.addEventListener("change", function() {
 answer = (1, 4)
 multibuttonq(choices, answer,
     label=&quot;Select the sentences with numbers (one or more)&quot;)</code></pre><script>
-var ID = "Q7QKn6YA"
+var ID = "qIxgd9G3"
 </script>
 <form class="mx-2 my-3 mw-100 qqquestion"
       name='WeaveQuestion'
-      data-id='Q7QKn6YA'
+      data-id='qIxgd9G3'
       data-controltype=''
       onSubmit='return false;'
       >
   <div class='form-group '>
     <div class='controls'>
-      <div class="form" id="controls_Q7QKn6YA" correct='-1' attempts='0'>
+      <div class="form" id="controls_qIxgd9G3" correct='-1' attempts='0'>
      Select the sentences with numbers &#40;one or more&#41; 
 
     
 
     <div style="padding-top: 5px">
-    <div id="buttongroup_Q7QKn6YA"
+    <div id="buttongroup_qIxgd9G3"
      class="btn-group-vertical w-100">
   <button type="button"
           class="btn toggle-btn px-4 my-1  btn-light btn-block active qqmultibutton"
           aria-pressed="false"
-          id="button_Q7QKn6YA_1"
+          id="button_qIxgd9G3_1"
           name="1"
           value="unclicked"
           style="width:100%;text-align:left; padding-left:10px; "
@@ -492,19 +493,8 @@ var ID = "Q7QKn6YA"
   <button type="button"
           class="btn toggle-btn px-4 my-1  btn-light btn-block active qqmultibutton"
           aria-pressed="false"
-          id="button_Q7QKn6YA_2"
+          id="button_qIxgd9G3_2"
           name="2"
-          value="unclicked"
-          style="width:100%;text-align:left; padding-left:10px; "
-          onclick="return false;">
-        One and one and one makes three 
-
-  </button>
-  <button type="button"
-          class="btn toggle-btn px-4 my-1  btn-light btn-block active qqmultibutton"
-          aria-pressed="false"
-          id="button_Q7QKn6YA_3"
-          name="3"
           value="unclicked"
           style="width:100%;text-align:left; padding-left:10px; "
           onclick="return false;">
@@ -514,16 +504,27 @@ var ID = "Q7QKn6YA"
   <button type="button"
           class="btn toggle-btn px-4 my-1  btn-light btn-block active qqmultibutton"
           aria-pressed="false"
-          id="button_Q7QKn6YA_4"
-          name="4"
+          id="button_qIxgd9G3_3"
+          name="3"
           value="unclicked"
           style="width:100%;text-align:left; padding-left:10px; "
           onclick="return false;">
         Lorum ipsum 
 
   </button>
+  <button type="button"
+          class="btn toggle-btn px-4 my-1  btn-light btn-block active qqmultibutton"
+          aria-pressed="false"
+          id="button_qIxgd9G3_4"
+          name="4"
+          value="unclicked"
+          style="width:100%;text-align:left; padding-left:10px; "
+          onclick="return false;">
+        One and one and one makes three 
+
+  </button>
   <div class="col mt-1 align-self-center">
-  <button id="button_Q7QKn6YA-done"
+  <button id="button_qIxgd9G3-done"
           class="btn btn-primary"
           style="display:block; margin:auto;text-align:center;"
           onclick="return false;">
@@ -535,14 +536,14 @@ var ID = "Q7QKn6YA"
 
      </div>
     </div>
-    <div id='Q7QKn6YA_message'
+    <div id='qIxgd9G3_message'
          class='qqmessage'
          style="padding-bottom: 15px">
     </div>
 </form>
 <script>
-document.getElementById('controls_Q7QKn6YA').addEventListener("quizquestion_answer", (e) => {
-	      var o = document.getElementById('controls_Q7QKn6YA')
+document.getElementById('controls_qIxgd9G3').addEventListener("quizquestion_answer", (e) => {
+	      var o = document.getElementById('controls_qIxgd9G3')
 	      var atts = Number(o.getAttribute("attempts"))
 	      o.setAttribute("correct",  e.detail.correct);
 	      o.setAttribute("attempts", atts + 1)
@@ -552,7 +553,7 @@ document.getElementById('controls_Q7QKn6YA').addEventListener("quizquestion_answ
 <script text='text/javascript'>
 
 // toggle button select
-document.querySelectorAll('[id^="button_Q7QKn6YA_"]').forEach(function(btn) {
+document.querySelectorAll('[id^="button_qIxgd9G3_"]').forEach(function(btn) {
     btn.addEventListener("click", function(btn) {
 	var unclicked = (this.value == "unclicked")
 	if (unclicked) {
@@ -568,11 +569,11 @@ document.querySelectorAll('[id^="button_Q7QKn6YA_"]').forEach(function(btn) {
 })
 
 // grade question
-document.querySelector('[id^="button_Q7QKn6YA-done"]').addEventListener("click", function() {
+document.querySelector('[id^="button_qIxgd9G3-done"]').addEventListener("click", function() {
                 this.disabled = true;
-    var multi_choice_buttons = document.querySelectorAll('[id^="button_Q7QKn6YA_"]');
+    var multi_choice_buttons = document.querySelectorAll('[id^="button_qIxgd9G3_"]');
     var selected = [];
-    var correct = [2, 3];
+    var correct = [2, 4];
     for (var i=0; i < multi_choice_buttons.length; i++) {
 	var btn = multi_choice_buttons[i];
         btn.disabled = true;
@@ -597,14 +598,14 @@ document.querySelector('[id^="button_Q7QKn6YA-done"]').addEventListener("click",
 	}
       }
       var a = selected;
-      var b = [2, 3]
+      var b = [2, 4]
           // https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
       var  correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
-      var msgBox = document.getElementById('Q7QKn6YA_message');
+      var msgBox = document.getElementById('qIxgd9G3_message');
       
   if(correct) {
     msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'> <span>✔&nbsp; Correct </span> </div>";
-    var explanation = document.getElementById("explanation_Q7QKn6YA")
+    var explanation = document.getElementById("explanation_qIxgd9G3")
     if (explanation != null) {
        explanation.style.display = "none";
     }
@@ -615,7 +616,7 @@ document.querySelector('[id^="button_Q7QKn6YA-done"]').addEventListener("click",
 
   } else {
     msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'> <span>Χ&nbsp; Something isn't correct </span> </div>";
-    var explanation = document.getElementById("explanation_Q7QKn6YA")
+    var explanation = document.getElementById("explanation_qIxgd9G3")
     if (explanation != null) {
        explanation.style.display = "block";
     }
@@ -633,17 +634,17 @@ document.querySelector('[id^="button_Q7QKn6YA-done"]').addEventListener("click",
 numericq(answer;
     label=L&quot;1 + 1?&quot;,
 	hint=&quot;Do the math&quot;)</code></pre><script>
-var ID = "lEZpcz5T"
+var ID = "UO4UtO5h"
 </script>
 <form class="mx-2 my-3 mw-100 qqquestion"
       name='WeaveQuestion'
-      data-id='lEZpcz5T'
+      data-id='UO4UtO5h'
       data-controltype=''
       onSubmit='return false;'
       >
   <div class='form-group '>
     <div class='controls'>
-      <div class="form" id="controls_lEZpcz5T" correct='-1' attempts='0'>
+      <div class="form" id="controls_UO4UtO5h" correct='-1' attempts='0'>
     $1 + 1?$
 
     <span href="#" title="Do the math">&nbsp;🎁</span>
@@ -652,8 +653,9 @@ var ID = "lEZpcz5T"
     </br>
 <div class="input-group"
      aria-label="Input form: Numeric answer">
-    <input id="lEZpcz5T"
+    <input id="UO4UtO5h"
            type="number"
+           step="any"
            class="form-control qqinput"
            placeholder="Numeric answer"
            aria-label="Numeric answer">
@@ -661,14 +663,14 @@ var ID = "lEZpcz5T"
 
      </div>
     </div>
-    <div id='lEZpcz5T_message'
+    <div id='UO4UtO5h_message'
          class='qqmessage'
          style="padding-bottom: 15px">
     </div>
 </form>
 <script>
-document.getElementById('controls_lEZpcz5T').addEventListener("quizquestion_answer", (e) => {
-	      var o = document.getElementById('controls_lEZpcz5T')
+document.getElementById('controls_UO4UtO5h').addEventListener("quizquestion_answer", (e) => {
+	      var o = document.getElementById('controls_UO4UtO5h')
 	      var atts = Number(o.getAttribute("attempts"))
 	      o.setAttribute("correct",  e.detail.correct);
 	      o.setAttribute("attempts", atts + 1)
@@ -676,13 +678,13 @@ document.getElementById('controls_lEZpcz5T').addEventListener("quizquestion_answ
 </script>
 
 <script text='text/javascript'>
-document.getElementById("lEZpcz5T").addEventListener("change", function() {
+document.getElementById("UO4UtO5h").addEventListener("change", function() {
   var correct = (Math.abs(this.value - 2) <= 0);
-  var msgBox = document.getElementById('lEZpcz5T_message');
+  var msgBox = document.getElementById('UO4UtO5h_message');
   
   if(correct) {
     msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'> <span>✔&nbsp; Correct </span> </div>";
-    var explanation = document.getElementById("explanation_lEZpcz5T")
+    var explanation = document.getElementById("explanation_UO4UtO5h")
     if (explanation != null) {
        explanation.style.display = "none";
     }
@@ -693,7 +695,7 @@ document.getElementById("lEZpcz5T").addEventListener("change", function() {
 
   } else {
     msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'> <span>Χ&nbsp; Incorrect </span> </div>";
-    var explanation = document.getElementById("explanation_lEZpcz5T")
+    var explanation = document.getElementById("explanation_UO4UtO5h")
     if (explanation != null) {
        explanation.style.display = "block";
     }
@@ -709,17 +711,17 @@ document.getElementById("lEZpcz5T").addEventListener("change", function() {
 </script>
 <p>Numeric questions can have an absolute tolerance set to allow for rounding.</p><h3 id="Text-response"><a class="docs-heading-anchor" href="#Text-response">Text response</a><a id="Text-response-1"></a><a class="docs-heading-anchor-permalink" href="#Text-response" title="Permalink"></a></h3><p>A question graded by a regular expression can be asked with <code>stringq</code>. The question is graded when the input widget loses focus.</p><pre><code class="language-julia hljs">stringq(r&quot;^Washington&quot;; label=&quot;Who was the first US president?&quot;,
         placeholder=&quot;last name&quot;)</code></pre><script>
-var ID = "QS5wQZss"
+var ID = "1tt9SVrA"
 </script>
 <form class="mx-2 my-3 mw-100 qqquestion"
       name='WeaveQuestion'
-      data-id='QS5wQZss'
+      data-id='1tt9SVrA'
       data-controltype=''
       onSubmit='return false;'
       >
   <div class='form-group '>
     <div class='controls'>
-      <div class="form" id="controls_QS5wQZss" correct='-1' attempts='0'>
+      <div class="form" id="controls_1tt9SVrA" correct='-1' attempts='0'>
      Who was the first US president? 
 
     
@@ -728,8 +730,9 @@ var ID = "QS5wQZss"
     </br>
 <div class="input-group"
      aria-label="Input form: last name">
-    <input id="QS5wQZss"
+    <input id="1tt9SVrA"
            type="text"
+           
            class="form-control qqinput"
            placeholder="last name"
            aria-label="last name">
@@ -737,14 +740,14 @@ var ID = "QS5wQZss"
 
      </div>
     </div>
-    <div id='QS5wQZss_message'
+    <div id='1tt9SVrA_message'
          class='qqmessage'
          style="padding-bottom: 15px">
     </div>
 </form>
 <script>
-document.getElementById('controls_QS5wQZss').addEventListener("quizquestion_answer", (e) => {
-	      var o = document.getElementById('controls_QS5wQZss')
+document.getElementById('controls_1tt9SVrA').addEventListener("quizquestion_answer", (e) => {
+	      var o = document.getElementById('controls_1tt9SVrA')
 	      var atts = Number(o.getAttribute("attempts"))
 	      o.setAttribute("correct",  e.detail.correct);
 	      o.setAttribute("attempts", atts + 1)
@@ -752,13 +755,13 @@ document.getElementById('controls_QS5wQZss').addEventListener("quizquestion_answ
 </script>
 
 <script text='text/javascript'>
-document.getElementById("QS5wQZss").addEventListener("change", function() {
+document.getElementById("1tt9SVrA").addEventListener("change", function() {
   var correct = RegExp('^Washington').test(this.value.replaceAll(RegExp('', 'g'), ''));
-  var msgBox = document.getElementById('QS5wQZss_message');
+  var msgBox = document.getElementById('1tt9SVrA_message');
   
   if(correct) {
     msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'> <span>✔&nbsp; Correct </span> </div>";
-    var explanation = document.getElementById("explanation_QS5wQZss")
+    var explanation = document.getElementById("explanation_1tt9SVrA")
     if (explanation != null) {
        explanation.style.display = "none";
     }
@@ -769,7 +772,7 @@ document.getElementById("QS5wQZss").addEventListener("change", function() {
 
   } else {
     msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'> <span>Χ&nbsp; Incorrect </span> </div>";
-    var explanation = document.getElementById("explanation_QS5wQZss")
+    var explanation = document.getElementById("explanation_1tt9SVrA")
     if (explanation != null) {
        explanation.style.display = "block";
     }
@@ -788,17 +791,17 @@ choices = (&quot;XC90&quot;, &quot;A4&quot;, &quot;GLE 350&quot;, &quot;X1&quot;
 answer = (1,3,2) # indices of choices that match correct answer for each question
 matchq(questions, choices, answer;
     label=&quot;For each question, select the correct answer.&quot;)</code></pre><script>
-var ID = "5g05ExNa"
+var ID = "nbrlXksz"
 </script>
 <form class="mx-2 my-3 mw-100 qqquestion"
       name='WeaveQuestion'
-      data-id='5g05ExNa'
+      data-id='nbrlXksz'
       data-controltype=''
       onSubmit='return false;'
       >
   <div class='form-group '>
     <div class='controls'>
-      <div class="form" id="controls_5g05ExNa" correct='-1' attempts='0'>
+      <div class="form" id="controls_nbrlXksz" correct='-1' attempts='0'>
      For each question, select the correct answer. 
 
     
@@ -807,8 +810,8 @@ var ID = "5g05ExNa"
     <div style="display: grid;grid-template-columns: 1fr 5fr">
 
 <div>
-  <select name="select_5g05ExNa"
-          id="select_5g05ExNa"
+  <select name="select_nbrlXksz"
+          id="select_nbrlXksz"
           aria-label="Select one">
      <option value=0 selected="selected">Choose...</option>
      <option value="1"> XC90 
@@ -826,8 +829,8 @@ var ID = "5g05ExNa"
 
 
 <div>
-  <select name="select_5g05ExNa"
-          id="select_5g05ExNa"
+  <select name="select_nbrlXksz"
+          id="select_nbrlXksz"
           aria-label="Select one">
      <option value=0 selected="selected">Choose...</option>
      <option value="1"> XC90 
@@ -845,8 +848,8 @@ var ID = "5g05ExNa"
 
 
 <div>
-  <select name="select_5g05ExNa"
-          id="select_5g05ExNa"
+  <select name="select_nbrlXksz"
+          id="select_nbrlXksz"
           aria-label="Select one">
      <option value=0 selected="selected">Choose...</option>
      <option value="1"> XC90 
@@ -867,14 +870,14 @@ var ID = "5g05ExNa"
 
      </div>
     </div>
-    <div id='5g05ExNa_message'
+    <div id='nbrlXksz_message'
          class='qqmessage'
          style="padding-bottom: 15px">
     </div>
 </form>
 <script>
-document.getElementById('controls_5g05ExNa').addEventListener("quizquestion_answer", (e) => {
-	      var o = document.getElementById('controls_5g05ExNa')
+document.getElementById('controls_nbrlXksz').addEventListener("quizquestion_answer", (e) => {
+	      var o = document.getElementById('controls_nbrlXksz')
 	      var atts = Number(o.getAttribute("attempts"))
 	      o.setAttribute("correct",  e.detail.correct);
 	      o.setAttribute("attempts", atts + 1)
@@ -885,18 +888,18 @@ document.getElementById('controls_5g05ExNa').addEventListener("quizquestion_answ
       function callback(element, iterator) {
 	  element.addEventListener("change", function() {
 	      var a = [];
-	      var selectors = document.querySelectorAll('[id ^= "select_5g05ExNa"]');
+	      var selectors = document.querySelectorAll('[id ^= "select_nbrlXksz"]');
 	      Array.prototype.forEach.call(selectors, function (element, iterator) {
 		 a.push(element.value);
 	      })
               var b = ["1", "3", "2"];
               // https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
               var correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
-              var msgBox = document.getElementById('5g05ExNa_message');
+              var msgBox = document.getElementById('nbrlXksz_message');
               
   if(correct) {
     msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'> <span>✔&nbsp; Correct </span> </div>";
-    var explanation = document.getElementById("explanation_5g05ExNa")
+    var explanation = document.getElementById("explanation_nbrlXksz")
     if (explanation != null) {
        explanation.style.display = "none";
     }
@@ -907,7 +910,7 @@ document.getElementById('controls_5g05ExNa').addEventListener("quizquestion_answ
 
   } else {
     msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'> <span>Χ&nbsp; Not yet </span> </div>";
-    var explanation = document.getElementById("explanation_5g05ExNa")
+    var explanation = document.getElementById("explanation_nbrlXksz")
     if (explanation != null) {
        explanation.style.display = "block";
     }
@@ -920,23 +923,23 @@ document.getElementById('controls_5g05ExNa').addEventListener("quizquestion_answ
 
 	  })
       }
-      Array.prototype.forEach.call(document.querySelectorAll('[id ^= "select_5g05ExNa"]'), callback);
+      Array.prototype.forEach.call(document.querySelectorAll('[id ^= "select_nbrlXksz"]'), callback);
 
 </script>
 <p>The above shows that the number of choices need not match the number of questions. When they do, a dictionary can be used to specify the choices and the answers will be computed:</p><pre><code class="language-julia hljs">d = Dict(&quot;Select a Volvo&quot; =&gt; &quot;XC90&quot;, &quot;Select a Mercedes&quot; =&gt; &quot;GLE 350&quot;,
          &quot;Select an Audi&quot; =&gt; &quot;A4&quot;)
 matchq(d, label=&quot;Match the manufacture with a model&quot;)</code></pre><script>
-var ID = "fDK9NTrX"
+var ID = "L1y00UYb"
 </script>
 <form class="mx-2 my-3 mw-100 qqquestion"
       name='WeaveQuestion'
-      data-id='fDK9NTrX'
+      data-id='L1y00UYb'
       data-controltype=''
       onSubmit='return false;'
       >
   <div class='form-group '>
     <div class='controls'>
-      <div class="form" id="controls_fDK9NTrX" correct='-1' attempts='0'>
+      <div class="form" id="controls_L1y00UYb" correct='-1' attempts='0'>
      Match the manufacture with a model 
 
     
@@ -945,15 +948,15 @@ var ID = "fDK9NTrX"
     <div style="display: grid;grid-template-columns: 1fr 5fr">
 
 <div>
-  <select name="select_fDK9NTrX"
-          id="select_fDK9NTrX"
+  <select name="select_L1y00UYb"
+          id="select_L1y00UYb"
           aria-label="Select one">
      <option value=0 selected="selected">Choose...</option>
      <option value="1"> A4 
 </option>
-     <option value="2"> GLE 350 
+     <option value="2"> XC90 
 </option>
-     <option value="3"> XC90 
+     <option value="3"> GLE 350 
 </option>
   </select>
 </div>
@@ -962,15 +965,15 @@ var ID = "fDK9NTrX"
 
 
 <div>
-  <select name="select_fDK9NTrX"
-          id="select_fDK9NTrX"
+  <select name="select_L1y00UYb"
+          id="select_L1y00UYb"
           aria-label="Select one">
      <option value=0 selected="selected">Choose...</option>
      <option value="1"> A4 
 </option>
-     <option value="2"> GLE 350 
+     <option value="2"> XC90 
 </option>
-     <option value="3"> XC90 
+     <option value="3"> GLE 350 
 </option>
   </select>
 </div>
@@ -979,15 +982,15 @@ var ID = "fDK9NTrX"
 
 
 <div>
-  <select name="select_fDK9NTrX"
-          id="select_fDK9NTrX"
+  <select name="select_L1y00UYb"
+          id="select_L1y00UYb"
           aria-label="Select one">
      <option value=0 selected="selected">Choose...</option>
      <option value="1"> A4 
 </option>
-     <option value="2"> GLE 350 
+     <option value="2"> XC90 
 </option>
-     <option value="3"> XC90 
+     <option value="3"> GLE 350 
 </option>
   </select>
 </div>
@@ -999,14 +1002,14 @@ var ID = "fDK9NTrX"
 
      </div>
     </div>
-    <div id='fDK9NTrX_message'
+    <div id='L1y00UYb_message'
          class='qqmessage'
          style="padding-bottom: 15px">
     </div>
 </form>
 <script>
-document.getElementById('controls_fDK9NTrX').addEventListener("quizquestion_answer", (e) => {
-	      var o = document.getElementById('controls_fDK9NTrX')
+document.getElementById('controls_L1y00UYb').addEventListener("quizquestion_answer", (e) => {
+	      var o = document.getElementById('controls_L1y00UYb')
 	      var atts = Number(o.getAttribute("attempts"))
 	      o.setAttribute("correct",  e.detail.correct);
 	      o.setAttribute("attempts", atts + 1)
@@ -1017,18 +1020,18 @@ document.getElementById('controls_fDK9NTrX').addEventListener("quizquestion_answ
       function callback(element, iterator) {
 	  element.addEventListener("change", function() {
 	      var a = [];
-	      var selectors = document.querySelectorAll('[id ^= "select_fDK9NTrX"]');
+	      var selectors = document.querySelectorAll('[id ^= "select_L1y00UYb"]');
 	      Array.prototype.forEach.call(selectors, function (element, iterator) {
 		 a.push(element.value);
 	      })
-              var b = ["2", "3", "1"];
+              var b = ["3", "2", "1"];
               // https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
               var correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
-              var msgBox = document.getElementById('fDK9NTrX_message');
+              var msgBox = document.getElementById('L1y00UYb_message');
               
   if(correct) {
     msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'> <span>✔&nbsp; Correct </span> </div>";
-    var explanation = document.getElementById("explanation_fDK9NTrX")
+    var explanation = document.getElementById("explanation_L1y00UYb")
     if (explanation != null) {
        explanation.style.display = "none";
     }
@@ -1039,7 +1042,7 @@ document.getElementById('controls_fDK9NTrX').addEventListener("quizquestion_answ
 
   } else {
     msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'> <span>Χ&nbsp; Not yet </span> </div>";
-    var explanation = document.getElementById("explanation_fDK9NTrX")
+    var explanation = document.getElementById("explanation_L1y00UYb")
     if (explanation != null) {
        explanation.style.display = "block";
     }
@@ -1052,50 +1055,50 @@ document.getElementById('controls_fDK9NTrX').addEventListener("quizquestion_answ
 
 	  })
       }
-      Array.prototype.forEach.call(document.querySelectorAll('[id ^= "select_fDK9NTrX"]'), callback);
+      Array.prototype.forEach.call(document.querySelectorAll('[id ^= "select_L1y00UYb"]'), callback);
 
 </script>
 <h3 id="Fill-in-the-blank-questions"><a class="docs-heading-anchor" href="#Fill-in-the-blank-questions">Fill-in-the-blank questions</a><a id="Fill-in-the-blank-questions-1"></a><a class="docs-heading-anchor-permalink" href="#Fill-in-the-blank-questions" title="Permalink"></a></h3><p>Fill-in-the blank questions can be asked with <code>fillblankq</code>. Answers can be gathered and graded in different manners.</p><pre><code class="language-julia hljs">question = &quot;The quick brown fox jumped over the ____ dog&quot;
 fillblankq(question, (&quot;lazy&quot;, &quot;brown&quot;, &quot;sleeping&quot;), 1)</code></pre><script>
-var ID = "7UJhyWRa"
+var ID = "HXJWMfAY"
 </script>
 <form class="mx-2 my-3 mw-100 qqquestion"
       name='WeaveQuestion'
-      data-id='7UJhyWRa'
+      data-id='HXJWMfAY'
       data-controltype=''
       onSubmit='return false;'
       >
   <div class='form-group '>
     <div class='controls'>
-      <div class="form" id="controls_7UJhyWRa" correct='-1' attempts='0'>
+      <div class="form" id="controls_HXJWMfAY" correct='-1' attempts='0'>
 
     <div style="padding-top: 5px">
-     The quick brown fox jumped over the   <select name="select_7UJhyWRa"
-          id="select_7UJhyWRa"
+     The quick brown fox jumped over the   <select name="select_HXJWMfAY"
+          id="select_HXJWMfAY"
           aria-label="Make a selection"> TTT
      <option value="0"
              selected="selected">Choose...</option>
-     <option value="1"> lazy 
+     <option value="1"> sleeping 
 </option>
-     <option value="2"> brown 
+     <option value="2"> lazy 
 </option>
-     <option value="3"> sleeping 
+     <option value="3"> brown 
 </option>
   </select>
-<label for="select_7UJhyWRa"
+<label for="select_HXJWMfAY"
        style="left: -100vw; position: absolute;">Make a selection</label>
  dog 
 
          </div>
     </div>
-    <div id='7UJhyWRa_message'
+    <div id='HXJWMfAY_message'
          class='qqmessage'
          style="padding-bottom: 15px">
     </div>
 </form>
 <script>
-document.getElementById('controls_7UJhyWRa').addEventListener("quizquestion_answer", (e) => {
-	      var o = document.getElementById('controls_7UJhyWRa')
+document.getElementById('controls_HXJWMfAY').addEventListener("quizquestion_answer", (e) => {
+	      var o = document.getElementById('controls_HXJWMfAY')
 	      var atts = Number(o.getAttribute("attempts"))
 	      o.setAttribute("correct",  e.detail.correct);
 	      o.setAttribute("attempts", atts + 1)
@@ -1106,18 +1109,18 @@ document.getElementById('controls_7UJhyWRa').addEventListener("quizquestion_answ
       function callback(element, iterator) {
 	  element.addEventListener("change", function() {
 	      var a = [];
-	      var selectors = document.querySelectorAll('[id ^= "select_7UJhyWRa"]');
+	      var selectors = document.querySelectorAll('[id ^= "select_HXJWMfAY"]');
 	      Array.prototype.forEach.call(selectors, function (element, iterator) {
 		 a.push(element.value);
 	      })
-              var b = ['1'];
+              var b = ['2'];
               // https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
               var correct =  (a.length === b.length && a.find((v,i) => v !== b[i]) === undefined)
-              var msgBox = document.getElementById('7UJhyWRa_message');
+              var msgBox = document.getElementById('HXJWMfAY_message');
               
   if(correct) {
     msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'> <span>✔&nbsp; Correct </span> </div>";
-    var explanation = document.getElementById("explanation_7UJhyWRa")
+    var explanation = document.getElementById("explanation_HXJWMfAY")
     if (explanation != null) {
        explanation.style.display = "none";
     }
@@ -1128,7 +1131,7 @@ document.getElementById('controls_7UJhyWRa').addEventListener("quizquestion_answ
 
   } else {
     msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'> <span>Χ&nbsp; Not yet </span> </div>";
-    var explanation = document.getElementById("explanation_7UJhyWRa")
+    var explanation = document.getElementById("explanation_HXJWMfAY")
     if (explanation != null) {
        explanation.style.display = "block";
     }
@@ -1141,43 +1144,43 @@ document.getElementById('controls_7UJhyWRa').addEventListener("quizquestion_answ
 
 	  })
       }
-      Array.prototype.forEach.call(document.querySelectorAll('[id ^= "select_7UJhyWRa"]'), callback);
+      Array.prototype.forEach.call(document.querySelectorAll('[id ^= "select_HXJWMfAY"]'), callback);
 
 </script>
 <hr/><p>(like <code>stringq</code>)</p><pre><code class="language-julia hljs">question = &quot;The quick brown fox jumped over the ____ dog&quot;
 fillblankq(question, r&quot;^lazy$&quot;)</code></pre><script>
-var ID = "toBcXRdU"
+var ID = "o7tZl09X"
 </script>
 <form class="mx-2 my-3 mw-100 qqquestion"
       name='WeaveQuestion'
-      data-id='toBcXRdU'
+      data-id='o7tZl09X'
       data-controltype=''
       onSubmit='return false;'
       >
   <div class='form-group '>
     <div class='controls'>
-      <div class="form" id="controls_toBcXRdU" correct='-1' attempts='0'>
+      <div class="form" id="controls_o7tZl09X" correct='-1' attempts='0'>
 
     <div style="padding-top: 5px">
-     The quick brown fox jumped over the <input id="toBcXRdU"
+     The quick brown fox jumped over the <input id="o7tZl09X"
        type="text"
        class="form- qqfillinblank"
        placeholder="answer here..."
        aria-label="Fill in the blank">
-<label for="toBcXRdU"
+<label for="o7tZl09X"
        style="left: -100vw; position: absolute;">Fill in the blank</label>
  dog 
 
          </div>
     </div>
-    <div id='toBcXRdU_message'
+    <div id='o7tZl09X_message'
          class='qqmessage'
          style="padding-bottom: 15px">
     </div>
 </form>
 <script>
-document.getElementById('controls_toBcXRdU').addEventListener("quizquestion_answer", (e) => {
-	      var o = document.getElementById('controls_toBcXRdU')
+document.getElementById('controls_o7tZl09X').addEventListener("quizquestion_answer", (e) => {
+	      var o = document.getElementById('controls_o7tZl09X')
 	      var atts = Number(o.getAttribute("attempts"))
 	      o.setAttribute("correct",  e.detail.correct);
 	      o.setAttribute("attempts", atts + 1)
@@ -1185,13 +1188,13 @@ document.getElementById('controls_toBcXRdU').addEventListener("quizquestion_answ
 </script>
 
 <script text='text/javascript'>
-document.getElementById("toBcXRdU").addEventListener("change", function() {
+document.getElementById("o7tZl09X").addEventListener("change", function() {
   var correct = RegExp('^lazy$').test(this.value);
-  var msgBox = document.getElementById('toBcXRdU_message');
+  var msgBox = document.getElementById('o7tZl09X_message');
   
   if(correct) {
     msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'> <span>✔&nbsp; Correct </span> </div>";
-    var explanation = document.getElementById("explanation_toBcXRdU")
+    var explanation = document.getElementById("explanation_o7tZl09X")
     if (explanation != null) {
        explanation.style.display = "none";
     }
@@ -1202,7 +1205,7 @@ document.getElementById("toBcXRdU").addEventListener("change", function() {
 
   } else {
     msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'> <span>Χ&nbsp; Incorrect </span> </div>";
-    var explanation = document.getElementById("explanation_toBcXRdU")
+    var explanation = document.getElementById("explanation_o7tZl09X")
     if (explanation != null) {
        explanation.style.display = "block";
     }
@@ -1218,17 +1221,17 @@ document.getElementById("toBcXRdU").addEventListener("change", function() {
 </script>
 <hr/><p>(like <code>scriptq</code>)</p><pre><code class="language-julia hljs">funct = &quot;(input) =&gt; input &gt;= 42&quot;
 scriptq(funct, label=&quot;a large number&quot;, explanation=&quot;should be at least 6 * 7&quot;)</code></pre><script>
-var ID = "5AL9LXqx"
+var ID = "tov3LzXC"
 </script>
 <form class="mx-2 my-3 mw-100 qqquestion"
       name='WeaveQuestion'
-      data-id='5AL9LXqx'
+      data-id='tov3LzXC'
       data-controltype=''
       onSubmit='return false;'
       >
   <div class='form-group '>
     <div class='controls'>
-      <div class="form" id="controls_5AL9LXqx" correct='-1' attempts='0'>
+      <div class="form" id="controls_tov3LzXC" correct='-1' attempts='0'>
      a large number 
 
     
@@ -1237,8 +1240,9 @@ var ID = "5AL9LXqx"
     </br>
 <div class="input-group"
      aria-label="Input form: Text answer">
-    <input id="5AL9LXqx"
+    <input id="tov3LzXC"
            type="text"
+           
            class="form-control qqinput"
            placeholder="Text answer"
            aria-label="Text answer">
@@ -1246,10 +1250,10 @@ var ID = "5AL9LXqx"
 
      </div>
     </div>
-    <div id='5AL9LXqx_message'
+    <div id='tov3LzXC_message'
          class='qqmessage'
          style="padding-bottom: 15px">
-     <div id="explanation_5AL9LXqx"
+     <div id="explanation_tov3LzXC"
           class='pluto-output admonition alert alert-danger qqexplanation'
           style="display:none;background-color:#9558B21A;">
       should be at least 6 * 7 
@@ -1258,8 +1262,8 @@ var ID = "5AL9LXqx"
     </div>
 </form>
 <script>
-document.getElementById('controls_5AL9LXqx').addEventListener("quizquestion_answer", (e) => {
-	      var o = document.getElementById('controls_5AL9LXqx')
+document.getElementById('controls_tov3LzXC').addEventListener("quizquestion_answer", (e) => {
+	      var o = document.getElementById('controls_tov3LzXC')
 	      var atts = Number(o.getAttribute("attempts"))
 	      o.setAttribute("correct",  e.detail.correct);
 	      o.setAttribute("attempts", atts + 1)
@@ -1267,13 +1271,13 @@ document.getElementById('controls_5AL9LXqx').addEventListener("quizquestion_answ
 </script>
 
 <script text='text/javascript'>
-document.getElementById("5AL9LXqx").addEventListener("change", function() {
+document.getElementById("tov3LzXC").addEventListener("change", function() {
   var correct = ((input) => input >= 42)(this.value);
-  var msgBox = document.getElementById('5AL9LXqx_message');
+  var msgBox = document.getElementById('tov3LzXC_message');
   
   if(correct) {
     msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'> <span>✔&nbsp; Correct </span> </div>";
-    var explanation = document.getElementById("explanation_5AL9LXqx")
+    var explanation = document.getElementById("explanation_tov3LzXC")
     if (explanation != null) {
        explanation.style.display = "none";
     }
@@ -1284,7 +1288,7 @@ document.getElementById("5AL9LXqx").addEventListener("change", function() {
 
   } else {
     msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'> <span>Χ&nbsp; Incorrect </span> </div>";
-    var explanation = document.getElementById("explanation_5AL9LXqx")
+    var explanation = document.getElementById("explanation_tov3LzXC")
     if (explanation != null) {
        explanation.style.display = "block";
     }
@@ -1300,38 +1304,38 @@ document.getElementById("5AL9LXqx").addEventListener("change", function() {
 </script>
 <hr/><p>(like <code>numericq</code>)</p><pre><code class="language-julia hljs">question = &quot;____ `` + 2  = 4``&quot;
 fillblankq(question, 2)</code></pre><script>
-var ID = "gBGadlFe"
+var ID = "sFirxIs2"
 </script>
 <form class="mx-2 my-3 mw-100 qqquestion"
       name='WeaveQuestion'
-      data-id='gBGadlFe'
+      data-id='sFirxIs2'
       data-controltype=''
       onSubmit='return false;'
       >
   <div class='form-group '>
     <div class='controls'>
-      <div class="form" id="controls_gBGadlFe" correct='-1' attempts='0'>
+      <div class="form" id="controls_sFirxIs2" correct='-1' attempts='0'>
 
     <div style="padding-top: 5px">
-     <input id="gBGadlFe"
+     <input id="sFirxIs2"
        type="number"
        class="form- qqfillinblank"
        placeholder="answer here..."
        aria-label="Fill in the blank">
-<label for="gBGadlFe"
+<label for="sFirxIs2"
        style="left: -100vw; position: absolute;">Fill in the blank</label>
  $+ 2  = 4$ 
 
          </div>
     </div>
-    <div id='gBGadlFe_message'
+    <div id='sFirxIs2_message'
          class='qqmessage'
          style="padding-bottom: 15px">
     </div>
 </form>
 <script>
-document.getElementById('controls_gBGadlFe').addEventListener("quizquestion_answer", (e) => {
-	      var o = document.getElementById('controls_gBGadlFe')
+document.getElementById('controls_sFirxIs2').addEventListener("quizquestion_answer", (e) => {
+	      var o = document.getElementById('controls_sFirxIs2')
 	      var atts = Number(o.getAttribute("attempts"))
 	      o.setAttribute("correct",  e.detail.correct);
 	      o.setAttribute("attempts", atts + 1)
@@ -1339,13 +1343,13 @@ document.getElementById('controls_gBGadlFe').addEventListener("quizquestion_answ
 </script>
 
 <script text='text/javascript'>
-document.getElementById("gBGadlFe").addEventListener("change", function() {
+document.getElementById("sFirxIs2").addEventListener("change", function() {
   var correct = (Math.abs(this.value - 2) <= 0);
-  var msgBox = document.getElementById('gBGadlFe_message');
+  var msgBox = document.getElementById('sFirxIs2_message');
   
   if(correct) {
     msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'> <span>✔&nbsp; Correct </span> </div>";
-    var explanation = document.getElementById("explanation_gBGadlFe")
+    var explanation = document.getElementById("explanation_sFirxIs2")
     if (explanation != null) {
        explanation.style.display = "none";
     }
@@ -1356,7 +1360,7 @@ document.getElementById("gBGadlFe").addEventListener("change", function() {
 
   } else {
     msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'> <span>Χ&nbsp; Incorrect </span> </div>";
-    var explanation = document.getElementById("explanation_gBGadlFe")
+    var explanation = document.getElementById("explanation_sFirxIs2")
     if (explanation != null) {
        explanation.style.display = "block";
     }
@@ -1381,38 +1385,38 @@ imgfile = tempname() * &quot;.png&quot;
 savefig(p, imgfile)
 hotspotq(imgfile, (0,1/2), (0, 1/2),
     label=L&quot;What best matches the graph of $f(x) = -x^4$?&quot;)</code></pre><script>
-var ID = "HbwoNnhP"
+var ID = "uhEXbkDr"
 </script>
 <form class="mx-2 my-3 mw-100 qqquestion"
       name='WeaveQuestion'
-      data-id='HbwoNnhP'
+      data-id='uhEXbkDr'
       data-controltype=''
       onSubmit='return false;'
       >
   <div class='form-group '>
     <div class='controls'>
-      <div class="form" id="controls_HbwoNnhP" correct='-1' attempts='0'>
+      <div class="form" id="controls_uhEXbkDr" correct='-1' attempts='0'>
      What best matches the graph of $f(x) = -x^4$? 
 
     
 
     <div style="padding-top: 5px">
     <div aria-label="Hotspot question for selection from an image">
-<img id="hotspot_HbwoNnhP"
+<img id="hotspot_uhEXbkDr"
      alt="Image for hotspot selection"
      src="data:image/gif;base64,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" />
 </div>
 
      </div>
     </div>
-    <div id='HbwoNnhP_message'
+    <div id='uhEXbkDr_message'
          class='qqmessage'
          style="padding-bottom: 15px">
     </div>
 </form>
 <script>
-document.getElementById('controls_HbwoNnhP').addEventListener("quizquestion_answer", (e) => {
-	      var o = document.getElementById('controls_HbwoNnhP')
+document.getElementById('controls_uhEXbkDr').addEventListener("quizquestion_answer", (e) => {
+	      var o = document.getElementById('controls_uhEXbkDr')
 	      var atts = Number(o.getAttribute("attempts"))
 	      o.setAttribute("correct",  e.detail.correct);
 	      o.setAttribute("attempts", atts + 1)
@@ -1420,7 +1424,7 @@ document.getElementById('controls_HbwoNnhP').addEventListener("quizquestion_answ
 </script>
 
 <script text='text/javascript'>
-  document.getElementById("hotspot_HbwoNnhP").addEventListener("click", function(e) {
+  document.getElementById("hotspot_uhEXbkDr").addEventListener("click", function(e) {
       var u = e.offsetX;
       var v = e.offsetY;
       var w = this.offsetWidth;
@@ -1430,11 +1434,11 @@ document.getElementById('controls_HbwoNnhP').addEventListener("quizquestion_answ
       var y = (h-v)/h
 
       var correct = (x >= 0.0 && x <= 0.5 && y >= 0.0 && y <= 0.5);
-      var msgBox = document.getElementById('HbwoNnhP_message');
+      var msgBox = document.getElementById('uhEXbkDr_message');
       
   if(correct) {
     msgBox.innerHTML = "<div class='pluto-output admonition note alert alert-success'> <span>✔&nbsp; Correct </span> </div>";
-    var explanation = document.getElementById("explanation_HbwoNnhP")
+    var explanation = document.getElementById("explanation_uhEXbkDr")
     if (explanation != null) {
        explanation.style.display = "none";
     }
@@ -1445,7 +1449,7 @@ document.getElementById('controls_HbwoNnhP').addEventListener("quizquestion_answ
 
   } else {
     msgBox.innerHTML = "<div class='pluto-output admonition alert alert-danger'> <span>Χ&nbsp; Incorrect </span> </div>";
-    var explanation = document.getElementById("explanation_HbwoNnhP")
+    var explanation = document.getElementById("explanation_uhEXbkDr")
     if (explanation != null) {
        explanation.style.display = "block";
     }
@@ -1462,31 +1466,31 @@ document.getElementById('controls_HbwoNnhP').addEventListener("quizquestion_answ
 </script>
 <hr/><p>The <code>PlotlyLight</code> package provides a very lightweight interface for producing JavaScript based graphs with the <code>plotly.js</code> library. The <code>plotlylight</code> type allows questions involving an <code>(x,y)</code> selection from a graph (<code>(x,y)</code> is a point on a graph).</p><div class="admonition is-info"><header class="admonition-header">Note</header><div class="admonition-body"><p>The <code>plotlylight</code> question type does not work with <code>Documenter</code>.</p></div></div><h2 id="Reference"><a class="docs-heading-anchor" href="#Reference">Reference</a><a id="Reference-1"></a><a class="docs-heading-anchor-permalink" href="#Reference" title="Permalink"></a></h2><p>The available question types are listed below. If others are desirable, open an issue on the GitHub repository.</p><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.radioq" href="#QuizQuestions.radioq"><code>QuizQuestions.radioq</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">radioq(choices, answer; label=&quot;&quot;, hint=&quot;&quot;, explanation=&quot;&quot;, keep_order=false)</code></pre><p>Multiple choice question (one of several)</p><p>Arguments:</p><ul><li><p><code>choices</code>: indexable collection of choices. As seen in the example, choices can be formatted with markdown.</p></li><li><p><code>answer::Int</code>: index of correct choice</p></li><li><p><code>keep_order::Boolean</code>: if <code>true</code> keeps display order of choices, otherwise they are shuffled</p></li><li><p><code>inline::Bool</code>: hint to render inline (or not) if supported</p></li><li><p><code>label</code>: optional label for the form element</p></li><li><p><code>hint</code>: optional plain-text hint that can be seen on hover</p></li><li><p><code>explanation</code>: text to display on a wrong selection</p></li></ul><p><strong>Example:</strong></p><pre><code class="nohighlight hljs">choices = [&quot;beta&quot;, raw&quot;``\beta``&quot;, &quot;`beta`&quot;]
 answer = 2
-radioq(choices, answer; hint=&quot;Which is the Greek symbol?&quot;)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/19460036ec90078704dd2baaa26d28df19049161/src/question_types.jl#L142-L171">source</a></section></article><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.buttonq" href="#QuizQuestions.buttonq"><code>QuizQuestions.buttonq</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">buttonq(choices, answer; label=&quot;&quot;, hint=&quot;&quot;, [colors])</code></pre><p>Use buttons for multiple choice (one of many). Show answer after first click.</p><p>Arguments:</p><ul><li><p><code>choices</code>: indexable collection of choices. As seen in the example, choices can be formatted with markdown.</p></li><li><p><code>answer::Int</code>: index of correct choice</p></li><li><p><code>label</code>: optional label for the form element</p></li><li><p><code>hint</code>: optional plain-text hint that can be seen on hover</p></li><li><p><code>explanation</code>: text to display on a wrong selection</p></li><li><p><code>colors</code> a named tuple with colors for <code>GREEN</code>, <code>RED</code>, and <code>BLUE</code></p></li></ul><p><strong>Example:</strong></p><pre><code class="nohighlight hljs">choices = [&quot;beta&quot;, raw&quot;``\beta``&quot;, &quot;`beta`&quot;]
+radioq(choices, answer; hint=&quot;Which is the Greek symbol?&quot;)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/6e3245a790f03fba07cbaefeea994feb4e2a01f0/src/question_types.jl#L142-L171">source</a></section></article><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.buttonq" href="#QuizQuestions.buttonq"><code>QuizQuestions.buttonq</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">buttonq(choices, answer; label=&quot;&quot;, hint=&quot;&quot;, [colors])</code></pre><p>Use buttons for multiple choice (one of many). Show answer after first click.</p><p>Arguments:</p><ul><li><p><code>choices</code>: indexable collection of choices. As seen in the example, choices can be formatted with markdown.</p></li><li><p><code>answer::Int</code>: index of correct choice</p></li><li><p><code>label</code>: optional label for the form element</p></li><li><p><code>hint</code>: optional plain-text hint that can be seen on hover</p></li><li><p><code>explanation</code>: text to display on a wrong selection</p></li><li><p><code>colors</code> a named tuple with colors for <code>GREEN</code>, <code>RED</code>, and <code>BLUE</code></p></li></ul><p><strong>Example:</strong></p><pre><code class="nohighlight hljs">choices = [&quot;beta&quot;, raw&quot;``\beta``&quot;, &quot;`beta`&quot;]
 answer = 2
 explanation = &quot;The other two answers are not a symbol, but a name&quot;
 buttonq(choices, answer; label=&quot;Which is the Greek symbol?&quot;,
-        explanation=explanation)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/19460036ec90078704dd2baaa26d28df19049161/src/question_types.jl#L206-L234">source</a></section></article><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.yesnoq" href="#QuizQuestions.yesnoq"><code>QuizQuestions.yesnoq</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">yesnoq(ans; [label, hint, explanation])</code></pre><p>Boolean question with <code>yes</code> or <code>no</code> labels.</p><p>Examples:</p><pre><code class="nohighlight hljs">yesnoq(&quot;yes&quot;)
-yesnoq(true)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/19460036ec90078704dd2baaa26d28df19049161/src/question_types.jl#L451-L463">source</a></section></article><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.booleanq" href="#QuizQuestions.booleanq"><code>QuizQuestions.booleanq</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">booleanq(ans; [label, hint, explanation])</code></pre><p>True of false questions:</p><p><strong>Example:</strong></p><pre><code class="nohighlight hljs">booleanq(true; label=&quot;Does it hurt...&quot;)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/19460036ec90078704dd2baaa26d28df19049161/src/question_types.jl#L429-L439">source</a></section></article><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.multiq" href="#QuizQuestions.multiq"><code>QuizQuestions.multiq</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">multiq(choices, answers; label=&quot;&quot;, hint=&quot;&quot;, explanation=&quot;&quot;, keep_order=false)</code></pre><p>Multiple choice question (one <em>or more</em> of several)</p><p>Arguments:</p><ul><li><p><code>choices</code>: indexable collection of choices. As seen in the example, choices can be formatted with markdown.</p></li><li><p><code>answers::Vector{Int}</code>: index of correct choice(s)</p></li><li><p><code>keep_order::Boolean</code>: if <code>true</code> keeps display order of choices, otherwise they are shuffled</p></li><li><p><code>inline::Bool</code>: hint to render inline (or not) if supported</p></li><li><p><code>label</code>: optional label for the form element</p></li><li><p><code>hint</code>: optional plain-text hint that can be seen on hover</p></li><li><p><code>explanation</code>: text to display on a wrong selection</p></li></ul><p><strong>Example</strong></p><pre><code class="nohighlight hljs">choices = [&quot;pear&quot;, &quot;tomato&quot;, &quot;banana&quot;]
+        explanation=explanation)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/6e3245a790f03fba07cbaefeea994feb4e2a01f0/src/question_types.jl#L206-L234">source</a></section></article><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.yesnoq" href="#QuizQuestions.yesnoq"><code>QuizQuestions.yesnoq</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">yesnoq(ans; [label, hint, explanation])</code></pre><p>Boolean question with <code>yes</code> or <code>no</code> labels.</p><p>Examples:</p><pre><code class="nohighlight hljs">yesnoq(&quot;yes&quot;)
+yesnoq(true)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/6e3245a790f03fba07cbaefeea994feb4e2a01f0/src/question_types.jl#L451-L463">source</a></section></article><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.booleanq" href="#QuizQuestions.booleanq"><code>QuizQuestions.booleanq</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">booleanq(ans; [label, hint, explanation])</code></pre><p>True of false questions:</p><p><strong>Example:</strong></p><pre><code class="nohighlight hljs">booleanq(true; label=&quot;Does it hurt...&quot;)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/6e3245a790f03fba07cbaefeea994feb4e2a01f0/src/question_types.jl#L429-L439">source</a></section></article><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.multiq" href="#QuizQuestions.multiq"><code>QuizQuestions.multiq</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">multiq(choices, answers; label=&quot;&quot;, hint=&quot;&quot;, explanation=&quot;&quot;, keep_order=false)</code></pre><p>Multiple choice question (one <em>or more</em> of several)</p><p>Arguments:</p><ul><li><p><code>choices</code>: indexable collection of choices. As seen in the example, choices can be formatted with markdown.</p></li><li><p><code>answers::Vector{Int}</code>: index of correct choice(s)</p></li><li><p><code>keep_order::Boolean</code>: if <code>true</code> keeps display order of choices, otherwise they are shuffled</p></li><li><p><code>inline::Bool</code>: hint to render inline (or not) if supported</p></li><li><p><code>label</code>: optional label for the form element</p></li><li><p><code>hint</code>: optional plain-text hint that can be seen on hover</p></li><li><p><code>explanation</code>: text to display on a wrong selection</p></li></ul><p><strong>Example</strong></p><pre><code class="nohighlight hljs">choices = [&quot;pear&quot;, &quot;tomato&quot;, &quot;banana&quot;]
 answers = [1,3]
-multiq(choices, answers; label=&quot;yellow foods&quot;, hint=&quot;not the red one!&quot;)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/19460036ec90078704dd2baaa26d28df19049161/src/question_types.jl#L260-L289">source</a></section></article><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.multibuttonq" href="#QuizQuestions.multibuttonq"><code>QuizQuestions.multibuttonq</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">multibuttonq(choices, answers; label=&quot;&quot;, hint=&quot;&quot;, explanation=&quot;&quot;, keep_order=false)</code></pre><p>Multiple choice question (zero, one <em>or more</em> of several) using buttons and a &quot;done&quot; button to reveal  the answers and whether the user input is correct.</p><p>Arguments:</p><ul><li><p><code>choices</code>: indexable collection of choices. As seen in the example, choices can be formatted with markdown.</p></li><li><p><code>answers::Vector{Int}</code>: index of correct choice(s)</p></li><li><p><code>keep_order::Boolean</code>: if <code>true</code> keeps display order of choices, otherwise they are shuffled</p></li><li><p><code>inline::Bool</code>: hint to render inline (or not) if supported</p></li><li><p><code>label</code>: optional label for the form element</p></li><li><p><code>hint</code>: optional plain-text hint that can be seen on hover</p></li><li><p><code>explanation</code>: text to display on a wrong selection</p></li></ul><p><strong>Example</strong></p><pre><code class="nohighlight hljs">choices = [&quot;pear&quot;, &quot;tomato&quot;, &quot;banana&quot;]
+multiq(choices, answers; label=&quot;yellow foods&quot;, hint=&quot;not the red one!&quot;)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/6e3245a790f03fba07cbaefeea994feb4e2a01f0/src/question_types.jl#L260-L289">source</a></section></article><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.multibuttonq" href="#QuizQuestions.multibuttonq"><code>QuizQuestions.multibuttonq</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">multibuttonq(choices, answers; label=&quot;&quot;, hint=&quot;&quot;, explanation=&quot;&quot;, keep_order=false)</code></pre><p>Multiple choice question (zero, one <em>or more</em> of several) using buttons and a &quot;done&quot; button to reveal  the answers and whether the user input is correct.</p><p>Arguments:</p><ul><li><p><code>choices</code>: indexable collection of choices. As seen in the example, choices can be formatted with markdown.</p></li><li><p><code>answers::Vector{Int}</code>: index of correct choice(s)</p></li><li><p><code>keep_order::Boolean</code>: if <code>true</code> keeps display order of choices, otherwise they are shuffled</p></li><li><p><code>inline::Bool</code>: hint to render inline (or not) if supported</p></li><li><p><code>label</code>: optional label for the form element</p></li><li><p><code>hint</code>: optional plain-text hint that can be seen on hover</p></li><li><p><code>explanation</code>: text to display on a wrong selection</p></li></ul><p><strong>Example</strong></p><pre><code class="nohighlight hljs">choices = [&quot;pear&quot;, &quot;tomato&quot;, &quot;banana&quot;]
 answers = [1,3]
-multibuttonq(choices, answers; label=&quot;yellow foods&quot;, hint=&quot;not the red one!&quot;)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/19460036ec90078704dd2baaa26d28df19049161/src/question_types.jl#L315-L344">source</a></section></article><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.matchq" href="#QuizQuestions.matchq"><code>QuizQuestions.matchq</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">matchq(questions, choices, answers; label=&quot;&quot;, hint=&quot;&quot;, explanation=&quot;&quot;)
+multibuttonq(choices, answers; label=&quot;yellow foods&quot;, hint=&quot;not the red one!&quot;)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/6e3245a790f03fba07cbaefeea994feb4e2a01f0/src/question_types.jl#L315-L344">source</a></section></article><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.matchq" href="#QuizQuestions.matchq"><code>QuizQuestions.matchq</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">matchq(questions, choices, answers; label=&quot;&quot;, hint=&quot;&quot;, explanation=&quot;&quot;)
 matchq(d::Dictionary; label=&quot;&quot;, hint=&quot;&quot;, explanation=&quot;&quot;)</code></pre><p>Use a drop down to select the right match for each question.</p><p>Arguments:</p><ul><li><p><code>questions</code>: Indexable collection of questions</p></li><li><p><code>choices</code>: indexable collection of choices for each question. As seen in the example, choices can be formatted with markdown.</p></li><li><p><code>answers</code>: for each question, the index from <code>choices</code> of the correct answer</p></li><li><p><code>d</code>: As an alternative, a dictionary of questions and answers can be specified. The choices will be taken from the values then randomized, the answers will be computed</p></li><li><p><code>label</code>: optional label for the form element</p></li><li><p><code>hint</code>: optional plain-text hint that can be seen on hover</p></li><li><p><code>explanation</code>: text to display on a wrong selection</p></li></ul><p><strong>Examples</strong></p><pre><code class="nohighlight hljs">questions = (&quot;Select a Volvo&quot;, &quot;Select a Mercedes&quot;, &quot;Select an Audi&quot;)
 choices = (&quot;XC90&quot;, &quot;A4&quot;, &quot;GLE 350&quot;, &quot;X1&quot;) # may be more than questions
 answer = (1,3,2) # indices of correct
 matchq(questions, choices, answer)</code></pre><p>This example uses a dictionary to specify the questions and choices:</p><pre><code class="nohighlight hljs">d = Dict(&quot;Select a Volvo&quot; =&gt; &quot;XC90&quot;, &quot;Select a Mercedes&quot; =&gt; &quot;GLE 250&quot;)
-matchq(d)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/19460036ec90078704dd2baaa26d28df19049161/src/question_types.jl#L369-L407">source</a></section></article><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.numericq" href="#QuizQuestions.numericq"><code>QuizQuestions.numericq</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">numericq(value, atol=1e-3; label=&quot;&quot;, hint=&quot;&quot;, units=&quot;&quot;, explanation=&quot;&quot;, placeholder=nothing)</code></pre><p>Match a numeric answer</p><p>Arguments:</p><ul><li><p><code>value</code>: the numeric answer</p></li><li><p><code>atol</code>: <span>$|\mathrm{answer} - \mathrm{value}| \le \mathrm{atol}$</span> is used to determine correctness</p></li><li><p><code>label</code>: optional label for the form element</p></li><li><p><code>hint</code>: optional plain-text hint that can be seen on hover</p></li><li><p><code>units</code>: a string indicating expected units</p></li><li><p><code>placeholder</code>: text shown when input widget is initially drawn</p></li></ul></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/19460036ec90078704dd2baaa26d28df19049161/src/question_types.jl#L97-L116">source</a></section></article><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.stringq" href="#QuizQuestions.stringq"><code>QuizQuestions.stringq</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">stringq(re::Regex; filter::Regex=r&quot;&quot;, label=&quot;&quot;, hint=&quot;&quot;, explanation=&quot;&quot;, placeholder=&quot;&quot;)</code></pre><p>Match string answer with regular expression</p><p>Arguments:</p><ul><li><p><code>re</code>: a regular expression for grading</p></li><li><p><code>filter</code>: a regular expression for what to remove from the string before matching (e.g. <code>r&quot;\s&quot;</code> to remove whitespace)</p></li><li><p><code>label</code>: optional label for the form element</p></li><li><p><code>hint</code>: optional plain-text hint that can be seen on hover</p></li><li><p><code>explanation</code>: text to display on a wrong selection</p></li><li><p><code>placeholder</code>: text shown when input widget is initially drawn</p></li></ul><p><strong>Example</strong></p><pre><code class="nohighlight hljs">re = Regex(&quot;^abc&quot;)
-stringq(re, label=&quot;First 3 letters...&quot;)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/19460036ec90078704dd2baaa26d28df19049161/src/question_types.jl#L12-L38">source</a></section></article><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.scriptq" href="#QuizQuestions.scriptq"><code>QuizQuestions.scriptq</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">scriptq(funct::AbstractString, runonce::AbstractString=&quot;&quot;; label=&quot;&quot;, hint=&quot;&quot;, explanation=&quot;&quot;, placeholder=&quot;&quot;)</code></pre><p>Check string answer with custom script</p><p>Arguments:</p><ul><li><p><code>funct</code>: a string representing the name of a JavaScript function/closure of signature <code>(str: string): boolean</code></p></li><li><p><code>label</code>: optional label for the form element</p></li><li><p><code>hint</code>: optional plain-text hint that can be seen on hover</p></li><li><p><code>explanation</code>: text to display on a wrong selection</p></li><li><p><code>placeholder</code>: text shown when input widget is initially drawn</p></li></ul><p><strong>Example</strong></p><pre><code class="language-javascript hljs">// in JavaScript
+matchq(d)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/6e3245a790f03fba07cbaefeea994feb4e2a01f0/src/question_types.jl#L369-L407">source</a></section></article><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.numericq" href="#QuizQuestions.numericq"><code>QuizQuestions.numericq</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">numericq(value, atol=1e-3; label=&quot;&quot;, hint=&quot;&quot;, units=&quot;&quot;, explanation=&quot;&quot;, placeholder=nothing)</code></pre><p>Match a numeric answer</p><p>Arguments:</p><ul><li><p><code>value</code>: the numeric answer</p></li><li><p><code>atol</code>: <span>$|\mathrm{answer} - \mathrm{value}| \le \mathrm{atol}$</span> is used to determine correctness</p></li><li><p><code>label</code>: optional label for the form element</p></li><li><p><code>hint</code>: optional plain-text hint that can be seen on hover</p></li><li><p><code>units</code>: a string indicating expected units</p></li><li><p><code>placeholder</code>: text shown when input widget is initially drawn</p></li></ul></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/6e3245a790f03fba07cbaefeea994feb4e2a01f0/src/question_types.jl#L97-L116">source</a></section></article><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.stringq" href="#QuizQuestions.stringq"><code>QuizQuestions.stringq</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">stringq(re::Regex; filter::Regex=r&quot;&quot;, label=&quot;&quot;, hint=&quot;&quot;, explanation=&quot;&quot;, placeholder=&quot;&quot;)</code></pre><p>Match string answer with regular expression</p><p>Arguments:</p><ul><li><p><code>re</code>: a regular expression for grading</p></li><li><p><code>filter</code>: a regular expression for what to remove from the string before matching (e.g. <code>r&quot;\s&quot;</code> to remove whitespace)</p></li><li><p><code>label</code>: optional label for the form element</p></li><li><p><code>hint</code>: optional plain-text hint that can be seen on hover</p></li><li><p><code>explanation</code>: text to display on a wrong selection</p></li><li><p><code>placeholder</code>: text shown when input widget is initially drawn</p></li></ul><p><strong>Example</strong></p><pre><code class="nohighlight hljs">re = Regex(&quot;^abc&quot;)
+stringq(re, label=&quot;First 3 letters...&quot;)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/6e3245a790f03fba07cbaefeea994feb4e2a01f0/src/question_types.jl#L12-L38">source</a></section></article><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.scriptq" href="#QuizQuestions.scriptq"><code>QuizQuestions.scriptq</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">scriptq(funct::AbstractString, runonce::AbstractString=&quot;&quot;; label=&quot;&quot;, hint=&quot;&quot;, explanation=&quot;&quot;, placeholder=&quot;&quot;)</code></pre><p>Check string answer with custom script</p><p>Arguments:</p><ul><li><p><code>funct</code>: a string representing the name of a JavaScript function/closure of signature <code>(str: string): boolean</code></p></li><li><p><code>label</code>: optional label for the form element</p></li><li><p><code>hint</code>: optional plain-text hint that can be seen on hover</p></li><li><p><code>explanation</code>: text to display on a wrong selection</p></li><li><p><code>placeholder</code>: text shown when input widget is initially drawn</p></li></ul><p><strong>Example</strong></p><pre><code class="language-javascript hljs">// in JavaScript
 function threshold(t) {
     return (input) =&gt; input &gt;= t;
 }</code></pre><pre><code class="language-julia hljs"># in Julia
-stringq(&quot;threshold(42)&quot;, label=&quot;A large number&quot;)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/19460036ec90078704dd2baaa26d28df19049161/src/question_types.jl#L51-L82">source</a></section></article><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.fillblankq" href="#QuizQuestions.fillblankq"><code>QuizQuestions.fillblankq</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">fillblankq(question answer::Regex; placeholder=nothing, [label, hint, explanation])
+stringq(&quot;threshold(42)&quot;, label=&quot;A large number&quot;)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/6e3245a790f03fba07cbaefeea994feb4e2a01f0/src/question_types.jl#L51-L82">source</a></section></article><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.fillblankq" href="#QuizQuestions.fillblankq"><code>QuizQuestions.fillblankq</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">fillblankq(question answer::Regex; placeholder=nothing, [label, hint, explanation])
 fillblankq(question, choices, answer; keep_order=false,[label, hint, explanation])
 fillblankq(question, val, atol=0; placeholder=nothing, [label, hint, explanation])</code></pre><p>Present a fill-in-the-blank question where the blank can be a selection, a number, or a string graded by a regular expression.</p><ul><li><code>question</code>: A string. Use <code>____</code> (4 or more under scores) to indicate the blank.</li></ul><p>Other rguments from <code>stringq</code>, <code>radioq</code>, and <code>numericq</code></p><p><strong>Examples</strong></p><pre><code class="nohighlight hljs">question = &quot;The quick brown fox jumped over the ____ dog&quot;
 fillblankq(question, r&quot;lazy&quot;)
 fillblankq(question, (&quot;lazy&quot;, &quot;brown&quot;, &quot;sleeping&quot;), 1)
-fillblankq(&quot;____ ``+ 2  = 4``&quot;, 2)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/19460036ec90078704dd2baaa26d28df19049161/src/question_types.jl#L500-L518">source</a></section></article><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.hotspotq" href="#QuizQuestions.hotspotq"><code>QuizQuestions.hotspotq</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">hotspotq(imagefile, xs, ys=(0,1); label=&quot;&quot;, hint=&quot;&quot;, explanation=&quot;&quot;,
+fillblankq(&quot;____ ``+ 2  = 4``&quot;, 2)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/6e3245a790f03fba07cbaefeea994feb4e2a01f0/src/question_types.jl#L500-L518">source</a></section></article><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.hotspotq" href="#QuizQuestions.hotspotq"><code>QuizQuestions.hotspotq</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">hotspotq(imagefile, xs, ys=(0,1); label=&quot;&quot;, hint=&quot;&quot;, explanation=&quot;&quot;,
     correct_answer=nothing)</code></pre><p>Question type to check if user clicks in a specified region of an image.</p><ul><li><p><code>imgfile</code>: File of an image. The images will be encoded and embedded in the web page.</p></li><li><p><code>xs</code>: iterable specifying <code>(xmin, xmax)</code> with <code>0 &lt;= xmin &lt;= xmax &lt;= 1</code></p></li><li><p><code>ys</code>: iterable specifying <code>(ymin, ymax)</code></p></li><li><p><code>correct_answer</code>: A text snippet of JavaScript which can be specified to add more complicated logic to test if an answer is correct. It must use <code>x</code> and <code>y</code> for the coordinates of the click.</p></li></ul><p><strong>Examples</strong></p><pre><code class="nohighlight hljs">using Plots
 p1 = plot(x -&gt; x^2, axis=nothing, legend=false)
 p2 = plot(x -&gt; x^3, axis=nothing, legend=false)
@@ -1496,7 +1500,7 @@ l = @layout [a b; c d]
 p = plot(p1, p2, p3, p4, layout=l)
 imgfile = tempname() * &quot;.png&quot;
 savefig(p, imgfile)
-hotspotq(imgfile, (0,1/2), (0, 1/2), label=&quot;What best matches the graph of ``f(x) = -x^4``?&quot;)</code></pre><div class="admonition is-info"><header class="admonition-header">Note</header><div class="admonition-body"><p>The display of the image is not adjusted by this question type and must be managed separately.</p></div></div></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/19460036ec90078704dd2baaa26d28df19049161/src/question_types.jl#L556-L589">source</a></section></article><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.plotlylightq" href="#QuizQuestions.plotlylightq"><code>QuizQuestions.plotlylightq</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">plotlylightq(p, xs=(-Inf, Inf), ys=(-Inf, Inf);
+hotspotq(imgfile, (0,1/2), (0, 1/2), label=&quot;What best matches the graph of ``f(x) = -x^4``?&quot;)</code></pre><div class="admonition is-info"><header class="admonition-header">Note</header><div class="admonition-body"><p>The display of the image is not adjusted by this question type and must be managed separately.</p></div></div></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/6e3245a790f03fba07cbaefeea994feb4e2a01f0/src/question_types.jl#L556-L589">source</a></section></article><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.plotlylightq" href="#QuizQuestions.plotlylightq"><code>QuizQuestions.plotlylightq</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">plotlylightq(p, xs=(-Inf, Inf), ys=(-Inf, Inf);
              label=&quot;&quot;, hint=&quot;&quot;, explanation=&quot;&quot;,
              correct_answer=nothing)</code></pre><p>From a plotly graph of a function present a question about the <code>x-y</code> point on a graph shown on hover. (For figures with multiple graphs, the hover of the first one is taken. For parameterized plots, the hover may be computed in an unexpected manner.)</p><p>By default, correct answers select a value on the graph with <code>x</code> in the range specified by <code>xs</code> and <code>y</code> in the range specified by <code>ys</code>.</p><ul><li><p><code>xs</code>: specifies interval for selected point <code>[x₀,x₁]</code>, defaults to <code>(-Inf,Inf)</code></p></li><li><p><code>ys</code>: range <code>[y₀,y₁]</code></p></li><li><p><code>correct_answer</code>: When specified, allows more advanced notions of correct. This is a JavaScript code snippet with <code>x</code> and <code>y</code> representing the hovered point on the graph that is highlighted on clicking.</p></li></ul><p><strong>Examples</strong></p><pre><code class="nohighlight hljs">using PlotlyLight
 xs = range(0, 2pi, length=100)
@@ -1509,6 +1513,6 @@ push!(p.data, Config(x=xs, y=cos.(xs)));  # add layer
 question = &quot;Click a value where `sin(x)` is increasing&quot;
 # evalute pi/2 as no pi in JavaScript, also Inf -&gt; Infinity
 correct_answer = &quot;((x &gt;= 0 &amp;&amp; x &lt;= 1.5707963267948966) || (x &gt;= 4.71238898038469 &amp;&amp; x &lt;= 6.283185307179586))&quot;
-plotlylightq(p; label=question, correct_answer=correct_answer)</code></pre><div class="admonition is-info"><header class="admonition-header">Note</header><div class="admonition-body"><p>The use of <code>PlotlyLight</code> graphics works with <code>Weave</code> and <code>Pluto</code>, but is unusable from <code>quarto</code> and <code>Documenter</code>.</p></div></div></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/19460036ec90078704dd2baaa26d28df19049161/src/question_types.jl#L608-L653">source</a></section></article><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.scorecard" href="#QuizQuestions.scorecard"><code>QuizQuestions.scorecard</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">scorecard(values; oncompletion::Bool=false, not_completed_msg::String=&quot;&quot;, which_attempt=:completed)</code></pre><p>Add a scorecard</p><ul><li><p><code>values</code> is a collection of pairs, <code>interval =&gt; message</code>. See below. The default summarizes the number of correct/attempted of the number of questions attempted and the total number of questions.</p></li><li><p>The <code>oncompletion</code> flag can be set to only show the message if all the questions have been attempted. When set, and not all questions have been attempted, the <code>not_completed_msg</code> message is shown.</p></li><li><p><code>which_percent</code> is either <code>:correct</code> or <code>:attempted</code></p></li></ul><p>The interval is specified as <code>(l,r)</code>, with <code>0 &lt;= l &lt; r &lt;= 100</code>, or <em>optionally</em> as <code>(l,r,interval_type)</code> where <code>interval_type</code>, a string, is one of <code>&quot;[]&quot;</code>, <code>&quot;[)&quot;</code>,<code>&quot;(]&quot;</code>, or <code>&quot;()&quot;</code>. The default interval type is <code>&quot;[)&quot;</code> unless <code>r</code> is <code>100</code>, in which case it is <code>&quot;[]&quot;</code>.</p><p>The message is shown when the percent correct/attempted is in the interval. The following values are substituted, when present:</p><ul><li><code>{{:total_questions}}</code> - the number of total questions</li><li><code>{{:correct}}</code> - the number of correct answers</li><li><code>{{:attempted}}</code> - the number of attempted questions</li><li><code>{{:total_attempts}}</code> – the number of attempts.</li></ul><p>The message may have Markdown formatting.</p><p>Example</p><pre><code class="nohighlight hljs">vals = [(0,99)=&gt;&quot;Keep trying&quot;,
+plotlylightq(p; label=question, correct_answer=correct_answer)</code></pre><div class="admonition is-info"><header class="admonition-header">Note</header><div class="admonition-body"><p>The use of <code>PlotlyLight</code> graphics works with <code>Weave</code> and <code>Pluto</code>, but is unusable from <code>quarto</code> and <code>Documenter</code>.</p></div></div></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/6e3245a790f03fba07cbaefeea994feb4e2a01f0/src/question_types.jl#L608-L653">source</a></section></article><article class="docstring"><header><a class="docstring-article-toggle-button fa-solid fa-chevron-down" href="javascript:;" title="Collapse docstring"></a><a class="docstring-binding" id="QuizQuestions.scorecard" href="#QuizQuestions.scorecard"><code>QuizQuestions.scorecard</code></a> — <span class="docstring-category">Function</span><span class="is-flex-grow-1 docstring-article-toggle-button" title="Collapse docstring"></span></header><section><div><pre><code class="language-julia hljs">scorecard(values; oncompletion::Bool=false, not_completed_msg::String=&quot;&quot;, which_attempt=:completed)</code></pre><p>Add a scorecard</p><ul><li><p><code>values</code> is a collection of pairs, <code>interval =&gt; message</code>. See below. The default summarizes the number of correct/attempted of the number of questions attempted and the total number of questions.</p></li><li><p>The <code>oncompletion</code> flag can be set to only show the message if all the questions have been attempted. When set, and not all questions have been attempted, the <code>not_completed_msg</code> message is shown.</p></li><li><p><code>which_percent</code> is either <code>:correct</code> or <code>:attempted</code></p></li></ul><p>The interval is specified as <code>(l,r)</code>, with <code>0 &lt;= l &lt; r &lt;= 100</code>, or <em>optionally</em> as <code>(l,r,interval_type)</code> where <code>interval_type</code>, a string, is one of <code>&quot;[]&quot;</code>, <code>&quot;[)&quot;</code>,<code>&quot;(]&quot;</code>, or <code>&quot;()&quot;</code>. The default interval type is <code>&quot;[)&quot;</code> unless <code>r</code> is <code>100</code>, in which case it is <code>&quot;[]&quot;</code>.</p><p>The message is shown when the percent correct/attempted is in the interval. The following values are substituted, when present:</p><ul><li><code>{{:total_questions}}</code> - the number of total questions</li><li><code>{{:correct}}</code> - the number of correct answers</li><li><code>{{:attempted}}</code> - the number of attempted questions</li><li><code>{{:total_attempts}}</code> – the number of attempts.</li></ul><p>The message may have Markdown formatting.</p><p>Example</p><pre><code class="nohighlight hljs">vals = [(0,99)=&gt;&quot;Keep trying&quot;,
           (99, 100) =&gt; &quot;You got {{:correct}} **correct** of {{:total_questions}} total *questions*&quot;]
-scorecard(vals)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/19460036ec90078704dd2baaa26d28df19049161/src/question_types.jl#L669-L698">source</a></section></article></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.0 on <span class="colophon-date" title="Sunday 17 November 2024 16:28">Sunday 17 November 2024</span>. Using Julia version 1.11.1.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+scorecard(vals)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/jverzani/QuizQuestions.jl/blob/6e3245a790f03fba07cbaefeea994feb4e2a01f0/src/question_types.jl#L669-L698">source</a></section></article></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.0 on <span class="colophon-date" title="Thursday 6 February 2025 21:30">Thursday 6 February 2025</span>. Using Julia version 1.11.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
