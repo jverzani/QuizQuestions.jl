@@ -55,7 +55,8 @@ function prepare_question(x::Numericq, ID)
                            PLACEHOLDER = isnothing(x.placeholder) ? "Numeric answer" : x.placeholder,
                            UNITS=_markdown_to_html(x.units),
                            TYPE="number",
-                           HINT = length(x.label) == 0 ? x.hint : ""
+                           HINT = length(x.label) == 0 ? x.hint : "",
+                           STEP = "any"
                            )
 
 

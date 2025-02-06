@@ -124,6 +124,7 @@ html_templates["inputq_form"] = mt"""
      aria-label="Input form: {{:PLACEHOLDER}}">
     <input id="{{:ID}}"
            type="{{:TYPE}}"
+           {{#:STEP}}step="{{:STEP}}"{{/:STEP}}
            class="form-control qqinput"
            placeholder="{{:PLACEHOLDER}}"
            aria-label="{{:PLACEHOLDER}}">
