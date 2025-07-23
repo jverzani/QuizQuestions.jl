@@ -22,7 +22,7 @@ end
 # show method for html output of question types
 function _markdown_to_html(x)
     length(x) == 0 && return("")
-    x = Markdown.parse(x)
+    x = Markdown.parse(string(x))
     x = sprint(io -> Markdown.html(io, x))
     x = replace(x, r"<p>"=>" ", r"</p>$"=>" ")
     return x
